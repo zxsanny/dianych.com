@@ -1,0 +1,2 @@
+make a gallery component and reuse it, or use some gallery already existing in a next.js
+implement other components such as Clothes, Panel, Frames, Felting

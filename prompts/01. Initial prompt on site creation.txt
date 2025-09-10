@@ -1,0 +1,11 @@
+analyze files thoroughly and make the website as close to the design presented in Dianych_v1.pdf as possible. Guidlines which button leads where presented in Site_mechanics
+Use img assets in the places visually matches by images
+
+Make site responsive and working on different screen sizes. Pixel-perfect is not a priority, but don't deviate much from the design. Follow the latest js and css trends , maybe use next.js, but it is up to you.
+
+images in the sections Брошки (brooches) are actually should be in gallery with user poissibility to scroll and see more pictures (all in the folder brooches)
+Same situations with Вишивка на одязі (clothes)
+Панно (painted_panel)
+and Рамки (frames)
+
+Pdf has significant gaps, ignore them, it is a design flaw.
