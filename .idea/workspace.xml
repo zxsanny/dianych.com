@@ -4,13 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/fonts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/tailwind.config.ts" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix Header component&#10;use tailwind config">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/fonts/vinnytsia_serif.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/header/main_author.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/fonts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/fonts/VinnytsiaSerif.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/contacts_photo.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7198.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7199.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7201.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7202.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7203.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7204.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7205.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7206.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7207.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7208.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7209.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7210.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7211.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7212.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7213.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/photo-output.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/header/main_author.JPG" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,13 +49,28 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;zxsanny&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/zxsanny/dianych.com.git&quot;,
+    &quot;accountId&quot;: &quot;605d825b-cc47-4efe-8bdd-c17311b7fd26&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -40,28 +84,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.main.js.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Debug",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "D:\\dev\\dianych.com\\dianych-website\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.main.js.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Debug&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\dev\\dianych.com\\dianych-website\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\dianych.com\dianych-website\app\fonts" />
+      <recent name="D:\dev\dianych.com\dianych-website\app" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/dianych-website/package.json" />
@@ -91,7 +141,9 @@
       <workItem from="1757435732530" duration="62000" />
       <workItem from="1757435867453" duration="94000" />
       <workItem from="1757436225016" duration="1332000" />
-      <workItem from="1757486405598" duration="4757000" />
+      <workItem from="1757486405598" duration="11174000" />
+      <workItem from="1757522811848" duration="182000" />
+      <workItem from="1757523005492" duration="8423000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -101,14 +153,34 @@
       <option name="project" value="LOCAL" />
       <updated>1757492539011</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix Header component&#10;use tailwind config">
+      <option name="closed" value="true" />
+      <created>1757493019074</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757493019074</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
+    <MESSAGE value="fix Header component&#10;use tailwind config" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix Header component&#10;use tailwind config" />
   </component>
 </project>
