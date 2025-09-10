@@ -4,42 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix Header component&#10;use tailwind config">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/fonts/vinnytsia_serif.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/header/main_author.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/fonts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/fonts/VinnytsiaSerif.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/contacts_photo.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7198.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7199.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7201.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7202.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7203.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7204.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7205.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7206.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7207.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7208.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7209.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7210.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7211.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7212.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/IMG_7213.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/photo-output.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/header/main_author.JPG" beforeDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css">
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +109,7 @@
       <workItem from="1757436225016" duration="1332000" />
       <workItem from="1757486405598" duration="11174000" />
       <workItem from="1757522811848" duration="182000" />
-      <workItem from="1757523005492" duration="8423000" />
+      <workItem from="1757523005492" duration="8602000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -161,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757493019074</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css">
+      <option name="closed" value="true" />
+      <created>1757541709914</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757541709914</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +155,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
     <MESSAGE value="fix Header component&#10;use tailwind config" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix Header component&#10;use tailwind config" />
+    <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
   </component>
 </project>
