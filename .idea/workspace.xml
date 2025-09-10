@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Clothes.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/fonts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -38,6 +36,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -92,11 +91,24 @@
       <workItem from="1757435732530" duration="62000" />
       <workItem from="1757435867453" duration="94000" />
       <workItem from="1757436225016" duration="1332000" />
-      <workItem from="1757486405598" duration="4177000" />
+      <workItem from="1757486405598" duration="4757000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
+      <option name="closed" value="true" />
+      <created>1757492539011</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1757492539011</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
   </component>
 </project>

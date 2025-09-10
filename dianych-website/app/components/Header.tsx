@@ -1,5 +1,7 @@
+// app/components/Header.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+
 const NavLink = ({ href, imgSrc, label }: { href: string; imgSrc: string; label: string }) => (
     <Link href={href} scroll={true}>
         <div className="flex flex-col items-center text-center group cursor-pointer">
@@ -15,10 +17,12 @@ const NavLink = ({ href, imgSrc, label }: { href: string; imgSrc: string; label:
         </div>
     </Link>
 );
+
 const Header = () => {
     return (
         <header className="bg-[#FBEFE1] w-full">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-center min-h-screen px-4 py-8">
+
                 <div className="w-full md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-10">
                     <div className="relative w-[300px] h-[450px] sm:w-[400px] sm:h-[600px]">
                         <Image
@@ -36,7 +40,7 @@ const Header = () => {
                     <div className="relative w-32 h-32">
                         <Image src="/images/header/main_logo.PNG" alt="Dianych Logo" layout="fill" objectFit="contain" />
                     </div>
-                    <h1 className="text-6xl md:text-7xl font-serif text-[#A52A2A]">DIANYCH</h1>
+                    <h1 className="text-6xl md:text-7xl text-[#A52A2A] font-serifCustom">DIANYCH</h1>
                     <p className="text-xl md:text-2xl text-gray-700 -mt-2">Портрети домашніх улюбленців</p>
 
                     <div className="grid grid-cols-2 gap-x-4 gap-y-6 pt-4">
@@ -62,4 +66,5 @@ const Header = () => {
         </header>
     );
 };
+
 export default Header;
