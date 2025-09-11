@@ -1,16 +1,9 @@
-import Image from 'next/image';
 import OrderBtn from "@/app/components/OrderBtn";
+import Gallery from "@/app/components/Gallery";
 
 const FrameCard = ({ title, images, size, price }: { title: string, images: string[], size: string, price: string }) => (
     <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 color-red text-center">{title}</h3>
-        <div className="flex justify-center space-x-4 mb-4">
-            {images.map((src, index) => (
-                <div key={index} className="relative w-40 h-40 rounded-lg overflow-hidden">
-                    <Image src={src} alt={title} layout="fill" objectFit="cover" />
-                </div>
-            ))}
-        </div>
+        <Gallery title={title} images={images} />
         <div className="flex justify-between items-center mt-4 bg-gray-100 p-3 rounded-lg">
             <span className="text-lg font-medium color-red">{size}</span>
             <span className="text-lg font-bold color-red">{price}</span>

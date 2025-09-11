@@ -20,7 +20,7 @@ const Brooches = () => {
     return (
         <Gallery
             id="brooches"
-            title="Вишивка Брошки Шеврони"
+            title="Вишивка: Брошки / Шеврони"
             images={images}
             orderLink="https://www.instagram.com/dianych.ua/"
             buttonText="Замовити вишивку"

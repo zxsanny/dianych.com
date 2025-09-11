@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix modal&#10;add order button with proper styles&#10;rename files">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="small header fix">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/Kits.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +118,7 @@
       <workItem from="1757436225016" duration="1332000" />
       <workItem from="1757486405598" duration="11174000" />
       <workItem from="1757522811848" duration="182000" />
-      <workItem from="1757523005492" duration="19522000" />
+      <workItem from="1757523005492" duration="25118000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -154,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757617023797</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="small header fix">
+      <option name="closed" value="true" />
+      <created>1757617511269</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1757617511269</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +191,7 @@
     <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
     <MESSAGE value="fix modal" />
     <MESSAGE value="fix modal&#10;add order button with proper styles&#10;rename files" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix modal&#10;add order button with proper styles&#10;rename files" />
+    <MESSAGE value="small header fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="small header fix" />
   </component>
 </project>

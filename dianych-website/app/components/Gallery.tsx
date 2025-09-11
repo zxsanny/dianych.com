@@ -8,14 +8,15 @@ import Modal from './Modal';
 import OrderBtn from "@/app/components/OrderBtn";
 
 interface GalleryProps {
-    id: string;
+    id?: string;
     title: string;
+    description?: string;
     images: string[];
-    orderLink: string;
-    buttonText: string;
+    orderLink?: string;
+    buttonText?: string;
 }
 
-const Gallery = ({ id, title, images, orderLink, buttonText }: GalleryProps) => {
+const Gallery = ({ id, title, description, images, orderLink, buttonText }: GalleryProps) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
     const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -52,12 +53,17 @@ const Gallery = ({ id, title, images, orderLink, buttonText }: GalleryProps) => 
             <section id={id} className="py-12 bg-gray-50/50">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl color-red text-center mb-8">{title}</h2>
+                    <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8 text-center">
+                        {description}
+                    </p>
                     <div className="relative">
                         <div className="overflow-hidden" ref={emblaRef}>
                             <div className="flex -ml-4">
                                 {images.map((src, index) => (
-                                    <div key={index} className="flex-grow-0 flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 pl-4" onClick={() => handleImageClick(index)}>
-                                        <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
+                                    <div key={index} className="flex-grow-0 flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pl-4"
+                                         onClick={() => handleImageClick(index)}>
+                                        <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer
+                                        transition-transform duration-300 hover:scale-105">
                                             <Image
                                                 src={src}
                                                 alt={`${title} image ${index + 1}`}
@@ -83,10 +89,11 @@ const Gallery = ({ id, title, images, orderLink, buttonText }: GalleryProps) => 
                     <div className="w-full h-2 bg-gray-300 rounded-full mt-6">
                         <div className="h-full bg-gray-600 rounded-full" style={{ width: `${scrollProgress}%` }}></div>
                     </div>
-
-                    <div className="text-center mt-8">
-                        <OrderBtn orderText={buttonText} orderLink={orderLink} />
-                    </div>
+                    {orderLink && buttonText && (
+                        <div className="text-center mt-8">
+                            <OrderBtn orderText={buttonText} orderLink={orderLink} />
+                        </div>
+                    )}
                 </div>
             </section>
 

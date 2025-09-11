@@ -21,6 +21,12 @@ const contactLinks = [
         text: "Діанич вишиває"
     },
     {
+        href: "https://www.facebook.com/profile.php?id=100012871091950",
+        iconSrc: "/images/contacts/facebook_icon.png",
+        alt: "Facebook Icon",
+        text: "Diana"
+    },
+    {
         href: "https://www.etsy.com/shop/DianychStudio",
         iconSrc: "/images/contacts/etsy_icon.png",
         alt: "Etsy Icon",
@@ -41,7 +47,7 @@ const Contact = () => {
 
                 {/* --- LEFT COLUMN: Main Image (Desktop Only) --- */}
                 <div className="hidden lg:flex justify-center items-start pt-8">
-                    <div className="relative w-full max-w-lg aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative w-full max-w-lg aspect-[2/3] rounded-2xl overflow-hidden shadow-lg">
                         <Image
                             src="/images/contacts/contacts_photo.jpg"
                             alt="Artistic photo of a woman in a rose garden"
@@ -61,7 +67,7 @@ const Contact = () => {
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
                         </div>
                         <h1 className="text-6xl color-red font-serifCustom">DIANYCH</h1>
-                        <p className="text-xl text-gray-700 -mt-2">портрети домашніх улюбленців,</p>
+                        <p className="text-xl text-gray-700 -mt-2">портрети домашніх улюбленців</p>
                     </div>
 
                     {/* Contact Info Title */}
@@ -77,7 +83,7 @@ const Contact = () => {
                                 rel="noopener noreferrer"
                                 className="flex items-center w-full p-3 bg-white/80 hover:bg-white rounded-full shadow-md transition-colors duration-300 transform hover:scale-105"
                             >
-                                <div className="relative w-10 h-10">
+                                <div className="relative w-10 h-6">
                                     <Image src={link.iconSrc} alt={link.alt} layout="fill" objectFit="contain" />
                                 </div>
                                 <span className="flex-grow font-semibold text-gray-800 text-lg">{link.text}</span>

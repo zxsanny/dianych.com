@@ -4,6 +4,7 @@ import Clothes from './components/Clothes';
 import Panel from './components/Panel';
 import Frames from './components/Frames';
 import Felting from './components/Felting';
+import Kits from './components/Kits';
 import Contact from './components/Contact';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
             <Panel />
             <Frames />
             <Felting />
+            <Kits />
             <Contact />
         </main>
     );
