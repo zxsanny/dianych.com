@@ -70,7 +70,7 @@ const Header = () => {
                         </div>
                     </div>
                     {/* Right Column: Branding */}
-                    <div className="w-3/5 flex flex-col items-center text-center pl-4">
+                    <div className="w-3/5 flex flex-col items-center text-center pr-5">
                         <div className="relative w-20 h-20">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
                         </div>
