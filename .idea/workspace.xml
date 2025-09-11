@@ -4,54 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix warnings and deprecations">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/lib/galleryUtils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_3.jpg" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="renames cleanup">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/UploadForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/upload/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Clothes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Clothes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Kits.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Kits.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/large_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/large_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/large_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/medium_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/medium_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/medium_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_1_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_1_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_1_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_2_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_2_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames/small_2_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/painted_panel/11.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +118,7 @@
       <workItem from="1757523005492" duration="25334000" />
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
-      <workItem from="1757624966811" duration="4894000" />
+      <workItem from="1757624966811" duration="6052000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -227,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757627218952</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="renames cleanup">
+      <option name="closed" value="true" />
+      <created>1757629996495</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1757629996495</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +218,7 @@
     <MESSAGE value="small header fix" />
     <MESSAGE value="add Kits section&#10;small style fixes" />
     <MESSAGE value="fix warnings and deprecations" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix warnings and deprecations" />
+    <MESSAGE value="renames cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="renames cleanup" />
   </component>
 </project>
