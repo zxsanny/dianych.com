@@ -1,4 +1,3 @@
-// app/components/Contact.tsx
 import Image from 'next/image';
 
 const contactLinks = [
@@ -58,7 +57,6 @@ const Contact = () => {
                 </div>
 
                 {/* --- RIGHT COLUMN: Contact Info --- */}
-                {/* Added 'relative' to anchor the phone and re-added gradient/styles */}
                 <div className="relative flex flex-col items-center text-center space-y-8 lg:bg-gradient-to-br lg:from-[#FFFBF5] lg:to-[#FCEAD7] lg:p-12 lg:rounded-2xl lg:shadow-xl">
 
                     {/* Branding */}
@@ -94,7 +92,7 @@ const Contact = () => {
                         ))}
                     </div>
 
-                    {/* Phone Image - Positioned absolutely to overlap the corner */}
+                    {/* Phone Image */}
                     <div className="hidden lg:block absolute -bottom-14 right-9 w-48 h-auto aspect-[9/19] transform translate-x-8 translate-y-8 rotate-12">
                         <Image
                             src="/images/contacts/phone_img.png"

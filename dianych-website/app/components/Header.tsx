@@ -29,7 +29,7 @@ const Header = () => {
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill
                                    className="object-contain" />
                         </div>
-                        <h1 className="text-8xl color-red">DIANYCH</h1>
+                        <h1 className="text-8xl color-red cursor-default">DIANYCH</h1>
                         <p className="text-3xl text-gray-700 mt-2">Портрети домашніх улюбленців</p>
                     </div>
                     <div className="relative w-full h-[80vh] bottom-20">
