@@ -4,8 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix modal">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/OrderBtn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/public/images/insta_send.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/file.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/globe.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/felting/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/felting/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/felting/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/next.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/vercel.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/window.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +91,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\dianych.com\dianych-website\public\images" />
       <recent name="D:\dev\dianych.com\dianych-website\app\fonts" />
       <recent name="D:\dev\dianych.com\dianych-website\app" />
     </key>
@@ -109,7 +127,7 @@
       <workItem from="1757436225016" duration="1332000" />
       <workItem from="1757486405598" duration="11174000" />
       <workItem from="1757522811848" duration="182000" />
-      <workItem from="1757523005492" duration="8602000" />
+      <workItem from="1757523005492" duration="18911000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -135,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757541709914</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix modal">
+      <option name="closed" value="true" />
+      <created>1757542518168</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1757542518168</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +182,7 @@
     <MESSAGE value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
     <MESSAGE value="fix Header component&#10;use tailwind config" />
     <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
+    <MESSAGE value="fix modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix modal" />
   </component>
 </project>

@@ -24,6 +24,10 @@ body {
   color: var(--foreground);
 }
 
-.red {
+.color-red {
   color: var(--red-color);
+}
+
+.bg-red {
+  background-color: var(--red-color);
 }

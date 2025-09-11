@@ -27,7 +27,7 @@ const Header = () => {
                         <div className="relative w-32 h-32">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
                         </div>
-                        <h1 className="text-7xl red">DIANYCH</h1>
+                        <h1 className="text-7xl color-red">DIANYCH</h1>
                         <p className="text-2xl text-gray-700 mt-2">Портрети домашніх улюбленців</p>
                     </div>
                     <div className="relative flex-grow w-full">

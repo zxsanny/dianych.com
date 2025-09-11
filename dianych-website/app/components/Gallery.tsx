@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import Modal from './Modal';
+import OrderBtn from "@/app/components/OrderBtn";
 
 interface GalleryProps {
     id: string;
@@ -50,7 +51,7 @@ const Gallery = ({ id, title, images, orderLink, buttonText }: GalleryProps) => 
         <>
             <section id={id} className="py-12 bg-gray-50/50">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl red text-center mb-8">{title}</h2>
+                    <h2 className="text-4xl color-red text-center mb-8">{title}</h2>
                     <div className="relative">
                         <div className="overflow-hidden" ref={emblaRef}>
                             <div className="flex -ml-4">
@@ -84,9 +85,7 @@ const Gallery = ({ id, title, images, orderLink, buttonText }: GalleryProps) => 
                     </div>
 
                     <div className="text-center mt-8">
-                        <a href={orderLink} target="_blank" rel="noopener noreferrer" className="bg-[#E11D48] text-white px-8 py-3 rounded-full font-semibold hover:bg-pink-700 transition-colors duration-300 text-lg shadow-lg">
-                            {buttonText}
-                        </a>
+                        <OrderBtn orderText={buttonText} orderLink={orderLink} />
                     </div>
                 </div>
             </section>
