@@ -51,8 +51,8 @@ const Contact = () => {
                         <Image
                             src="/images/contacts/contacts_photo.jpg"
                             alt="Artistic photo of a woman in a rose garden"
-                            layout="fill"
-                            objectFit="cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
                 </div>
@@ -64,7 +64,10 @@ const Contact = () => {
                     {/* Branding */}
                     <div className="flex flex-col items-center text-center">
                         <div className="relative w-24 h-24">
-                            <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
+                            <Image src="/images/header/main_logo.png"
+                                   alt="Dianych Logo"
+                                   fill
+                                   className="object-contain" />
                         </div>
                         <h1 className="text-6xl color-red font-serifCustom">DIANYCH</h1>
                         <p className="text-xl text-gray-700 -mt-2">портрети домашніх улюбленців</p>
@@ -84,7 +87,7 @@ const Contact = () => {
                                 className="flex items-center w-full p-3 bg-white/80 hover:bg-white rounded-full shadow-md transition-colors duration-300 transform hover:scale-105"
                             >
                                 <div className="relative w-10 h-6">
-                                    <Image src={link.iconSrc} alt={link.alt} layout="fill" objectFit="contain" />
+                                    <Image src={link.iconSrc} alt={link.alt} fill className="object-contain"/>
                                 </div>
                                 <span className="flex-grow font-semibold text-gray-800 text-lg">{link.text}</span>
                             </a>
@@ -96,8 +99,8 @@ const Contact = () => {
                         <Image
                             src="/images/contacts/phone_img.png"
                             alt="Phone displaying the Dianych Instagram profile"
-                            layout="fill"
-                            objectFit="contain"
+                            fill
+                            className="object-contain"
                         />
                     </div>
                 </div>

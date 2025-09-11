@@ -49,8 +49,8 @@ const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }: ModalP
                     <Image
                         src={images[currentIndex]}
                         alt={`Full size view of image ${currentIndex + 1}`}
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        className="object-contain"
                     />
                 </div>
 

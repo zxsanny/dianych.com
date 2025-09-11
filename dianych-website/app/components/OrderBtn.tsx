@@ -18,8 +18,8 @@ const OrderButton = ({ orderText, orderLink }: OrderButtonProps) => {
                 <Image
                     src="/images/insta_send.svg"
                     alt="Order icon"
-                    layout="fill"
-                    objectFit="contain"
+                    fill
+                    className="object-contain"
                 />
             </div>
         </a>

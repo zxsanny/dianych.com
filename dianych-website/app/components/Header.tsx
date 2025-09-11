@@ -1,23 +1,24 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
-const NavLink = ({ href, imgSrc, label, className = '' }: { href: string; imgSrc: string; label: string; className?: string }) => (
+const NavLink = ({ href, imgSrc, label, className = '' }:
+                 { href: string; imgSrc: string; label: string; className?: string }) => (
     <div className={`flex flex-col items-center text-center group cursor-pointer ${className}`}>
-        <Link href={href} scroll={true}>
+        <a href={href}>
             <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-4xl overflow-hidden border-2 border-white/50 shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                     src={imgSrc}
                     alt={`${label} category link`}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    className="object-cover"
                 />
             </div>
             <div className="mt-4 font-semibold text-gray-800 text-lg sm:text-xl">{label}</div>
-        </Link>
+        </a>
     </div>
 );
 
 const Header = () => {
+    // noinspection HtmlUnknownAnchorTarget
     return (
         <header className="bg-[#FBEFE1] w-full overflow-hidden">
             {/* --- DESKTOP-ONLY LAYOUT --- */}
@@ -25,7 +26,8 @@ const Header = () => {
                 <div className="col-span-2 flex flex-col">
                     <div className="flex-shrink-0 flex flex-col items-center text-center pt-16">
                         <div className="relative w-32 h-32">
-                            <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
+                            <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill
+                                   className="object-contain" />
                         </div>
                         <h1 className="text-8xl color-red">DIANYCH</h1>
                         <p className="text-3xl text-gray-700 mt-2">Портрети домашніх улюбленців</p>
@@ -34,9 +36,8 @@ const Header = () => {
                         <Image
                             src="/images/header/main_author.png"
                             alt="Author Diana"
-                            layout="fill"
-                            objectFit="contain"
-                            objectPosition="bottom left"
+                            fill
+                            className="object-contain object-bottom-left"
                             priority
                         />
                     </div>
@@ -50,13 +51,13 @@ const Header = () => {
                     </div>
                     <div className="flex items-center space-x-6 gap-x-12 gap-y-16 mt-10">
                         <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/instagram_icon.png" alt="Instagram" width={96} height={96} />
+                            <Image src="/images/contacts/instagram_icon.png" alt="Instagram" width={96} height={96} />
                         </a>
                         <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/tiktok_icon.png" alt="TikTok" width={96} height={96} />
+                            <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={96} height={96} />
                         </a>
                         <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/telegram_icon.png" alt="Telegram" width={96} height={96} />
+                            <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={96} height={96} />
                         </a>
                     </div>
                     <a className="color-red mt-3 text-2xl" href="#contact">Всі контакти</a>
@@ -70,19 +71,17 @@ const Header = () => {
                             <Image
                                 src="/images/header/main_author.png"
                                 alt="Author Diana"
-                                layout="fill"
-                                objectFit="cover"
-                                objectPosition="top"
+                                fill
                                 priority
-                                className="rounded-lg"
+                                className="rounded-lg object-cover object-top"
                             />
                         </div>
                     </div>
                     <div className="w-3/5 flex flex-col items-center text-center pr-5">
                         <div className="relative w-20 h-20">
-                            <Image src="/images/header/main_logo.png" alt="Dianych Logo" layout="fill" objectFit="contain" />
+                            <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="text-5xl text-[#A52A2A]">DIANYCH</h1>
+                        <h1 className="text-5xl color-red">DIANYCH</h1>
                         <p className="text-base text-gray-700 mt-1">Портрети домашніх улюбленців</p>
                     </div>
                 </div>

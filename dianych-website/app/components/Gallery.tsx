@@ -67,8 +67,8 @@ const Gallery = ({ id, title, description, images, orderLink, buttonText }: Gall
                                             <Image
                                                 src={src}
                                                 alt={`${title} image ${index + 1}`}
-                                                layout="fill"
-                                                objectFit="cover"
+                                                fill
+                                                className="object-cover"
                                             />
                                         </div>
                                     </div>
