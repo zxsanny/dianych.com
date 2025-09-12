@@ -1,12 +1,14 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import {Metadata} from "next";
+import React from "react";
 
 const vinnytsiaSerif = localFont({
     src: './fonts/vinnytsia_serif.woff2',
 });
 
-export const metadata = {
+export const metadata : Metadata = {
     title: 'DIANYCH - Pet Portraits',
     description: 'Custom embroidered and felted portraits of your beloved pets.',
 };

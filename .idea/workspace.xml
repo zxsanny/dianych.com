@@ -6,11 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="small style adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/LanguageSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/LanguageSwitcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_large/large_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_medium/medium_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_1/small_1_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/frames_small_2/small_2_3.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +44,12 @@
     &quot;assignee&quot;: &quot;zxsanny&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/zxsanny/dianych.com.git",
-    "accountId": "656ac41f-897c-4b35-8630-5c03d1f4fc94"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/zxsanny/dianych.com.git&quot;,
+    &quot;accountId&quot;: &quot;656ac41f-897c-4b35-8630-5c03d1f4fc94&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -55,29 +65,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.main.js.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Debug",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "D:\\dev\\dianych.com\\dianych-website\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.main.js.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Debug&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\dev\\dianych.com\\dianych-website\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\dev\dianych.com\dianych-website" />
@@ -121,7 +131,8 @@
       <workItem from="1757523005492" duration="25334000" />
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
-      <workItem from="1757624966811" duration="20209000" />
+      <workItem from="1757624966811" duration="20541000" />
+      <workItem from="1757672837782" duration="118000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -251,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757672186903</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="small style adjustments">
+      <option name="closed" value="true" />
+      <created>1757672491337</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1757672491337</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,16 +304,5 @@
     <MESSAGE value="update favicon.ico&#10;fix translations.ts&#10;small header update&#10;use translations in Contact" />
     <MESSAGE value="small style adjustments" />
     <option name="LAST_COMMIT_MESSAGE" value="small style adjustments" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/dianych-website/app/layout.tsx</url>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

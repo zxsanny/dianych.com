@@ -19,6 +19,7 @@ const NavLink = ({ href, imgSrc, label, className = '' }: { href: string; imgSrc
 const Header = () => {
     const t = useTranslation();
 
+    // noinspection HtmlUnknownAnchorTarget
     return (
         <header className="bg-[#FBEFE1] w-full overflow-hidden relative">
             <div className="absolute top-4 right-4 z-10">
@@ -63,14 +64,15 @@ const Header = () => {
                 <div className="flex w-full items-center gap-1">
                     <div className="w-2/5 flex-shrink-0">
                         <div className="relative w-full aspect-[2/3]">
-                            <Image src="/images/header/main_author.png" alt="Author Diana" fill className="object-cover rounded-lg" objectPosition="top" priority />
+                            <Image src="/images/header/main_author.png" alt="Author Diana" fill
+                                   className="object-cover rounded-lg object-top" priority />
                         </div>
                     </div>
                     <div className="w-3/5 flex flex-col items-center text-center">
                         <div className="relative w-20 h-20">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="text-4xl text-[#A52A2A]">DIANYCH</h1>
+                        <h1 className="text-4xl color-red">DIANYCH</h1>
                         <p className="text-base text-gray-700 mt-1">{t.petPortraits}</p>
                     </div>
                 </div>

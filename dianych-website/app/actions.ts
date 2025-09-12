@@ -72,6 +72,6 @@ export async function deleteImage(prevState: FormState, formData: FormData): Pro
         revalidatePath('/manage');
         return { message: `Successfully deleted ${imagePath}.`, status: 'success' };
     } catch (error) {
-        return { message: 'Failed to delete file.', status: 'error' };
+        return { message: 'Failed to delete file. Error' + error, status: 'error' };
     }
 }
