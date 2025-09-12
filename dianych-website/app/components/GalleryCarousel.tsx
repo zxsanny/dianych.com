@@ -68,8 +68,8 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
 
     return (
         <>
-            <h2 className="text-4xl color-red text-center mb-8">{title}</h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8 text-center">
+            <h2 className="text-4xl color-red text-center mb-8 cursor-default">{title}</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8 text-center cursor-default">
                 {description}
             </p>
             <div className="relative">

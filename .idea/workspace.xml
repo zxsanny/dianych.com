@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="update favicon.ico&#10;fix translations.ts&#10;small header update&#10;use translations in Contact">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="small style adjustments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/LanguageSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/LanguageSwitcher.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +121,7 @@
       <workItem from="1757523005492" duration="25334000" />
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
-      <workItem from="1757624966811" duration="19846000" />
+      <workItem from="1757624966811" duration="20209000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -239,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757671874004</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="small style adjustments">
+      <option name="closed" value="true" />
+      <created>1757672186903</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1757672186903</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +283,8 @@
     <MESSAGE value="translations done!" />
     <MESSAGE value="kits added" />
     <MESSAGE value="update favicon.ico&#10;fix translations.ts&#10;small header update&#10;use translations in Contact" />
-    <option name="LAST_COMMIT_MESSAGE" value="update favicon.ico&#10;fix translations.ts&#10;small header update&#10;use translations in Contact" />
+    <MESSAGE value="small style adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="small style adjustments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

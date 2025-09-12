@@ -28,7 +28,7 @@ export default function LanguageSwitcher() {
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 p-2 rounded-full hover:bg-black/10 transition-colors"
+                className="flex items-center gap-2 p-2 rounded-full hover:bg-black/10 transition-colors cursor-pointer"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -53,13 +53,13 @@ export default function LanguageSwitcher() {
                         <li>
                             <button onClick={() => handleLanguageChange('ua')} className="flex items-center w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100">
                                 <Image src="/images/flags/ua.svg" alt="Ukrainian Flag" width={24} height={16} className="mr-3" />
-                                <span>Ua</span>
+                                <span>UA</span>
                             </button>
                         </li>
                         <li>
                             <button onClick={() => handleLanguageChange('en')} className="flex items-center w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100">
                                 <Image src="/images/flags/gb.svg" alt="British Flag" width={24} height={15} className="mr-3" />
-                                <span>En</span>
+                                <span>EN</span>
                             </button>
                         </li>
                     </ul>

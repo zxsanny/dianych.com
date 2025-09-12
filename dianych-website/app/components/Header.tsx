@@ -35,8 +35,8 @@ const Header = () => {
                         <div className="relative w-32 h-32">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="text-7xl color-red">DIANYCH</h1>
-                        <p className="text-2xl text-gray-700 mt-2">{t.petPortraits}</p>
+                        <h1 className="text-7xl color-red cursor-default">DIANYCH</h1>
+                        <p className="text-2xl text-gray-700 mt-2 cursor-default">{t.petPortraits}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-12 gap-y-12">
                         <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.webp" label={t.embroidery} />

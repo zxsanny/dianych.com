@@ -3,7 +3,7 @@ import Gallery from './Gallery';
 const Felting = () => {
     return (
         <Gallery
-            id="clothes"
+            id="felting"
             titleKey="feltingTitle"
             descriptionKey="feltingDescription"
             buttonTextKey="orderEmbroidery"
