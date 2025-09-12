@@ -1,14 +1,15 @@
-import Gallery from "@/app/components/Gallery";
+import Gallery from './Gallery';
 
-const Felting = () =>
-    (
+const Felting = () => {
+    return (
         <Gallery
-            id="felting"
-            title="Фелтінг (Вовна)"
-            description="Портрет улюбленця, валяний з вовни. Доступний у 2D та 3D форматах."
+            id="clothes"
+            titleKey="feltingTitle"
+            descriptionKey="feltingDescription"
+            buttonTextKey="orderEmbroidery"
             orderLink="https://www.instagram.com/dianych.ua/"
-            buttonText="Замовити вишивку"
         />
     );
+};
 
 export default Felting;
