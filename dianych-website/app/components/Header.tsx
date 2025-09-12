@@ -11,7 +11,7 @@ const NavLink = ({ href, imgSrc, label, className = '' }: { href: string; imgSrc
             <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-2 border-white/50 shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image src={imgSrc} alt={`${label} category link`} fill className="object-cover" />
             </div>
-            <span className="mt-3 font-semibold text-gray-800 text-lg sm:text-xl">{label}</span>
+            <div className="mt-2 font-semibold text-gray-800 text-lg sm:text-xl">{label}</div>
         </Link>
     </div>
 );
@@ -46,15 +46,16 @@ const Header = () => {
                     </div>
                     <div className="flex items-center space-x-6 mt-8">
                         <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/instagram_icon.png" alt="Instagram" width={96} height={96} />
+                            <Image src="/images/contacts/instagram_icon.png" alt="Instagram" width={96} height={96} />
                         </a>
                         <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/tiktok_icon.png" alt="TikTok" width={96} height={96} />
+                            <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={96} height={96} />
                         </a>
                         <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
-                            <Image src="/images/header/telegram_icon.png" alt="Telegram" width={96} height={96} />
+                            <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={96} height={96} />
                         </a>
                     </div>
+                    <a className="color-red text-2xl" href="#contact">Всі контакти</a>
                 </div>
             </div>
 
@@ -81,15 +82,16 @@ const Header = () => {
                 </div>
                 <div className="flex items-center space-x-6">
                     <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">
-                        <Image src="/images/header/instagram_icon.png" alt="Instagram" width={48} height={48} />
+                        <Image src="/images/contacts/instagram_icon.png" alt="Instagram" width={48} height={48} />
                     </a>
                     <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
-                        <Image src="/images/header/tiktok_icon.png" alt="TikTok" width={48} height={48} />
+                        <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={48} height={48} />
                     </a>
                     <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
-                        <Image src="/images/header/telegram_icon.png" alt="Telegram" width={48} height={48} />
+                        <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={48} height={48} />
                     </a>
                 </div>
+                <a className="color-red text-2xl" href="#contact">Всі контакти</a>
             </div>
         </header>
     );
