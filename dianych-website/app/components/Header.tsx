@@ -56,7 +56,7 @@ const Header = () => {
                             <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={96} height={96} />
                         </a>
                     </div>
-                    <a className="color-red text-2xl" href="#contact">Всі контакти</a>
+                    <a className="color-red text-2xl mt-5" href="#contact">{t.allContacts}</a>
                 </div>
             </div>
 

@@ -26,6 +26,7 @@ const translations = {
         orderFrame: 'Замовити рамку',
         orderKits: 'Замовити cхеми',
         contactInfo: 'Контактна інформація',
+        allContacts: 'Показати Всі Контакти',
         dianychEmbroiders: 'Діанич вишиває',
     },
     en: {
@@ -53,6 +54,7 @@ const translations = {
         orderFrame: 'Order a Frame',
         orderKits: 'Order Kits',
         contactInfo: 'Contacts',
+        allContacts: 'Show All Contacts',
         dianychEmbroiders: 'Dianych Embroiders',
     },
 };
