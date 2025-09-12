@@ -4,9 +4,9 @@ const Kits = () =>
     (
         <Gallery
             id="kits"
-            title="Схеми/Набори"
+            titleKey="schemesKits"
             orderLink="https://www.instagram.com/dianych.ua/"
-            buttonText="Замовити схеми"
+            buttonTextKey="orderKits"
         />
     );
 

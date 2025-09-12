@@ -42,7 +42,18 @@ const Header = () => {
                         <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.webp" label={t.embroidery} />
                         <NavLink href="#frames" imgSrc="/images/header/frames_link.webp" label={t.frames} />
                         <NavLink href="#felting" imgSrc="/images/header/felting_link.jpg" label={t.felting} />
-                        <NavLink href="#contact" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} />
+                        <NavLink href="#kits" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} />
+                    </div>
+                    <div className="flex items-center space-x-6 mt-8">
+                        <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">
+                            <Image src="/images/header/instagram_icon.png" alt="Instagram" width={96} height={96} />
+                        </a>
+                        <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
+                            <Image src="/images/header/tiktok_icon.png" alt="TikTok" width={96} height={96} />
+                        </a>
+                        <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
+                            <Image src="/images/header/telegram_icon.png" alt="Telegram" width={96} height={96} />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -66,7 +77,7 @@ const Header = () => {
                     <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.webp" label={t.embroidery} className="w-full" />
                     <NavLink href="#frames" imgSrc="/images/header/frames_link.webp" label={t.frames} className="w-full" />
                     <NavLink href="#felting" imgSrc="/images/header/felting_link.jpg" label={t.felting} className="w-full" />
-                    <NavLink href="#contact" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} className="w-full" />
+                    <NavLink href="#kits" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} className="w-full" />
                 </div>
                 <div className="flex items-center space-x-6">
                     <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">

@@ -6,6 +6,7 @@ import Frames from './components/Frames';
 import Felting from './components/Felting';
 import Contact from './components/Contact';
 import PageClientLayout from './components/PageClientLayout';
+import Kits from "@/app/components/Kits";
 
 export default function Home() {
     return (
@@ -17,6 +18,7 @@ export default function Home() {
                 <Panel />
                 <Frames />
                 <Felting />
+                <Kits />
                 <Contact />
             </main>
         </PageClientLayout>

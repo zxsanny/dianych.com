@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="add manage page with deletion functionality&#10;add top bar with lang switch&#10;WIP: todo: small style fixes, translations">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/FrameCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/SectionLayout.tsx" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="translations done!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Felting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Kits.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Kits.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/lib/translations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/translations.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +120,7 @@
       <workItem from="1757523005492" duration="25334000" />
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
-      <workItem from="1757624966811" duration="15383000" />
+      <workItem from="1757624966811" duration="15930000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -220,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757654202342</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="translations done!">
+      <option name="closed" value="true" />
+      <created>1757660028519</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1757660028519</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +255,8 @@
     <MESSAGE value="renames cleanup" />
     <MESSAGE value="add functionality to add photos" />
     <MESSAGE value="add manage page with deletion functionality&#10;add top bar with lang switch&#10;WIP: todo: small style fixes, translations" />
-    <option name="LAST_COMMIT_MESSAGE" value="add manage page with deletion functionality&#10;add top bar with lang switch&#10;WIP: todo: small style fixes, translations" />
+    <MESSAGE value="translations done!" />
+    <option name="LAST_COMMIT_MESSAGE" value="translations done!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
