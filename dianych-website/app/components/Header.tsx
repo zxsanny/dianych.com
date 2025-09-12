@@ -26,8 +26,8 @@ const Header = () => {
             </div>
 
             <div className="hidden lg:grid container mx-auto h-screen grid-cols-2 items-center gap-8">
-                <div className="relative w-full h-[90vh]">
-                    <Image src="/images/header/main_author.png" alt="Author Diana" fill className="object-contain bottom-center"
+                <div className="relative w-full h-full">
+                    <Image src="/images/header/main_author.png" alt="Author Diana" fill className="object-contain object-bottom"
                            priority />
                 </div>
                 <div className="flex flex-col items-center justify-center">
@@ -59,7 +59,7 @@ const Header = () => {
             </div>
 
             <div className="lg:hidden container mx-auto flex flex-col items-center justify-center px-4 py-8 space-y-8 pt-20">
-                <div className="flex w-full items-center gap-4">
+                <div className="flex w-full items-center gap-1">
                     <div className="w-2/5 flex-shrink-0">
                         <div className="relative w-full aspect-[2/3]">
                             <Image src="/images/header/main_author.png" alt="Author Diana" fill className="object-cover rounded-lg" objectPosition="top" priority />
@@ -69,7 +69,7 @@ const Header = () => {
                         <div className="relative w-20 h-20">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="text-5xl text-[#A52A2A]">DIANYCH</h1>
+                        <h1 className="text-4xl text-[#A52A2A]">DIANYCH</h1>
                         <p className="text-base text-gray-700 mt-1">{t.petPortraits}</p>
                     </div>
                 </div>

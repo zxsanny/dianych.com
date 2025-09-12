@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import {useTranslation} from "@/lib/translations";
 
 const contactLinks = [
     {
@@ -40,6 +43,8 @@ const contactLinks = [
 ];
 
 const Contact = () => {
+    const t = useTranslation();
+
     return (
         <section id="contact" className="bg-[#FBEFE1] w-full py-16">
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start px-4">
@@ -68,11 +73,11 @@ const Contact = () => {
                                    className="object-contain" />
                         </div>
                         <h1 className="text-6xl color-red font-serifCustom">DIANYCH</h1>
-                        <p className="text-xl text-gray-700 -mt-2">портрети домашніх улюбленців</p>
+                        <p className="text-xl text-gray-700 -mt-2">{t.petPortraits}</p>
                     </div>
 
                     {/* Contact Info Title */}
-                    <h2 className="text-4xl color-red font-serifCustom">Контактна інформація</h2>
+                    <h2 className="text-4xl color-red font-serifCustom">{t.contactInfo}</h2>
 
                     {/* Links list */}
                     <div className="w-full max-w-sm space-y-4">
