@@ -28,7 +28,7 @@ export default function TopBar({ isVisible }: { isVisible: boolean }) {
                     <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
                         <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={32} height={32} />
                     </a>
-                    <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
+                    <a href="https://t.me/dianych_now" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
                         <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={32} height={32} />
                     </a>
                     <div className="ml-2">

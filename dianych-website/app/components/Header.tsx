@@ -52,7 +52,7 @@ const Header = () => {
                         <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
                             <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={96} height={96} />
                         </a>
-                        <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
+                        <a href="https://t.me/dianych_now" target="_blank" rel="noopener noreferrer">
                             <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={96} height={96} />
                         </a>
                     </div>
@@ -89,7 +89,7 @@ const Header = () => {
                     <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer">
                         <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={48} height={48} />
                     </a>
-                    <a href="https://t.me/dianych.now" target="_blank" rel="noopener noreferrer">
+                    <a href="https://t.me/dianych_now" target="_blank" rel="noopener noreferrer">
                         <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={48} height={48} />
                     </a>
                 </div>

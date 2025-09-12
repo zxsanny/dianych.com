@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="remove autodeploy github pages script">
-      <change afterPath="$PROJECT_DIR$/build.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/install.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restart.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="change to standalone">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/TopBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/TopBar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +120,7 @@
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
-      <workItem from="1757672837782" duration="6004000" />
+      <workItem from="1757672837782" duration="7444000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -286,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757675277704</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="change to standalone">
+      <option name="closed" value="true" />
+      <created>1757681491660</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1757681491660</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +326,7 @@
     <MESSAGE value="restructurize frames images again" />
     <MESSAGE value="fix config for build" />
     <MESSAGE value="remove autodeploy github pages script" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove autodeploy github pages script" />
+    <MESSAGE value="change to standalone" />
+    <option name="LAST_COMMIT_MESSAGE" value="change to standalone" />
   </component>
 </project>
