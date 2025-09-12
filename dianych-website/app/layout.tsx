@@ -1,5 +1,6 @@
 import './globals.css';
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const vinnytsiaSerif = localFont({
     src: './fonts/vinnytsia_serif.woff2',
@@ -10,12 +11,14 @@ export const metadata = {
     description: 'Custom embroidered and felted portraits of your beloved pets.',
 };
 
-export default function RootLayout({ children }: {
-    children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={vinnytsiaSerif.className}>
-        <body>{children}</body>
+        <body>
+        <LanguageProvider>
+            {children}
+        </LanguageProvider>
+        </body>
         </html>
     );
 }

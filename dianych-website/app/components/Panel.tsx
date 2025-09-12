@@ -1,13 +1,14 @@
 import Gallery from './Gallery';
 
-const Panel = () =>
-    (
+const Panel = () => {
+    return (
         <Gallery
             id="panel"
-            title="Панно"
+            titleKey="panelTitle"
+            buttonTextKey="orderEmbroidery"
             orderLink="https://www.instagram.com/dianych.ua/"
-            buttonText="Замовити вишивку"
         />
     );
+};
 
 export default Panel;

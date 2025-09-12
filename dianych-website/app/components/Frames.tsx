@@ -1,4 +1,4 @@
-import OrderBtn from "@/app/components/OrderBtn";
+import OrderBtn from "@/app/components/OrderButton";
 import Gallery from "@/app/components/Gallery";
 
 const FrameCard = ({ title, id, size, price }: { title: string, id: string, size: string, price: string }) => (

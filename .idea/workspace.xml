@@ -4,11 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="renames cleanup">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/UploadForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/upload/page.tsx" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="add functionality to add photos">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/LanguageSwitcher.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/PageClientLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/components/TopBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/manage/GalleryManager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/manage/ManagePageClient.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/manage/RemoveButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/contexts/LanguageContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/lib/translations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Brooches.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Clothes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Clothes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/GalleryCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/OrderBtn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/OrderButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/UploadForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/lib/galleryUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/upload/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,10 +97,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\dianych.com\dianych-website" />
+      <recent name="D:\dev\dianych.com\dianych-website\app\manage" />
       <recent name="D:\dev\dianych.com\dianych-website\app\components" />
       <recent name="D:\dev\dianych.com\dianych-website\public\images" />
       <recent name="D:\dev\dianych.com\dianych-website\app\fonts" />
-      <recent name="D:\dev\dianych.com\dianych-website\app" />
     </key>
   </component>
   <component name="RunManager">
@@ -118,7 +138,7 @@
       <workItem from="1757523005492" duration="25334000" />
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
-      <workItem from="1757624966811" duration="6052000" />
+      <workItem from="1757624966811" duration="12827000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -192,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757629996495</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add functionality to add photos">
+      <option name="closed" value="true" />
+      <created>1757631098037</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1757631098037</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +247,18 @@
     <MESSAGE value="add Kits section&#10;small style fixes" />
     <MESSAGE value="fix warnings and deprecations" />
     <MESSAGE value="renames cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="renames cleanup" />
+    <MESSAGE value="add functionality to add photos" />
+    <option name="LAST_COMMIT_MESSAGE" value="add functionality to add photos" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/dianych-website/app/layout.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

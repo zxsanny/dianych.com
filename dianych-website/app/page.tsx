@@ -4,20 +4,21 @@ import Clothes from './components/Clothes';
 import Panel from './components/Panel';
 import Frames from './components/Frames';
 import Felting from './components/Felting';
-import Kits from './components/Kits';
 import Contact from './components/Contact';
+import PageClientLayout from './components/PageClientLayout';
 
 export default function Home() {
     return (
-        <main className="bg-white">
-            <Header />
-            <Brooches />
-            <Clothes />
-            <Panel />
-            <Frames />
-            <Felting />
-            <Kits />
-            <Contact />
-        </main>
+        <PageClientLayout>
+            <main className="bg-white">
+                <Header />
+                <Brooches />
+                <Clothes />
+                <Panel />
+                <Frames />
+                <Felting />
+                <Contact />
+            </main>
+        </PageClientLayout>
     );
 }

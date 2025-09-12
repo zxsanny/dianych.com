@@ -1,0 +1,61 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const translations = {
+    ua: {
+        petPortraits: 'Портрети домашніх улюбленців',
+        embroidery: 'Вишивка',
+        frames: 'Рамки',
+        felting: 'Валяння',
+        schemesKits: 'Схеми / набори',
+        broochesTitle: 'Вишивка: Брошки / Шеврони',
+        orderEmbroidery: 'Замовити вишивку',
+        clothesTitle: 'Вишивка на одязі',
+        panelTitle: 'Панно',
+        feltingTitle: 'Фелтінг (Вовна)',
+        feltingDescription: 'Портрет улюбленця, валяний з вовни. Доступний у 2D та 3D форматах.',
+        orderPortrait: 'Замовити портрет',
+        framesTitle: 'Рамки',
+        smallFrame8: "Маленька рама 8см",
+        smallFrame10: "Маленька рама 10см",
+        mediumFrame14: "Середня рама 14см",
+        largeFrame19: "Велика рама 19см",
+        hoopSize8: "під п'яльця 8 см",
+        hoopSize10: "під п'яльця 10 см",
+        hoopSize14: "під п'яльця 14 см",
+        hoopSize19: "під п'яльця 19 см",
+        orderFrame: 'Замовити рамку',
+        contactInfo: 'Контактна інформація',
+        dianychEmbroiders: 'Діанич вишиває',
+    },
+    en: {
+        petPortraits: 'Pet Portraits',
+        embroidery: 'Embroidery',
+        frames: 'Frames',
+        felting: 'Felting',
+        schemesKits: 'Schemes / kits',
+        broochesTitle: 'Embroidery: Brooches / Chevrons',
+        orderEmbroidery: 'Order Embroidery',
+        clothesTitle: 'Embroidery on Clothes',
+        panelTitle: 'Wall Hangings',
+        feltingTitle: 'Felting (Wool)',
+        feltingDescription: 'A portrait of your pet, felted from wool. Available in 2D and 3D formats.',
+        orderPortrait: 'Order a Portrait',
+        framesTitle: 'Frames',
+        smallFrame8: "Small Frame 8cm",
+        smallFrame10: "Small Frame 10cm",
+        mediumFrame14: "Medium Frame 14cm",
+        largeFrame19: "Large Frame 19cm",
+        hoopSize8: "for 8 cm hoop",
+        hoopSize10: "for 10 cm hoop",
+        hoopSize14: "for 14 cm hoop",
+        hoopSize19: "for 19 cm hoop",
+        orderFrame: 'Order a Frame',
+        contactInfo: 'Contact Information',
+        dianychEmbroiders: 'Dianych Embroiders',
+    },
+};
+
+export const useTranslation = () => {
+    const { language } = useLanguage();
+    return translations[language];
+};

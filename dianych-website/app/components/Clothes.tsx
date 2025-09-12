@@ -1,13 +1,14 @@
 import Gallery from './Gallery';
 
-const Clothes = () =>
-    (
+const Clothes = () => {
+    return (
         <Gallery
             id="clothes"
-            title="Вишивка на одязі"
+            titleKey="clothesTitle"
+            buttonTextKey="orderEmbroidery"
             orderLink="https://www.instagram.com/dianych.ua/"
-            buttonText="Замовити вишивку"
         />
     );
+};
 
 export default Clothes;

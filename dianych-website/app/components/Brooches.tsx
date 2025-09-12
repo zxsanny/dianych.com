@@ -1,13 +1,14 @@
 import Gallery from './Gallery';
 
-const Brooches = () =>
-    (
+const Brooches = () => {
+    return (
         <Gallery
             id="brooches"
-            title="Вишивка: Брошки / Шеврони"
+            titleKey="broochesTitle"
+            buttonTextKey="orderEmbroidery"
             orderLink="https://www.instagram.com/dianych.ua/"
-            buttonText="Замовити вишивку"
         />
     );
+};
 
 export default Brooches;
