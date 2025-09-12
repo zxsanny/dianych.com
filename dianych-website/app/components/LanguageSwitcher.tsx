@@ -30,7 +30,6 @@ export default function LanguageSwitcher() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 p-2 rounded-full hover:bg-black/10 transition-colors"
             >
-                {/* Globe SVG is now inline to allow color control */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
