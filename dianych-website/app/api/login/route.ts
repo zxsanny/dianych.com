@@ -36,7 +36,10 @@ export async function POST(request: NextRequest) {
         if (isMatch) {
             session.isLoggedIn = true;
             await session.save();
-            return NextResponse.redirect('/manage');
+            const manageUrl = request.nextUrl.clone();
+            manageUrl.pathname = '/manage';
+            manageUrl.search = '';
+            return NextResponse.redirect(manageUrl);
         } else {
             return NextResponse.json({ message: 'Invalid password' }, { status: 401 });
         }
