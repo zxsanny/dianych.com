@@ -11,6 +11,12 @@ function expandIfShort(pass: string): string {
     return pass.length >= 32 ? pass : `${pass}.${pass}.${pass}`;
 }
 
+function buildAbsoluteUrl(request: NextRequest, pathname: string): string {
+    const proto = request.headers.get('x-forwarded-proto') || 'https';
+    const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || '';
+    return `${proto}://${host}${pathname}`;
+}
+
 export async function POST(request: NextRequest) {
     // Use the mutable cookies() store so iron-session can set Set-Cookie headers
     const cookieStore = await cookies();
@@ -36,10 +42,9 @@ export async function POST(request: NextRequest) {
         if (isMatch) {
             session.isLoggedIn = true;
             await session.save();
-            const manageUrl = request.nextUrl.clone();
-            manageUrl.pathname = '/manage';
-            manageUrl.search = '';
-            return NextResponse.redirect(manageUrl);
+            // Build an absolute URL using forwarded headers to avoid internal Docker hostnames
+            const manageAbsUrl = buildAbsoluteUrl(request, '/manage');
+            return NextResponse.redirect(manageAbsUrl);
         } else {
             return NextResponse.json({ message: 'Invalid password' }, { status: 401 });
         }

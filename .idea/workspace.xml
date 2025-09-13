@@ -4,24 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix redirects">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix redirects again&#10;reduce the image size">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/05.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/06.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/07.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/08.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/09.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/11.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/12.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/brooches/13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/07.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/11.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="7038000" />
+      <workItem from="1757740037352" duration="7739000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -424,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757747993937</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix redirects again&#10;reduce the image size">
+      <option name="closed" value="true" />
+      <created>1757748499356</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1757748499356</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +446,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Kits section&#10;small style fixes" />
     <MESSAGE value="fix warnings and deprecations" />
     <MESSAGE value="renames cleanup" />
     <MESSAGE value="add functionality to add photos" />
@@ -467,6 +470,7 @@
     <MESSAGE value="small adjustments" />
     <MESSAGE value="fix secret for ironcookie" />
     <MESSAGE value="fix redirects" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix redirects" />
+    <MESSAGE value="fix redirects again&#10;reduce the image size" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix redirects again&#10;reduce the image size" />
   </component>
 </project>
