@@ -11,18 +11,18 @@ async function readPrices() {
   try {
     const raw = await fs.readFile(DATA_FILE, 'utf-8');
     return JSON.parse(raw);
-  } catch (e: any) {
-    // If file missing, initialize with defaults
-    const defaults = {
-      smallFrame8: 450,
-      smallFrame10: 500,
-      mediumFrame14: 600,
-      largeFrame19: 700,
-    };
-    try {
-      await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-      await fs.writeFile(DATA_FILE, JSON.stringify(defaults, null, 2), 'utf-8');
-    } catch {}
+  } catch (e: unknown) {
+      console.error('Failed to read prices', e);
+      const defaults = {
+          smallFrame8: 450,
+          smallFrame10: 500,
+          mediumFrame14: 600,
+          largeFrame19: 700,
+        };
+      try {
+          await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
+          await fs.writeFile(DATA_FILE, JSON.stringify(defaults, null, 2), 'utf-8');
+      } catch {}
     return defaults;
   }
 }

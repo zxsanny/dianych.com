@@ -28,11 +28,17 @@ export default function PricesManager() {
     async function load() {
       try {
         const res = await fetch('/api/prices', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load');
+        if (!res.ok) {
+          // Handle non-OK without throwing to avoid local throw/catch warning
+          console.error('Error loading prices: response not ok', res.status);
+          if (active) setError('Не вдалося завантажити ціни. Показані значення за замовчуванням.');
+          return;
+        }
         const data = await res.json();
         if (active) setPrices((p) => ({ ...p, ...data }));
       } catch (e) {
-        setError('Не вдалося завантажити ціни. Показані значення за замовчуванням.');
+          console.error('Error loading prices:', e);
+          setError('Не вдалося завантажити ціни. Показані значення за замовчуванням.');
       } finally {
         if (active) setLoading(false);
       }
@@ -61,14 +67,16 @@ export default function PricesManager() {
         body: JSON.stringify(prices),
       });
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message || 'Помилка збереження');
+        const data = await res.json().catch(() => ({} as any));
+        // Avoid throwing locally; set error state and exit
+        setError((data as any).message || 'Помилка збереження');
+        return;
       }
       const data = await res.json();
       setPrices(data);
       setMessage('Ціни успішно збережено.');
     } catch (e: any) {
-      setError(e.message || 'Не вдалося зберегти ціни.');
+      setError(e?.message || 'Не вдалося зберегти ціни.');
     } finally {
       setSaving(false);
     }

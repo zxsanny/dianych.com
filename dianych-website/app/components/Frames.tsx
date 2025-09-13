@@ -85,7 +85,10 @@ const Frames = () => {
         async function load() {
             try {
                 const res = await fetch('/api/prices', { cache: 'no-store' });
-                if (!res.ok) throw new Error('Failed');
+                if (!res.ok) {
+                    console.error('Error loading prices in Frames: response not ok', res.status);
+                    return;
+                }
                 const data = await res.json();
                 if (active) setPrices((prev) => ({ ...prev, ...data }));
             } catch {
