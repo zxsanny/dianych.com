@@ -51,6 +51,7 @@ const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }: ModalP
                         alt={`Full size view of image ${currentIndex + 1}`}
                         fill
                         className="object-contain"
+                        unoptimized
                     />
                 </div>
 

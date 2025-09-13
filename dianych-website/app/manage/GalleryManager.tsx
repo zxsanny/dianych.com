@@ -66,7 +66,7 @@ export default function GalleryManager({ folder, folderName }: { folder: string,
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {images.map((src) => (
                         <div key={src} className="relative aspect-square group">
-                            <Image src={src} alt={src} fill className="object-cover rounded-lg" />
+                            <Image src={src} alt={src} fill className="object-cover rounded-lg" unoptimized />
                             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <RemoveButton imagePath={src} formAction={deleteAction} />
                             </div>

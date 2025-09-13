@@ -78,7 +78,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
                         {images.map((src, index) => (
                             <div key={index} className="flex-grow-0 flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pl-4" onClick={() => handleImageClick(index)}>
                                 <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
-                                    <Image src={src} alt={`${title} image ${index + 1}`} fill className="object-cover" />
+                                    <Image src={src} alt={`${title} image ${index + 1}`} fill className="object-cover" unoptimized />
                                 </div>
                             </div>
                         ))}
