@@ -36,9 +36,7 @@ export async function POST(request: NextRequest) {
         if (isMatch) {
             session.isLoggedIn = true;
             await session.save();
-            // Redirect to manage so clients using regular form submission will navigate
-            const redirectUrl = new URL('/manage', request.url);
-            return NextResponse.redirect(redirectUrl);
+            return NextResponse.redirect('/manage');
         } else {
             return NextResponse.json({ message: 'Invalid password' }, { status: 401 });
         }

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="small adjustments">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix secret for ironcookie">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Gallery.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restart.sh" beforeDir="false" afterPath="$PROJECT_DIR$/restart.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/update.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/middleware.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -139,7 +136,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="5950000" />
+      <workItem from="1757740037352" duration="6600000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -397,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757746198725</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix secret for ironcookie">
+      <option name="closed" value="true" />
+      <created>1757747479399</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1757747479399</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +420,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix modal&#10;add order button with proper styles&#10;rename files" />
     <MESSAGE value="small header fix" />
     <MESSAGE value="add Kits section&#10;small style fixes" />
     <MESSAGE value="fix warnings and deprecations" />
@@ -440,6 +444,7 @@
     <MESSAGE value="fix routes warnings" />
     <MESSAGE value="add console log for debugging image directory path" />
     <MESSAGE value="small adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="small adjustments" />
+    <MESSAGE value="fix secret for ironcookie" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix secret for ironcookie" />
   </component>
 </project>

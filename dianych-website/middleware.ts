@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
     const session = await getIronSession<SessionData>(request.cookies as never, sessionOptions);
 
     if (!session.isLoggedIn) {
-      return NextResponse.redirect(new URL('/login', request.url));
+      return NextResponse.redirect('/login');
     }
   }
 
