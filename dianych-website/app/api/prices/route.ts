@@ -7,27 +7,41 @@ import { cookies } from 'next/headers';
 
 const DATA_FILE = path.join(process.cwd(), 'dianych-website', 'data', 'framePrices.json');
 
-async function readPrices() {
+type FramePrices = {
+  smallFrame8: number;
+  smallFrame10: number;
+  mediumFrame14: number;
+  largeFrame19: number;
+};
+
+async function readPrices(): Promise<FramePrices> {
   try {
     const raw = await fs.readFile(DATA_FILE, 'utf-8');
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw) as Partial<FramePrices>;
+    // Basic normalization to ensure numbers
+    return {
+      smallFrame8: Number(parsed.smallFrame8 ?? 450),
+      smallFrame10: Number(parsed.smallFrame10 ?? 500),
+      mediumFrame14: Number(parsed.mediumFrame14 ?? 600),
+      largeFrame19: Number(parsed.largeFrame19 ?? 700),
+    };
   } catch (e: unknown) {
-      console.error('Failed to read prices', e);
-      const defaults = {
-          smallFrame8: 450,
-          smallFrame10: 500,
-          mediumFrame14: 600,
-          largeFrame19: 700,
-        };
-      try {
-          await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-          await fs.writeFile(DATA_FILE, JSON.stringify(defaults, null, 2), 'utf-8');
-      } catch {}
+    console.error('Failed to read prices', e);
+    const defaults: FramePrices = {
+      smallFrame8: 450,
+      smallFrame10: 500,
+      mediumFrame14: 600,
+      largeFrame19: 700,
+    };
+    try {
+      await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
+      await fs.writeFile(DATA_FILE, JSON.stringify(defaults, null, 2), 'utf-8');
+    } catch {}
     return defaults;
   }
 }
 
-async function writePrices(data: any) {
+async function writePrices(data: FramePrices) {
   await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
   await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf-8');
 }
@@ -49,20 +63,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { smallFrame8, smallFrame10, mediumFrame14, largeFrame19 } = body || {};
 
-    function toNumber(v: any) {
+    function toNumber(v: unknown): number {
       const n = typeof v === 'string' ? v.trim() : v;
-      const num = Number(n);
+      const num = typeof n === 'number' ? n : Number(n);
       return Number.isFinite(num) ? num : NaN;
     }
 
-    const parsed = {
+    const parsed: FramePrices = {
       smallFrame8: toNumber(smallFrame8),
       smallFrame10: toNumber(smallFrame10),
       mediumFrame14: toNumber(mediumFrame14),
       largeFrame19: toNumber(largeFrame19),
-    } as Record<string, number>;
+    };
 
-    const invalid = Object.entries(parsed).filter(([_, v]) => !Number.isFinite(v) || v < 0);
+    const invalid = Object.values(parsed).filter((v) => !Number.isFinite(v) || v < 0);
     if (invalid.length) {
       return NextResponse.json({ message: 'All prices must be non-negative numbers.' }, { status: 400 });
     }
