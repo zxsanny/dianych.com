@@ -15,7 +15,6 @@ export async function GET(req: NextRequest) {
         const urls = galleryId ? getImagePaths(galleryId) : [];
         return NextResponse.json({ cwd, imagesDirectory, exists, files, urls });
     } catch (error) {
-
         return NextResponse.json({ cwd, imagesDirectory, error: String(error) }, { status: 500 });
     }
 }
