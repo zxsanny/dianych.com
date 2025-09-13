@@ -4,39 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix tg link">
-      <change afterPath="$PROJECT_DIR$/update.sh" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix translations &#10;add update.sh">
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/api/logout/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/app/logout/LogoutButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/lib/middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/lib/session.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/translations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/translations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/restart.sh" beforeDir="false" afterPath="$PROJECT_DIR$/restart.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Dockerfile" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
-        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -107,11 +85,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\dev\dianych.com\dianych-website\app\api\login" />
+      <recent name="D:\dev\dianych.com\dianych-website\app\api\logout" />
       <recent name="D:\dev\dianych.com\dianych-website" />
       <recent name="D:\dev\dianych.com\dianych-website\app\manage" />
       <recent name="D:\dev\dianych.com\dianych-website\app\components" />
-      <recent name="D:\dev\dianych.com\dianych-website\public\images" />
-      <recent name="D:\dev\dianych.com\dianych-website\app\fonts" />
     </key>
   </component>
   <component name="RunManager">
@@ -149,7 +127,7 @@
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
-      <workItem from="1757672837782" duration="11399000" />
+      <workItem from="1757672837782" duration="19225000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -327,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757682883657</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix translations &#10;add update.sh">
+      <option name="closed" value="true" />
+      <created>1757691234449</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1757691234449</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +351,7 @@
     <MESSAGE value="remove autodeploy github pages script" />
     <MESSAGE value="change to standalone" />
     <MESSAGE value="fix tg link" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix tg link" />
+    <MESSAGE value="fix translations &#10;add update.sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix translations &#10;add update.sh" />
   </component>
 </project>
