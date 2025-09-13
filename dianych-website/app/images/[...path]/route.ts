@@ -44,6 +44,6 @@ export async function GET(
       },
     });
   } catch (err) {
-    return new NextResponse('Internal Server Error', { status: 500 });
+    return new NextResponse('Internal Server Error: ' + err, { status: 500 });
   }
 }

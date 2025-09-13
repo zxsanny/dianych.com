@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="try to fix resource is null for uploaded images: try 02" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="try to fix resource is null for uploaded images: try 03">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/images/[...path]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/images/[...path]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/images/[...path]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/images/[...path]/route.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +136,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="11307000" />
+      <workItem from="1757740037352" duration="11577000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -438,7 +442,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757756834039</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="try to fix resource is null for uploaded images: try 03">
+      <option name="closed" value="true" />
+      <created>1757757215173</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1757757215173</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add manage page with deletion functionality&#10;add top bar with lang switch&#10;WIP: todo: small style fixes, translations" />
     <MESSAGE value="translations done!" />
     <MESSAGE value="kits added" />
     <MESSAGE value="update favicon.ico&#10;fix translations.ts&#10;small header update&#10;use translations in Contact" />
@@ -481,6 +492,7 @@
     <MESSAGE value="fix redirects again and again&#10;reduce the image size" />
     <MESSAGE value="try to fix resource is null for uploaded images: try 01" />
     <MESSAGE value="try to fix resource is null for uploaded images: try 02" />
-    <option name="LAST_COMMIT_MESSAGE" value="try to fix resource is null for uploaded images: try 02" />
+    <MESSAGE value="try to fix resource is null for uploaded images: try 03" />
+    <option name="LAST_COMMIT_MESSAGE" value="try to fix resource is null for uploaded images: try 03" />
   </component>
 </project>
