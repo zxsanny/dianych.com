@@ -13,7 +13,8 @@ function expandIfShort(pass: string): string {
 
 export async function POST(request: NextRequest) {
     // Use the mutable cookies() store so iron-session can set Set-Cookie headers
-    const session = await getIronSession<SessionData>(cookies() as never, sessionOptions);
+    const cookieStore = await cookies();
+    const session = await getIronSession<SessionData>(cookieStore, sessionOptions);
     const formData = await request.formData();
     const password = formData.get('password') as string;
 

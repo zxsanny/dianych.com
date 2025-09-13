@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header again">
-      <change afterPath="$PROJECT_DIR$/dianych-website/middleware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/pw.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/scripts/hash-pw.js" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="auth works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/middleware.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Frames.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/ManagePageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/ManagePageClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/scripts/hash-pw.js" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/scripts/hash-pw.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +138,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="331000" />
+      <workItem from="1757740037352" duration="1362000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -344,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757738329920</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="auth works">
+      <option name="closed" value="true" />
+      <created>1757740402673</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1757740402673</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +389,7 @@
     <MESSAGE value="fix translations &#10;add update.sh" />
     <MESSAGE value="fix header tsx&#10;add login-logout functionality" />
     <MESSAGE value="fix header again" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix header again" />
+    <MESSAGE value="auth works" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth works" />
   </component>
 </project>

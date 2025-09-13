@@ -1,11 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from '@/lib/translations';
 import SectionLayout from './SectionLayout';
 import Modal from './Modal';
 import OrderButton from "@/app/components/OrderButton"; // Import the Modal component
+
+type Prices = {
+    smallFrame8: number;
+    smallFrame10: number;
+    mediumFrame14: number;
+    largeFrame19: number;
+};
+
+const DEFAULT_PRICES: Prices = {
+    smallFrame8: 450,
+    smallFrame10: 500,
+    mediumFrame14: 600,
+    largeFrame19: 700,
+};
+
+function formatPrice(num: number) {
+    try {
+        return new Intl.NumberFormat('uk-UA').format(num) + ' UAH';
+    } catch {
+        return `${num} UAH`;
+    }
+}
 
 // FrameCard now has its own logic to open a modal
 const FrameCard = ({ title, images, size, price }: { title: string, images: string[], size: string, price: string }) => {
@@ -56,12 +78,31 @@ const FrameCard = ({ title, images, size, price }: { title: string, images: stri
 
 const Frames = () => {
     const t = useTranslation();
+    const [prices, setPrices] = useState<Prices>(DEFAULT_PRICES);
+
+    useEffect(() => {
+        let active = true;
+        async function load() {
+            try {
+                const res = await fetch('/api/prices', { cache: 'no-store' });
+                if (!res.ok) throw new Error('Failed');
+                const data = await res.json();
+                if (active) setPrices((prev) => ({ ...prev, ...data }));
+            } catch {
+                // keep defaults
+            }
+        }
+        load();
+        return () => {
+            active = false;
+        };
+    }, []);
 
     const frameData = [
-        { title: t.smallFrame8, images: ['/images/frames/small_1_1.jpg', '/images/frames/small_1_2.jpg', '/images/frames/small_1_3.jpg'], size: t.hoopSize8, price: "450 UAH" },
-        { title: t.smallFrame10, images: ['/images/frames/small_2_1.jpg', '/images/frames/small_2_2.jpg', '/images/frames/small_2_3.jpg'], size: t.hoopSize10, price: "500 UAH" },
-        { title: t.mediumFrame14, images: ['/images/frames/medium_1.jpg', '/images/frames/medium_2.jpg', '/images/frames/medium_3.jpg'], size: t.hoopSize14, price: "600 UAH" },
-        { title: t.largeFrame19, images: ['/images/frames/large_1.jpg', '/images/frames/large_2.jpg', '/images/frames/large_3.jpg'], size: t.hoopSize19, price: "700 UAH" }
+        { title: t.smallFrame8, images: ['/images/frames/small_1_1.jpg', '/images/frames/small_1_2.jpg', '/images/frames/small_1_3.jpg'], size: t.hoopSize8, price: formatPrice(prices.smallFrame8) },
+        { title: t.smallFrame10, images: ['/images/frames/small_2_1.jpg', '/images/frames/small_2_2.jpg', '/images/frames/small_2_3.jpg'], size: t.hoopSize10, price: formatPrice(prices.smallFrame10) },
+        { title: t.mediumFrame14, images: ['/images/frames/medium_1.jpg', '/images/frames/medium_2.jpg', '/images/frames/medium_3.jpg'], size: t.hoopSize14, price: formatPrice(prices.mediumFrame14) },
+        { title: t.largeFrame19, images: ['/images/frames/large_1.jpg', '/images/frames/large_2.jpg', '/images/frames/large_3.jpg'], size: t.hoopSize19, price: formatPrice(prices.largeFrame19) }
     ];
 
     return (

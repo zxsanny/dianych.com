@@ -1,19 +1,7 @@
-#!/usr/bin/env node
-/*
- Standalone script to generate a bcrypt hash and write it to pw.txt
- Usage examples (PowerShell on Windows):
-   node scripts/hash-pw.js "yourPasswordHere"
-   # Or without argument, it will prompt:
-   node scripts/hash-pw.js
-
- The script writes the hash to pw.txt at the project root (dianych-website/pw.txt)
- and also prints the hash to the console.
-*/
-
-const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
-const bcrypt = require('bcryptjs');
+import fs from "fs";
+import path from "path";
+import readline from "readline";
+import bcrypt from "bcryptjs";
 
 const PW_FILE = path.join(process.cwd(), 'pw.txt');
 const SALT_ROUNDS = 10; // Sufficient for small projects; increase for stronger hashing if needed.
@@ -29,9 +17,7 @@ async function prompt(question) {
 }
 
 async function main() {
-  // Prefer password from first arg; fall back to prompt
-  const argPassword = process.argv[2];
-  let password = argPassword;
+    let password = process.argv[2];
 
   if (!password) {
     password = await prompt('Enter password to hash (visible input): ');
@@ -49,8 +35,6 @@ async function main() {
     const salt = await bcrypt.genSalt(SALT_ROUNDS);
     const hash = await bcrypt.hash(toHash, salt);
 
-    // Ensure directory exists (project root should already exist)
-    // Write hash to pw.txt with trailing newline
     fs.writeFileSync(PW_FILE, hash + '\n', { encoding: 'utf8' });
 
     console.log('Success! Bcrypt hash generated and written to:');

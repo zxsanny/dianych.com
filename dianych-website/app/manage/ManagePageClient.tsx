@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import GalleryManager from './GalleryManager';
+import PricesManager from './PricesManager';
 
 const folders = [
     { key: 'brooches', name: 'Вишивка: Брошки / Шеврони' },
@@ -9,6 +10,7 @@ const folders = [
     { key: 'panel', name: 'Панно' },
     { key: 'felting', name: 'Фелтінг' },
     { key: 'kits', name: 'Схеми/Набори' },
+    { key: 'prices', name: 'Ціни рамок' },
 ];
 
 export default function ManagePageClient() {
@@ -34,7 +36,11 @@ export default function ManagePageClient() {
 
             <section className="md:col-span-3">
                 {selectedFolder ? (
-                    <GalleryManager folder={selectedFolder.key} folderName={selectedFolder.name} />
+                    selectedFolder.key === 'prices' ? (
+                        <PricesManager />
+                    ) : (
+                        <GalleryManager folder={selectedFolder.key} folderName={selectedFolder.name} />
+                    )
                 ) : (
                     <div className="flex items-center justify-center h-96 bg-white rounded-lg shadow-lg">
                         <p className="text-xl text-gray-500">Оберіть секцію зліва, щоб почати.</p>
