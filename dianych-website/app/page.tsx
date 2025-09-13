@@ -8,6 +8,8 @@ import Contact from './components/Contact';
 import PageClientLayout from './components/PageClientLayout';
 import Kits from "@/app/components/Kits";
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
     return (
         <PageClientLayout>

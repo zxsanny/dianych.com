@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="try to fix resource is null for uploaded images: try 01">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/images/[...path]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" afterDir="false" />
-    </list>
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="try to fix resource is null for uploaded images: try 02" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +132,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="10955000" />
+      <workItem from="1757740037352" duration="11307000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -434,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757751637655</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="try to fix resource is null for uploaded images: try 02">
+      <option name="closed" value="true" />
+      <created>1757756834039</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1757756834039</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add functionality to add photos" />
     <MESSAGE value="add manage page with deletion functionality&#10;add top bar with lang switch&#10;WIP: todo: small style fixes, translations" />
     <MESSAGE value="translations done!" />
     <MESSAGE value="kits added" />
@@ -477,6 +480,7 @@
     <MESSAGE value="fix redirects again&#10;reduce the image size" />
     <MESSAGE value="fix redirects again and again&#10;reduce the image size" />
     <MESSAGE value="try to fix resource is null for uploaded images: try 01" />
-    <option name="LAST_COMMIT_MESSAGE" value="try to fix resource is null for uploaded images: try 01" />
+    <MESSAGE value="try to fix resource is null for uploaded images: try 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="try to fix resource is null for uploaded images: try 02" />
   </component>
 </project>
