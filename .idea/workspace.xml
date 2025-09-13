@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix translations &#10;add update.sh">
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/api/logout/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/app/logout/LogoutButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/lib/middleware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dianych-website/lib/session.ts" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header tsx&#10;add login-logout functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +119,7 @@
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
-      <workItem from="1757672837782" duration="19225000" />
+      <workItem from="1757672837782" duration="19679000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -313,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757691234449</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix header tsx&#10;add login-logout functionality">
+      <option name="closed" value="true" />
+      <created>1757737938624</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1757737938624</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,6 +352,7 @@
     <MESSAGE value="change to standalone" />
     <MESSAGE value="fix tg link" />
     <MESSAGE value="fix translations &#10;add update.sh" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix translations &#10;add update.sh" />
+    <MESSAGE value="fix header tsx&#10;add login-logout functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix header tsx&#10;add login-logout functionality" />
   </component>
 </project>

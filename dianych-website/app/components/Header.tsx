@@ -35,12 +35,12 @@ const Header = () => {
                 </div>
                 {/* Right Column (Content) */}
                 <div className="flex flex-col items-center justify-center py-4">
-                    <div className="flex flex-col items-center text-center mb-4">
-                        <div className="relative w-[clamp(6rem,15vh,8rem)] h-[clamp(6rem,15vh,8rem)]">
+                    <div className="flex flex-col items-center text-center mb-3">
+                        <div className="relative w-[clamp(5rem,12vh,7rem)] h-[clamp(5rem,12vh,7rem)]">
                             <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="text-[clamp(3.5rem,10vh,4.5rem)] color-red cursor-default leading-tight">DIANYCH</h1>
-                        <p className="text-[clamp(1rem,3vh,1.25rem)] text-gray-700 cursor-default">{t.petPortraits}</p>
+                        <h1 className="text-[clamp(3rem,8vh,4rem)] color-red cursor-default leading-tight">DIANYCH</h1>
+                        <p className="text-[clamp(1rem,2.5vh,1.25rem)] text-gray-700 cursor-default">{t.petPortraits}</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-x-8 gap-y-4">
@@ -50,7 +50,7 @@ const Header = () => {
                         <NavLink href="#kits" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} />
                     </div>
 
-                    <div className="flex items-center space-x-4 mt-4">
+                    <div className="flex items-center space-x-4 mt-3">
                         <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer"
                            className="relative w-[clamp(3.5rem,8vh,5rem)] h-[clamp(3.5rem,8vh,5rem)]">
                             <Image src="/images/contacts/instagram_icon.png" alt="Instagram" fill className="object-contain"/>
