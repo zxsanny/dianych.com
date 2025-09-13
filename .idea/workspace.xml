@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix routes warnings">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="add console log for debugging image directory path">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/logout/LogoutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/logout/LogoutButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/GalleryManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/GalleryManager.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/ManagePageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/ManagePageClient.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +138,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="4450000" />
+      <workItem from="1757740037352" duration="4827000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -377,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757745242206</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add console log for debugging image directory path">
+      <option name="closed" value="true" />
+      <created>1757745841366</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1757745841366</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +406,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
     <MESSAGE value="fix modal" />
     <MESSAGE value="fix modal&#10;add order button with proper styles&#10;rename files" />
     <MESSAGE value="small header fix" />
@@ -420,6 +430,7 @@
     <MESSAGE value="fix cookies &#10;add frame prices" />
     <MESSAGE value="fix warnings" />
     <MESSAGE value="fix routes warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix routes warnings" />
+    <MESSAGE value="add console log for debugging image directory path" />
+    <option name="LAST_COMMIT_MESSAGE" value="add console log for debugging image directory path" />
   </component>
 </project>

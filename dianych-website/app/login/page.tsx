@@ -22,14 +22,17 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                            className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none
+                            focus:ring-2 focus:ring-pink-500 color-red"
                         />
                     </div>
                     <div>
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full px-4 py-2 text-lg font-semibold text-white bg-red rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:bg-gray-400"
+                            className="w-full px-4 py-2 text-lg font-semibold text-white bg-red rounded-md
+                             hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+                              focus:ring-pink-500 disabled:bg-gray-400 cursor-pointer"
                         >
                             {isLoading ? 'Logging in...' : 'Login'}
                         </button>

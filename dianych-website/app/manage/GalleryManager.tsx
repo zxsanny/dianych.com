@@ -11,7 +11,9 @@ const initialState: FormState = { message: '', status: 'idle' };
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
-        <button type="submit" disabled={pending} className="w-full px-6 py-3 bg-[#E11D48] text-white font-semibold rounded-lg hover:bg-pink-700 disabled:bg-gray-400 transition-colors">
+        <button type="submit" disabled={pending}
+                className="w-full px-6 py-3 bg-[#E11D48] text-white font-semibold rounded-lg
+                 hover:bg-pink-700 disabled:bg-gray-400 transition-colors cursor-pointer">
             {pending ? 'Завантаження...' : 'Завантажити картинки'}
         </button>
     );

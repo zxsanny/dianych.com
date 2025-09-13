@@ -25,7 +25,9 @@ export default function ManagePageClient() {
                         <li key={folder.key}>
                             <button
                                 onClick={() => setSelectedFolder(folder)}
-                                className={`w-full text-left px-4 py-2 rounded-md transition-colors text-gray-700 ${selectedFolder?.key === folder.key ? 'bg-pink-100 font-semibold' : 'hover:bg-gray-100'}`}
+                                className={`w-full text-left px-4 py-2 cursor-pointer
+                                rounded-md transition-colors text-gray-700
+                                 ${selectedFolder?.key === folder.key ? 'bg-pink-100 font-semibold' : 'hover:bg-gray-100'}`}
                             >
                                 {folder.name}
                             </button>
