@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix cookies &#10;add frame prices">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix warnings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/prices/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/prices/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dianych-website/app/manage/PricesManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/manage/PricesManager.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +135,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="1554000" />
+      <workItem from="1757740037352" duration="2500000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -354,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757741523850</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fix warnings">
+      <option name="closed" value="true" />
+      <created>1757741846119</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1757741846119</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +379,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial commit&#10;add nextjs template with initial non working layout&#10;WIP" />
     <MESSAGE value="fix Header component&#10;use tailwind config" />
     <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
     <MESSAGE value="fix modal" />
@@ -397,6 +403,7 @@
     <MESSAGE value="fix header again" />
     <MESSAGE value="auth works" />
     <MESSAGE value="fix cookies &#10;add frame prices" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix cookies &#10;add frame prices" />
+    <MESSAGE value="fix warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix warnings" />
   </component>
 </project>

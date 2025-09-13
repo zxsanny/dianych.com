@@ -43,7 +43,7 @@ export default function PricesManager() {
         if (active) setLoading(false);
       }
     }
-    load();
+    void load();
     return () => {
       active = false;
     };
@@ -60,23 +60,35 @@ export default function PricesManager() {
     setSaving(true);
     setError(null);
     setMessage(null);
+
+    type ApiError = { message?: string };
+
     try {
       const res = await fetch('/api/prices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(prices),
       });
+
       if (!res.ok) {
-        const data = await res.json().catch(() => ({} as any));
-        // Avoid throwing locally; set error state and exit
-        setError((data as any).message || 'Помилка збереження');
+        const data: ApiError = await res.json().catch(() => ({} as ApiError));
+        setError(data.message || 'Помилка збереження');
         return;
       }
-      const data = await res.json();
+
+      const data: Prices = await res.json();
       setPrices(data);
       setMessage('Ціни успішно збережено.');
-    } catch (e: any) {
-      setError(e?.message || 'Не вдалося зберегти ціни.');
+    } catch (e: unknown) {
+      const extractMessage = (err: unknown): string => {
+        if (err instanceof Error) return err.message;
+        if (err && typeof err === 'object' && 'message' in err) {
+          const msg = (err as Record<string, unknown>).message;
+          if (typeof msg === 'string') return msg;
+        }
+        return 'Не вдалося зберегти ціни.';
+      };
+      setError(extractMessage(e));
     } finally {
       setSaving(false);
     }
@@ -85,7 +97,7 @@ export default function PricesManager() {
   return (
     <div className="space-y-6 bg-white p-8 rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold text-center mb-2 color-red">Керування цінами рамок</h2>
-      <p className="text-center text-gray-500 mb-6">Оновіть ціни і натисніть "Зберегти".</p>
+      <p className="text-center text-gray-500 mb-6">Оновіть ціни і натисніть Зберегти.</p>
 
       {loading ? (
         <p className="text-center text-gray-500">Завантаження...</p>
