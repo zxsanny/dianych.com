@@ -7,12 +7,9 @@ export interface SessionData {
 }
 
 const rawSecret = (process.env.SECRET_COOKIE_PASSWORD || '') as string;
-// If the provided secret is shorter than iron-session's 32-char minimum,
-// expand it as `{pass}.{pass}.{pass}` to meet the required length.
-const expandedSecret = rawSecret.length >= 32 ? rawSecret : `${rawSecret}.${rawSecret}.${rawSecret}`;
 
 export const sessionOptions: SessionOptions = {
-    password: expandedSecret,
+    password: rawSecret,
     cookieName: 'dianych-manage-session',
     cookieOptions: {
         secure: process.env.NODE_ENV === 'production',

@@ -3,7 +3,6 @@ import path from 'path';
 
 export const getImagePaths = (galleryId: string): string[] => {
     const imagesDirectory = path.join(process.cwd(), 'public', 'images', galleryId);
-    console.log('imagesDirectory: ', imagesDirectory);
     try {
         const filenames = fs.readdirSync(imagesDirectory);
 
