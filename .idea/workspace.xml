@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header tsx&#10;add login-logout functionality">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix header again">
+      <change afterPath="$PROJECT_DIR$/dianych-website/middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/pw.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dianych-website/scripts/hash-pw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/lib/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/lib/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +76,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Debug&quot;,
+    &quot;npm.hash-pw.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\dev\\dianych.com\\dianych-website\\node_modules\\typescript\\lib&quot;,
@@ -84,7 +92,7 @@
       <recent name="D:\dev\dianych.com\dianych-website\app\components" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/dianych-website/package.json" />
       <command value="run" />
@@ -95,6 +103,20 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="hash-pw" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/dianych-website/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="hash-pw" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.dev" />
+      <item itemvalue="npm.hash-pw" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -119,7 +141,8 @@
       <workItem from="1757624867325" duration="45000" />
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
-      <workItem from="1757672837782" duration="19679000" />
+      <workItem from="1757672837782" duration="21514000" />
+      <workItem from="1757740037352" duration="331000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -313,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757737938624</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix header again">
+      <option name="closed" value="true" />
+      <created>1757738329920</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1757738329920</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,6 +384,7 @@
     <MESSAGE value="fix tg link" />
     <MESSAGE value="fix translations &#10;add update.sh" />
     <MESSAGE value="fix header tsx&#10;add login-logout functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix header tsx&#10;add login-logout functionality" />
+    <MESSAGE value="fix header again" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix header again" />
   </component>
 </project>
