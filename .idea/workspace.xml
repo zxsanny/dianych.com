@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix warnings">
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/prices/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/prices/route.ts" afterDir="false" />
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix routes warnings">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/lib/galleryUtils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +135,7 @@
       <workItem from="1757624928294" duration="28000" />
       <workItem from="1757624966811" duration="20541000" />
       <workItem from="1757672837782" duration="21514000" />
-      <workItem from="1757740037352" duration="3851000" />
+      <workItem from="1757740037352" duration="4450000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit&#10;add nextjs template with initial non working layout&#10;WIP">
       <option name="closed" value="true" />
@@ -368,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757742622285</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix routes warnings">
+      <option name="closed" value="true" />
+      <created>1757745242206</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1757745242206</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,7 +395,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix Header component&#10;use tailwind config" />
     <MESSAGE value="fix header&#10;fix fonts&#10;fix styles and colors&#10;add images&#10;add css" />
     <MESSAGE value="fix modal" />
     <MESSAGE value="fix modal&#10;add order button with proper styles&#10;rename files" />
@@ -411,6 +419,7 @@
     <MESSAGE value="auth works" />
     <MESSAGE value="fix cookies &#10;add frame prices" />
     <MESSAGE value="fix warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix warnings" />
+    <MESSAGE value="fix routes warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix routes warnings" />
   </component>
 </project>
