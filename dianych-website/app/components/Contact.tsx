@@ -89,7 +89,7 @@ const Contact = () => {
                                 rel="noopener noreferrer"
                                 className="flex items-center w-full p-3 bg-white/80 hover:bg-white rounded-full shadow-md transition-colors duration-300 transform hover:scale-105"
                             >
-                                <div className="relative w-10 h-6">
+                                <div className="relative w-10 h-8">
                                     <Image src={link.iconSrc} alt={link.alt} fill className="object-contain"/>
                                 </div>
                                 <span className="flex-grow font-semibold text-gray-800 text-lg">{link.text}</span>

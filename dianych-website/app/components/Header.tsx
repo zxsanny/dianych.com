@@ -44,8 +44,8 @@ const Header = () => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                        <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.webp" label={t.embroidery} />
-                        <NavLink href="#frames" imgSrc="/images/header/frames_link.webp" label={t.frames} />
+                        <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.png" label={t.embroidery} />
+                        <NavLink href="#frames" imgSrc="/images/header/frames_link.png" label={t.frames} />
                         <NavLink href="#felting" imgSrc="/images/header/felting_link.jpg" label={t.felting} />
                         <NavLink href="#kits" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} />
                     </div>
@@ -86,8 +86,8 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 w-full">
-                    <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.webp" label={t.embroidery} className="w-full" />
-                    <NavLink href="#frames" imgSrc="/images/header/frames_link.webp" label={t.frames} className="w-full" />
+                    <NavLink href="#brooches" imgSrc="/images/header/embroidery_link.png" label={t.embroidery} className="w-full" />
+                    <NavLink href="#frames" imgSrc="/images/header/frames_link.png" label={t.frames} className="w-full" />
                     <NavLink href="#felting" imgSrc="/images/header/felting_link.jpg" label={t.felting} className="w-full" />
                     <NavLink href="#kits" imgSrc="/images/header/schemes_kits_link.webp" label={t.schemesKits} className="w-full" />
                 </div>
