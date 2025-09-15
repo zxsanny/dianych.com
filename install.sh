@@ -14,6 +14,11 @@ server {
         proxy_set_header X-Forwarded-Proto \$scheme;
         proxy_set_header X-Forwarded-Port 443;
     }
+    location /images/ {
+        alias /root/dianych/images/;
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400";
+    }
 }
 
 server {

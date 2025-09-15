@@ -4,20 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="fix redirects again&#10;reduce the image size">
+    <list default="true" id="fa94a4c6-79a2-4576-9d0b-fbdf093f7b31" name="Changes" comment="try to fix resource is null for uploaded images: try 05">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/app/api/login/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/05.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/06.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/07.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/08.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/09.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/10.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/public/images/panel/11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/dianych-website/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/brooches/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/clothes/16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianych-website/public/images/panel/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restart.sh" beforeDir="false" afterPath="$PROJECT_DIR$/restart.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.sh" beforeDir="false" afterPath="$PROJECT_DIR$/update.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
