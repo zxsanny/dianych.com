@@ -57,26 +57,35 @@ export async function GET(req: NextRequest) {
 
     // Process sequentially to limit memory usage (could be parallel with Promise.allSettled if needed)
     // Try sharp first (fast, efficient). If unavailable on this Linux env, fall back to Jimp (pure JS, slower but portable)
-    let useSharp = false;
-    let sharp: any = null;
+    let useSharp: boolean;
+    let sharpFn: ((input?: string | Buffer | Uint8Array) => import('sharp').Sharp) | null = null;
     try {
       if (!process.env.SHARP_BACKEND) {
         process.env.SHARP_BACKEND = 'wasm';
       }
       // dynamic import to avoid bundling native at eval time
-      const mod: any = await import('sharp');
-      sharp = mod.default ?? mod;
-      useSharp = typeof sharp === 'function';
+      const mod: unknown = await import('sharp');
+      const candidate = (mod as { default?: unknown }).default ?? mod;
+      if (typeof candidate === 'function') {
+        sharpFn = candidate as (input?: string | Buffer | Uint8Array) => import('sharp').Sharp;
+        useSharp = true;
+      } else {
+        useSharp = false;
+      }
     } catch {
       useSharp = false;
     }
 
     // Lazy import Jimp only if sharp is not available
-    let Jimp: any = null;
+    type JimpClass = typeof import('jimp').Jimp;
+    let JimpCls: JimpClass | undefined;
     if (!useSharp) {
       try {
-        const mod: any = await import('jimp');
-        Jimp = mod.Jimp ?? mod.default ?? mod;
+        const mod: unknown = await import('jimp');
+        const candidate = (mod as { Jimp?: unknown; default?: unknown }).Jimp ?? (mod as { default?: unknown }).default ?? mod;
+        if (candidate && typeof candidate === 'function') {
+          JimpCls = candidate as JimpClass;
+        }
       } catch (e) {
         return NextResponse.json({ error: `Image processing libs unavailable: ${e instanceof Error ? e.message : String(e)}` }, { status: 500 });
       }
@@ -88,16 +97,21 @@ export async function GET(req: NextRequest) {
       try {
         const input = fs.readFileSync(fullPath);
         let buf: Buffer;
-        if (useSharp && sharp) {
+        if (useSharp && sharpFn) {
           // Resize to width 500, keep aspect ratio, convert to webp
-          buf = await sharp(input).rotate().resize({ width: 500 }).webp({ quality: 76 }).toBuffer();
+          buf = await sharpFn(input).rotate().resize({ width: 500 }).webp({ quality: 76 }).toBuffer();
         } else {
           // Jimp fallback (no native deps). Note: orientation metadata may not be auto-applied.
-          const image = await Jimp.read(input);
-          image.resize(500, Jimp.AUTO);
+          if (!JimpCls) {
+            throw new Error('Jimp is unavailable');
+          }
+          const image = await JimpCls.read(input);
+          image.resize(500, JimpCls.AUTO);
           // Set quality for webp if supported by this Jimp build
-          if (typeof image.quality === 'function') {
-            image.quality(76);
+          type MaybeQuality = { quality?: (q: number) => unknown };
+          const iq = image as unknown as MaybeQuality;
+          if (typeof iq.quality === 'function') {
+            iq.quality(76);
           }
           buf = await image.getBuffer('image/webp');
         }
