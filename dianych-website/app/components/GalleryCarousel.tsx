@@ -82,8 +82,9 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
                         return byName.get(name) || null;
                     });
                     setThumbs(ordered);
-                } catch (e: any) {
-                    setThumbsError(String(e?.message || e));
+                } catch (e) {
+                    const message = (e instanceof Error && e.message) ? e.message : String(e);
+                    setThumbsError(message);
                     // As a fallback, do not set thumbs so component can still render originals below
                 }
             })();

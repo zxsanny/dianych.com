@@ -24,7 +24,8 @@ export async function POST(req: NextRequest) {
 
     invalidateCache(galleryId, 500, 1);
     return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return NextResponse.json({ error: String(e?.message || e) }, { status: 500 });
+  } catch (e) {
+    const message = (e instanceof Error && e.message) ? e.message : String(e);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

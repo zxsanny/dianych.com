@@ -13,7 +13,7 @@ export default function TopBar({ isVisible }: { isVisible: boolean }) {
             <div className="container mx-auto flex items-center justify-between px-2 sm:px-4 h-16">
                 <Link href="/" className="flex items-center gap-2 sm:gap-4">
                     <div className="relative w-8 h-8 sm:w-10 sm:h-10">
-                        <Image src="/images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
+                        <Image src="/static-images/header/main_logo.png" alt="Dianych Logo" fill className="object-contain" />
                     </div>
                     <div>
                         <h1 className="text-xl sm:text-2xl color-red font-bold">DIANYCH</h1>
@@ -23,13 +23,13 @@ export default function TopBar({ isVisible }: { isVisible: boolean }) {
 
                 <div className="flex items-center gap-0 sm:gap-1">
                     <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
-                        <Image src="/images/contacts/instagram_icon.png" alt="Instagram" width={32} height={32} />
+                        <Image src="/static-images/contacts/instagram_icon.png" alt="Instagram" width={32} height={32} />
                     </a>
                     <a href="https://www.tiktok.com/@dianych.ua" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
-                        <Image src="/images/contacts/tiktok_icon.png" alt="TikTok" width={32} height={32} />
+                        <Image src="/static-images/contacts/tiktok_icon.png" alt="TikTok" width={32} height={32} />
                     </a>
                     <a href="https://t.me/dianych_now" target="_blank" rel="noopener noreferrer" className="p-1 sm:p-2 rounded-full hover:bg-black/10">
-                        <Image src="/images/contacts/telegram_icon.png" alt="Telegram" width={32} height={32} />
+                        <Image src="/static-images/contacts/telegram_icon.png" alt="Telegram" width={32} height={32} />
                     </a>
                     <div className="ml-2">
                         <LanguageSwitcher />

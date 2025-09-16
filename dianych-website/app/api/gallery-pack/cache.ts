@@ -1,8 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 
+export interface GalleryPackPayload {
+  galleryId: string;
+  width: number;
+  version: number;
+  images: { name: string; dataUrl: string }[];
+}
+
 // In-memory cache: key -> { updatedAt, payload }
-export const memoryCache = new Map<string, { updatedAt: number; payload: any }>();
+export const memoryCache = new Map<string, { updatedAt: number; payload: GalleryPackPayload }>();
 
 export const CACHE_DIR = path.join(process.cwd(), '.cache', 'thumbnails');
 

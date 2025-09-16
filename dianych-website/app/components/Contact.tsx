@@ -6,37 +6,37 @@ import {useTranslation} from "@/lib/translations";
 const contactLinks = [
     {
         href: "https://www.instagram.com/dianych.ua/",
-        iconSrc: "/images/contacts/instagram_icon.png",
+        iconSrc: "/static-images/contacts/instagram_icon.png",
         alt: "Instagram Icon",
         text: "dianych.ua"
     },
     {
         href: "https://t.me/dianych_now",
-        iconSrc: "/images/contacts/telegram_icon.png",
+        iconSrc: "/static-images/contacts/telegram_icon.png",
         alt: "Telegram Icon",
         text: "dianych_now"
     },
     {
         href: "https://www.youtube.com/@dianych.ua.",
-        iconSrc: "/images/contacts/youtube_icon.png",
+        iconSrc: "/static-images/contacts/youtube_icon.png",
         alt: "YouTube Icon",
         text: "Діанич вишиває"
     },
     {
         href: "https://www.facebook.com/profile.php?id=100012871091950",
-        iconSrc: "/images/contacts/facebook_icon.png",
+        iconSrc: "/static-images/contacts/facebook_icon.png",
         alt: "Facebook Icon",
         text: "Diana"
     },
     {
         href: "https://www.etsy.com/shop/DianychStudio",
-        iconSrc: "/images/contacts/etsy_icon.png",
+        iconSrc: "/static-images/contacts/etsy_icon.png",
         alt: "Etsy Icon",
         text: "DianychStudio"
     },
     {
         href: "https://www.tiktok.com/@dianych.ua",
-        iconSrc: "/images/contacts/tiktok_icon.png",
+        iconSrc: "/static-images/contacts/tiktok_icon.png",
         alt: "TikTok Icon",
         text: "dianych TikTok"
     },
@@ -53,7 +53,7 @@ const Contact = () => {
                 <div className="hidden lg:flex justify-center items-start pt-8">
                     <div className="relative w-full max-w-lg aspect-[2/3] rounded-2xl overflow-hidden shadow-lg">
                         <Image
-                            src="/images/contacts/contacts_photo.jpg"
+                            src="/static-images/contacts/contacts_photo.jpg"
                             alt="Artistic photo of a woman in a rose garden"
                             fill
                             className="object-cover"
@@ -100,7 +100,7 @@ const Contact = () => {
                     {/* Phone Image */}
                     <div className="hidden lg:block absolute -bottom-14 right-9 w-48 h-auto aspect-[9/19] transform translate-x-8 translate-y-8 rotate-12">
                         <Image
-                            src="/images/contacts/phone_img.png"
+                            src="/static-images/contacts/phone_img.png"
                             alt="Phone displaying the Dianych Instagram profile"
                             fill
                             className="object-contain"

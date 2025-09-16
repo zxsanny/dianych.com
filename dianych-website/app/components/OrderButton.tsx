@@ -16,7 +16,7 @@ const OrderButton = ({ orderText, orderLink }: OrderButtonProps) => {
             <span>{orderText}</span>
             <div className="relative w-6 h-6 ml-3 transform transition-transform duration-300 group-hover:translate-x-1">
                 <Image
-                    src="/images/insta_send.svg"
+                    src="/static-images/insta_send.svg"
                     alt="Order icon"
                     fill
                     className="object-contain"

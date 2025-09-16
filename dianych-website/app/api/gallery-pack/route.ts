@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
-import { memoryCache, getDiskCachePath, ensureDir } from './cache';
+import { memoryCache, getDiskCachePath } from './cache';
 
 export const runtime = 'nodejs';
 
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
             'Cache-Control': 'public, max-age=300, s-maxage=300',
           },
         });
-      } catch (e) {
+      } catch {
         // If parsing fails, delete the broken cache file
         try { fs.unlinkSync(diskPath); } catch {}
       }
@@ -77,7 +77,7 @@ export async function GET(req: NextRequest) {
         const b64 = buf.toString('base64');
         const dataUrl = `data:image/webp;base64,${b64}`;
         entries.push({ name: filename, dataUrl });
-      } catch (e) {
+      } catch {
         // Skip problematic file
         continue;
       }
@@ -98,7 +98,8 @@ export async function GET(req: NextRequest) {
         'Cache-Control': 'public, max-age=300, s-maxage=300',
       },
     });
-  } catch (error: any) {
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+  } catch (error) {
+    const message = (error instanceof Error && error.message) ? error.message : String(error);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
