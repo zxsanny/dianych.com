@@ -3,6 +3,7 @@ import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { memoryCache, getDiskCachePath } from './cache';
 import sharp from 'sharp';
+import {error} from "next/dist/build/output/log";
 
 export const runtime = 'nodejs';
 
@@ -68,19 +69,16 @@ export async function GET(req: NextRequest) {
         const dataUrl = `data:image/webp;base64,${b64}`;
         entries.push({ name: filename, dataUrl });
       } catch {
-        // Skip problematic file
-        continue;
+          console.error(`Error processing image '${filename}':`, error);
       }
     }
 
     const payload = { galleryId, width: 500, version: 1, images: entries };
 
-    // Write disk cache (best-effort)
     try {
       fs.writeFileSync(diskPath, JSON.stringify(payload));
     } catch {}
 
-    // Write memory cache
     memoryCache.set(cacheKey, { updatedAt: Date.now(), payload });
 
     return NextResponse.json(payload, {

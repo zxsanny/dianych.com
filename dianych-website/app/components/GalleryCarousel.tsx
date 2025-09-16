@@ -71,7 +71,10 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
                     const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&ts=${Date.now()}`,
                         { cache: 'no-store' }
                     );
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    if (!res.ok) {
+                        setThumbsError(`HTTP ${res.status}`);
+                        return;
+                    }
                     const data = await res.json() as { images: { name: string; dataUrl: string }[] };
                     try {
                         window.localStorage.setItem(storageKey, JSON.stringify(data));
