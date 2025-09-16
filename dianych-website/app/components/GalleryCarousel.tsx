@@ -23,6 +23,73 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
     const [modalIndex, setModalIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
+    // Local thumbnail state loaded from localStorage or API
+    const [thumbs, setThumbs] = useState<(string | null)[] | null>(null);
+    const [thumbsError, setThumbsError] = useState<string | null>(null);
+
+    // Derive galleryId from image paths like /images/<galleryId>/<filename>
+    useEffect(() => {
+        if (!images || images.length === 0) return;
+        const first = images[0];
+        const parts = first.split('/').filter(Boolean);
+        const idx = parts.indexOf('images');
+        const galleryId = idx >= 0 && parts.length > idx + 1 ? parts[idx + 1] : '';
+        if (!galleryId) return;
+
+        const storageKey = `gallery-pack-${galleryId}-w500-v1`;
+        const cached = typeof window !== 'undefined' ? window.localStorage.getItem(storageKey) : null;
+
+        let shouldRefetch = false;
+        if (cached) {
+            try {
+                const parsed = JSON.parse(cached) as { images: { name: string; dataUrl: string }[] };
+                // Compare file lists to detect newly added/removed items
+                const currentNames = images.map((src) => src.split('/').pop() || '');
+                const cachedNamesSet = new Set(parsed.images.map((i) => i.name));
+                if (currentNames.length !== parsed.images.length || currentNames.some((n) => !cachedNamesSet.has(n))) {
+                    shouldRefetch = true;
+                }
+                // Map to original order by filename and keep placeholders for missing
+                const byName = new Map(parsed.images.map(it => [it.name, it.dataUrl] as const));
+                const ordered = images.map((src) => {
+                    const name = src.split('/').pop() || '';
+                    return byName.get(name) || null;
+                });
+                setThumbs(ordered);
+            } catch {
+                // fall-through to refetch
+                shouldRefetch = true;
+            }
+        } else {
+            shouldRefetch = true;
+        }
+
+        if (shouldRefetch) {
+            // Fetch pack from API (background refresh)
+            (async () => {
+                try {
+                    const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&ts=${Date.now()}`,
+                        { cache: 'no-store' }
+                    );
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const data = await res.json() as { images: { name: string; dataUrl: string }[] };
+                    try {
+                        window.localStorage.setItem(storageKey, JSON.stringify(data));
+                    } catch {}
+                    const byName = new Map(data.images.map(it => [it.name, it.dataUrl] as const));
+                    const ordered = images.map((src) => {
+                        const name = src.split('/').pop() || '';
+                        return byName.get(name) || null;
+                    });
+                    setThumbs(ordered);
+                } catch (e: any) {
+                    setThumbsError(String(e?.message || e));
+                    // As a fallback, do not set thumbs so component can still render originals below
+                }
+            })();
+        }
+    }, [images]);
+
     useEffect(() => {
         const mql = window.matchMedia('(max-width: 767px)');
         const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
@@ -66,6 +133,12 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
         return null;
     }
 
+    // Choose thumbnail images if available. If thumbnail request failed, fall back to original images to avoid permanent gray placeholders.
+    // Otherwise, while request is in-flight, show skeletons to avoid loading full-size images immediately.
+    const displayImages: (string | null)[] = thumbs
+        ? thumbs.map((t, i) => t || images[i])
+        : (thumbsError ? images : new Array(images.length).fill(null));
+
     return (
         <>
             <h2 className="text-4xl color-red text-center mb-8 cursor-default">{title}</h2>
@@ -75,10 +148,14 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
             <div className="relative">
                 <div className="overflow-hidden" ref={emblaRef}>
                     <div className="flex -ml-4">
-                        {images.map((src, index) => (
+                        {displayImages.map((src, index) => (
                             <div key={index} className="flex-grow-0 flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pl-4" onClick={() => handleImageClick(index)}>
-                                <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
-                                    <Image src={src} alt={`${title} image ${index + 1}`} fill className="object-cover" />
+                                <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105 bg-gray-200">
+                                    {src ? (
+                                        <Image src={src} alt={`${title} image ${index + 1}`} fill className="object-cover" />
+                                    ) : (
+                                        <div className="absolute inset-0 animate-pulse bg-gray-300" />
+                                    )}
                                 </div>
                             </div>
                         ))}

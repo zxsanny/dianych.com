@@ -4,6 +4,7 @@ import { writeFile, unlink } from 'fs/promises';
 import { join, resolve } from 'path';
 import { revalidatePath } from 'next/cache';
 import { getImagePaths } from '@/lib/galleryUtils';
+import { invalidateCache } from '@/app/api/gallery-pack/cache';
 
 export interface FormState {
     message: string;
@@ -43,6 +44,9 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
     revalidatePath('/');
     revalidatePath('/manage'); // Revalidate the manage page
 
+    // Invalidate gallery-pack caches (memory + disk)
+    try { invalidateCache(folder, 500, 1); } catch {}
+
     return { message: `Successfully uploaded ${uploadedFileCount} image(s) to the '${folder}' gallery.`, status: 'success' };
 }
 
@@ -70,6 +74,15 @@ export async function deleteImage(prevState: FormState, formData: FormData): Pro
         await unlink(fullPath);
         revalidatePath('/');
         revalidatePath('/manage');
+
+        // Derive galleryId from /images/<galleryId>/<file>
+        const parts = imagePath.split('/').filter(Boolean);
+        const idx = parts.indexOf('images');
+        const galleryId = idx >= 0 && parts.length > idx + 1 ? parts[idx + 1] : '';
+        if (galleryId) {
+            try { invalidateCache(galleryId, 500, 1); } catch {}
+        }
+
         return { message: `Successfully deleted ${imagePath}.`, status: 'success' };
     } catch (error) {
         return { message: 'Failed to delete file. Error' + error, status: 'error' };
