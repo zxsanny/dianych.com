@@ -1,4 +1,3 @@
-# Use a Debian-based Node.js 20 image to ensure glibc (sharp prebuilt binaries work)
 FROM node:20-bookworm-slim AS base
 
 # Set working directory
