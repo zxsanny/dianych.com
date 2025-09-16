@@ -2,17 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { memoryCache, getDiskCachePath } from './cache';
+import sharp from 'sharp';
 
 export const runtime = 'nodejs';
-
-// Lazy-load sharp to avoid import cost if unused
-let sharpSingleton: typeof import('sharp') | null = null;
-async function getSharp() {
-  if (!sharpSingleton) {
-    sharpSingleton = (await import('sharp')).default as unknown as typeof import('sharp');
-  }
-  return sharpSingleton as unknown as typeof import('sharp');
-}
 
 export async function GET(req: NextRequest) {
   try {
@@ -63,8 +55,6 @@ export async function GET(req: NextRequest) {
     const imageFiles = allFiles
       .filter((f) => /\.(jpe?g|png|webp|gif|bmp|tiff?)$/i.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
-
-    const sharp = await getSharp();
 
     // Process sequentially to limit memory usage (could be parallel with Promise.allSettled if needed)
     const entries: { name: string; dataUrl: string }[] = [];

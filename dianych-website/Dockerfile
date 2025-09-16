@@ -1,5 +1,5 @@
-# Use the official Node.js 20 image
-FROM node:20-alpine AS base
+# Use a Debian-based Node.js 20 image to ensure glibc (sharp prebuilt binaries work)
+FROM node:20-bookworm-slim AS base
 
 # Set working directory
 WORKDIR /app
@@ -7,7 +7,7 @@ WORKDIR /app
 # Install dependencies
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --include=optional
 
 # Build the application
 FROM base AS builder
