@@ -77,14 +77,27 @@ export async function GET(req: NextRequest) {
     }
 
     // Lazy import Jimp only if sharp is not available
-    type JimpClass = typeof import('jimp').Jimp;
-    let JimpCls: JimpClass | undefined;
+    type JimpImage = {
+      resize: (w: number, h: number) => JimpImage;
+      getBuffer: (mime: string) => Promise<Buffer>;
+      quality?: (q: number) => unknown;
+    };
+    type JimpStatic = {
+      read: (input: Buffer | string | Uint8Array) => Promise<JimpImage>;
+      AUTO: number;
+    };
+    let JimpCls: JimpStatic | undefined;
     if (!useSharp) {
       try {
         const mod: unknown = await import('jimp');
         const candidate = (mod as { Jimp?: unknown; default?: unknown }).Jimp ?? (mod as { default?: unknown }).default ?? mod;
-        if (candidate && typeof candidate === 'function') {
-          JimpCls = candidate as JimpClass;
+        if (
+          candidate &&
+          (typeof candidate === 'function' || typeof candidate === 'object') &&
+          'read' in (candidate as object) &&
+          'AUTO' in (candidate as object)
+        ) {
+          JimpCls = candidate as unknown as JimpStatic;
         }
       } catch (e) {
         return NextResponse.json({ error: `Image processing libs unavailable: ${e instanceof Error ? e.message : String(e)}` }, { status: 500 });
@@ -98,20 +111,19 @@ export async function GET(req: NextRequest) {
         const input = fs.readFileSync(fullPath);
         let buf: Buffer;
         if (useSharp && sharpFn) {
-          // Resize to width 500, keep aspect ratio, convert to webp
+          // Resize to width 500, keep an aspect ratio, convert to webp
           buf = await sharpFn(input).rotate().resize({ width: 500 }).webp({ quality: 76 }).toBuffer();
         } else {
           // Jimp fallback (no native deps). Note: orientation metadata may not be auto-applied.
           if (!JimpCls) {
-            throw new Error('Jimp is unavailable');
+            console.error('Jimp is unavailable; skipping image processing for', filename);
+            continue;
           }
           const image = await JimpCls.read(input);
           image.resize(500, JimpCls.AUTO);
           // Set quality for webp if supported by this Jimp build
-          type MaybeQuality = { quality?: (q: number) => unknown };
-          const iq = image as unknown as MaybeQuality;
-          if (typeof iq.quality === 'function') {
-            iq.quality(76);
+          if (typeof image.quality === 'function') {
+            image.quality(76);
           }
           buf = await image.getBuffer('image/webp');
         }
