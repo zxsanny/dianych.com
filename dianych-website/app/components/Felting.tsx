@@ -6,7 +6,7 @@ const Felting = () => {
             id="felting"
             titleKey="feltingTitle"
             descriptionKey="feltingDescription"
-            buttonTextKey="orderEmbroidery"
+            buttonTextKey="orderFelting"
             orderLink="https://www.instagram.com/dianych.ua/"
         />
     );
