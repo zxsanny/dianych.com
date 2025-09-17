@@ -10,14 +10,20 @@
     "hash-pw": "node scripts\\hash-pw.js"
   },
   "dependencies": {
+    "@img/sharp-darwin-arm64": "^0.34.3",
+    "@img/sharp-libvips-darwin-arm64": "^1.2.3",
+    "@img/sharp-libvips-linux-x64": "^1.2.3",
+    "@img/sharp-libvips-linuxmusl-x64": "^1.2.3",
+    "@img/sharp-linux-x64": "^0.34.3",
+    "@img/sharp-linuxmusl-x64": "^0.34.3",
     "bcryptjs": "^3.0.2",
     "embla-carousel-react": "^8.6.0",
     "iron-session": "^8.0.4",
+    "jimp": "^0.22.12",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sharp": "^0.33.5",
-    "jimp": "^0.22.12"
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
