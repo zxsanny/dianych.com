@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { memoryCache, getDiskCachePath } from './cache';
+import sharp from 'sharp';
 
 export const runtime = 'nodejs';
 
@@ -55,31 +56,13 @@ export async function GET(req: NextRequest) {
       .filter((f) => /\.(jpe?g|png|webp|gif|bmp|tiff?)$/i.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
-    // Process sequentially to limit memory usage (could be parallel with Promise.allSettled if needed)
-    // Try sharp first (fast, efficient). If unavailable on this Linux env, fall back to Jimp (pure JS, slower but portable)
-    let useSharp: boolean;
-    let sharpFn: ((input?: string | Buffer | Uint8Array) => import('sharp').Sharp) | null = null;
-    try {
-      if (!process.env.SHARP_BACKEND) {
-        process.env.SHARP_BACKEND = 'wasm';
-      }
-      // dynamic import to avoid bundling native at eval time
-      const mod: unknown = await import('sharp');
-      const candidate = (mod as { default?: unknown }).default ?? mod;
-      if (typeof candidate === 'function') {
-        sharpFn = candidate as (input?: string | Buffer | Uint8Array) => import('sharp').Sharp;
-        useSharp = true;
-      } else {
-        useSharp = false;
-      }
-    } catch {
-      useSharp = false;
-    }
+    const sharpFn = sharp;
 
     // Lazy import Jimp only if sharp is not available
     type JimpImage = {
       resize: (w: number, h: number) => JimpImage;
-      getBuffer: (mime: string) => Promise<Buffer>;
+      getBuffer: (mime: string, cb: (err: Error | null, buffer?: Buffer) => void) => void;
+      getBufferAsync?: (mime: string) => Promise<Buffer>;
       quality?: (q: number) => unknown;
     };
     type JimpStatic = {
@@ -87,7 +70,7 @@ export async function GET(req: NextRequest) {
       AUTO: number;
     };
     let JimpCls: JimpStatic | undefined;
-    if (!useSharp) {
+    if (!sharpFn) {
       try {
         const mod: unknown = await import('jimp');
         const candidate = (mod as { Jimp?: unknown; default?: unknown }).Jimp ?? (mod as { default?: unknown }).default ?? mod;
@@ -110,7 +93,7 @@ export async function GET(req: NextRequest) {
       try {
         const input = fs.readFileSync(fullPath);
         let buf: Buffer;
-        if (useSharp && sharpFn) {
+        if (sharpFn) {
           // Resize to width 500, keep an aspect ratio, convert to webp
           buf = await sharpFn(input).rotate().resize({ width: 500 }).webp({ quality: 76 }).toBuffer();
         } else {
@@ -125,7 +108,16 @@ export async function GET(req: NextRequest) {
           if (typeof image.quality === 'function') {
             image.quality(76);
           }
-          buf = await image.getBuffer('image/webp');
+          if (typeof image.getBufferAsync === 'function') {
+            buf = await image.getBufferAsync('image/webp');
+          } else {
+            buf = await new Promise<Buffer>((resolve, reject) => {
+              image.getBuffer('image/webp', (err: Error | null, buffer?: Buffer) => {
+                if (err || !buffer) return reject(err ?? new Error('Failed to get buffer'));
+                resolve(buffer);
+              });
+            });
+          }
         }
         const b64 = buf.toString('base64');
         const dataUrl = `data:image/webp;base64,${b64}`;
