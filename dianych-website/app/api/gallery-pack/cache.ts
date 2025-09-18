@@ -12,7 +12,7 @@ export interface GalleryPackPayload {
 // In-memory cache: key -> { updatedAt, payload }
 export const memoryCache = new Map<string, { updatedAt: number; payload: GalleryPackPayload }>();
 
-export const CACHE_DIR = path.join(process.cwd(), '.cache', 'thumbnails');
+export const CACHE_DIR = path.join(process.cwd(), 'public', 'images', '.cache', 'thumbnails');
 
 export function ensureDir(dir: string) {
   if (!fs.existsSync(dir)) {
@@ -110,8 +110,9 @@ export async function regenerateGalleryPack(galleryId: string, width = 500, vers
       const dataUrl = `data:image/webp;base64,${b64}`;
       entries.push({ name: filename, dataUrl });
     } catch (e) {
-      // Skip problematic files
-      continue;
+      // Log and skip problematic files
+      console.error(`Error processing image '${filename}' at '${fullPath}':`, e);
+      // proceed to next file
     }
   }
 

@@ -39,8 +39,6 @@ COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 COPY package.json package-lock.json ./
 RUN npm ci --production
 
-# Ensure cache directory exists and is writable by the non-root user
-RUN mkdir -p /app/.cache/thumbnails && chown -R node:node /app
 
 # Create and switch to a non-root user
 USER node

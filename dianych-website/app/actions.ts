@@ -27,21 +27,6 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
     const uploadPath = join(process.cwd(), 'public', 'images', folder);
     let uploadedFileCount = 0;
 
-    // Ensure target directory exists and is writable
-    try {
-        // Create directory if it doesn't exist
-        const { mkdir, chmod, access } = await import('fs/promises');
-        await mkdir(uploadPath, { recursive: true });
-        // Try accessing the dir for write; if fails, attempt to chmod (best-effort)
-        try {
-            await access(uploadPath);
-        } catch {
-            try { await chmod(uploadPath, 0o775); } catch {}
-        }
-    } catch (e) {
-        const msg = e instanceof Error ? e.message : String(e);
-        return { message: `Failed to prepare upload directory. Reason: ${msg}`, status: 'error' };
-    }
 
     for (const file of files) {
         try {
