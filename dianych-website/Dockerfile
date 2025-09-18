@@ -41,6 +41,7 @@ RUN npm ci --production
 
 
 # Create and switch to a non-root user
+RUN chown -R node:node /app/public/images
 USER node
 
 EXPOSE 3000
