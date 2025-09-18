@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'galleryId is required' }, { status: 400 });
     }
 
-    invalidateCache(galleryId, 500, 1);
+    await invalidateCache(galleryId, 500, 1);
     return NextResponse.json({ ok: true });
   } catch (e) {
     const message = (e instanceof Error && e.message) ? e.message : String(e);
