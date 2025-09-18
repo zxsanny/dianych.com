@@ -47,7 +47,7 @@ const Header = () => {
                         <NavLink href="#brooches" imgSrc="/static-images/header/embroidery_link.png" label={t.embroidery} />
                         <NavLink href="#frames" imgSrc="/static-images/header/frames_link.png" label={t.frames} />
                         <NavLink href="#felting" imgSrc="/static-images/header/felting_link.jpg" label={t.felting} />
-                        <NavLink href="#kits" imgSrc="/static-images/header/schemes_kits_link.webp" label={t.schemesKits} />
+                        <NavLink href="#kits" imgSrc="/static-images/header/schemes_kits_link.jpg" label={t.schemesKits} />
                     </div>
 
                     <div className="flex items-center space-x-4 mt-3">
@@ -89,7 +89,7 @@ const Header = () => {
                     <NavLink href="#brooches" imgSrc="/static-images/header/embroidery_link.png" label={t.embroidery} className="w-full" />
                     <NavLink href="#frames" imgSrc="/static-images/header/frames_link.png" label={t.frames} className="w-full" />
                     <NavLink href="#felting" imgSrc="/static-images/header/felting_link.jpg" label={t.felting} className="w-full" />
-                    <NavLink href="#kits" imgSrc="/static-images/header/schemes_kits_link.webp" label={t.schemesKits} className="w-full" />
+                    <NavLink href="#kits" imgSrc="/static-images/header/schemes_kits_link.jpg" label={t.schemesKits} className="w-full" />
                 </div>
                 <div className="flex items-center space-x-6">
                     <a href="https://www.instagram.com/dianych.ua/" target="_blank" rel="noopener noreferrer">
