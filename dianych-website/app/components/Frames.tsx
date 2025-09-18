@@ -95,17 +95,52 @@ const Frames = () => {
                 // keep defaults
             }
         }
-        load();
+        void load();
         return () => {
             active = false;
         };
     }, []);
 
     const frameData = [
-        { title: t.smallFrame8, images: ['/images/frames/small_1_1.jpg', '/images/frames/small_1_2.jpg', '/images/frames/small_1_3.jpg'], size: t.hoopSize8, price: formatPrice(prices.smallFrame8) },
-        { title: t.smallFrame10, images: ['/images/frames/small_2_1.jpg', '/images/frames/small_2_2.jpg', '/images/frames/small_2_3.jpg'], size: t.hoopSize10, price: formatPrice(prices.smallFrame10) },
-        { title: t.mediumFrame14, images: ['/images/frames/medium_1.jpg', '/images/frames/medium_2.jpg', '/images/frames/medium_3.jpg'], size: t.hoopSize14, price: formatPrice(prices.mediumFrame14) },
-        { title: t.largeFrame19, images: ['/images/frames/large_1.jpg', '/images/frames/large_2.jpg', '/images/frames/large_3.jpg'], size: t.hoopSize19, price: formatPrice(prices.largeFrame19) }
+        {
+            title: t.smallFrame8,
+            images: [
+                '/static-images/frames/small_1_1.jpg',
+                '/static-images/frames/small_1_2.jpg',
+                '/static-images/frames/small_1_3.jpg'
+            ],
+            size: t.hoopSize8,
+            price: formatPrice(prices.smallFrame8)
+        },
+        {
+            title: t.smallFrame10,
+            images: [
+                '/static-images/frames/small_2_1.jpg',
+                '/static-images/frames/small_2_2.jpg',
+                '/static-images/frames/small_2_3.jpg'
+            ],
+            size: t.hoopSize10,
+            price: formatPrice(prices.smallFrame10) },
+        {
+            title: t.mediumFrame14,
+            images: [
+                '/static-images/frames/medium_1.jpg',
+                '/static-images/frames/medium_2.jpg',
+                '/static-images/frames/medium_3.jpg'
+            ],
+            size: t.hoopSize14,
+            price: formatPrice(prices.mediumFrame14)
+        },
+        {
+            title: t.largeFrame19,
+            images: [
+                '/static-images/frames/large_1.jpg',
+                '/static-images/frames/large_2.jpg',
+                '/static-images/frames/large_3.jpg'
+            ],
+            size: t.hoopSize19,
+            price: formatPrice(prices.largeFrame19)
+        }
     ];
 
     return (

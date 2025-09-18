@@ -67,7 +67,7 @@ const Contact = () => {
                     {/* Branding */}
                     <div className="flex flex-col items-center text-center">
                         <div className="relative w-24 h-24">
-                            <Image src="/images/header/main_logo.png"
+                            <Image src="/static-images/header/main_logo.png"
                                    alt="Dianych Logo"
                                    fill
                                    className="object-contain" />
