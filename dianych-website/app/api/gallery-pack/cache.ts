@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import sharp from 'sharp';
 
 export interface GalleryPackPayload {
@@ -12,7 +13,7 @@ export interface GalleryPackPayload {
 // In-memory cache: key -> { updatedAt, payload }
 export const memoryCache = new Map<string, { updatedAt: number; payload: GalleryPackPayload }>();
 
-export const CACHE_DIR = path.join(process.cwd(), 'public', 'images', '.cache', 'thumbnails');
+export const CACHE_DIR = path.join(os.tmpdir(), 'gallery-thumbnails');
 
 export function ensureDir(dir: string) {
   if (!fs.existsSync(dir)) {
