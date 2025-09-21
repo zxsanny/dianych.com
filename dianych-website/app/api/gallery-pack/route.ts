@@ -12,7 +12,16 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'galleryId is required' }, { status: 400 });
     }
 
-    const cacheKey = buildCacheKey(galleryId, 500, 1);
+    // Optional size parameter coming from GalleryCarousel
+    const sizeParam = url.searchParams.get('size');
+    let width = Number.parseInt(sizeParam || '');
+    if (!Number.isFinite(width)) width = 500;
+    // Clamp to reasonable bounds to prevent abuse
+    width = Math.max(64, Math.min(700, width));
+
+    const version = 1;
+
+    const cacheKey = buildCacheKey(galleryId, width, version);
 
     // 1) Memory cache
     const mem = memoryCache.get(cacheKey as string);
@@ -25,7 +34,7 @@ export async function GET(req: NextRequest) {
     }
 
     // 2) Disk cache
-    const diskPath = getDiskCachePath(galleryId);
+    const diskPath = getDiskCachePath(galleryId, width, version);
     if (fs.existsSync(diskPath)) {
       try {
         const file = fs.readFileSync(diskPath, 'utf-8');
@@ -43,7 +52,7 @@ export async function GET(req: NextRequest) {
     }
 
     // 3) Generate pack via shared generator
-    const payload = await regenerateGalleryPack(galleryId, 500, 1);
+    const payload = await regenerateGalleryPack(galleryId, width, version);
 
     return NextResponse.json(payload, {
       headers: {

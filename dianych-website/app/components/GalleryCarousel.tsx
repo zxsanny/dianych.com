@@ -7,6 +7,10 @@ import { useTranslation } from '@/lib/translations';
 import OrderButton from './OrderButton';
 import Modal from './Modal';
 
+// Define the thumbnail width used for gallery-pack images and storage key
+const GALLERY_PACK_THUMB_WIDTH = 400; // px
+const GALLERY_PACK_VERSION = 1;
+
 interface GalleryCarouselProps {
     images: string[];
     titleKey: string;
@@ -36,7 +40,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
         const galleryId = idx >= 0 && parts.length > idx + 1 ? parts[idx + 1] : '';
         if (!galleryId) return;
 
-        const storageKey = `gallery-pack-${galleryId}-w500-v1`;
+        const storageKey = `gallery-pack-${galleryId}-w${GALLERY_PACK_THUMB_WIDTH}-v${GALLERY_PACK_VERSION}`;
         const cached = typeof window !== 'undefined' ? window.localStorage.getItem(storageKey) : null;
 
         let shouldRefetch = false;
@@ -68,7 +72,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
             // Fetch pack from API (background refresh)
             (async () => {
                 try {
-                    const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&ts=${Date.now()}`,
+                    const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&size=${GALLERY_PACK_THUMB_WIDTH}&ts=${Date.now()}`,
                         { cache: 'no-store' }
                     );
                     if (!res.ok) {

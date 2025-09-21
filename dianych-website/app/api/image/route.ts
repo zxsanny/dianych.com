@@ -1,0 +1,104 @@
+import fs from 'fs';
+import path from 'path';
+import { NextRequest, NextResponse } from 'next/server';
+import sharp from 'sharp';
+
+// Simple in-memory cache for individual images
+// key: `${galleryId}|${name}|w${width}|v${version}`
+const imageMemoryCache = new Map<string, { updatedAt: number; payload: { galleryId: string; name: string; width: number; version: number; dataUrl: string } }>();
+
+const VERSION = 1;
+
+function clampWidth(w: number) {
+  // Reasonable modal size bounds
+  return Math.max(256, Math.min(2000, w));
+}
+
+function buildImageKey(galleryId: string, name: string, width: number, version: number) {
+  return `${galleryId}|${name}|w${width}|v${version}`;
+}
+
+function getDiskDir() {
+  // Use OS temp dir to persist between requests (similar approach as gallery-pack)
+  const os = require('os') as typeof import('os');
+  const dir = path.join(os.tmpdir(), 'gallery-single-images');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function sanitizeFileComponent(s: string) {
+  return s.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
+function getDiskPath(galleryId: string, name: string, width: number, version: number) {
+  const dir = getDiskDir();
+  const base = `${sanitizeFileComponent(galleryId)}__${sanitizeFileComponent(name)}__w${width}__v${version}.json`;
+  return path.join(dir, base);
+}
+
+async function generateImage(galleryId: string, name: string, width: number, version: number) {
+  const imagesDirectory = path.join(process.cwd(), 'public', 'images', galleryId);
+  const fullPath = path.join(imagesDirectory, name);
+  if (!fs.existsSync(fullPath)) {
+    throw new Error('Image not found');
+  }
+  const input = fs.readFileSync(fullPath);
+  const buf = await sharp(input).rotate().resize({ width }).webp({ quality: 82 }).toBuffer();
+  const dataUrl = `data:image/webp;base64,${buf.toString('base64')}`;
+  return { galleryId, name, width, version, dataUrl };
+}
+
+export const runtime = 'nodejs';
+
+export async function GET(req: NextRequest) {
+  try {
+    const url = new URL(req.url);
+    const galleryId = url.searchParams.get('galleryId');
+    const name = url.searchParams.get('name');
+    const widthParam = url.searchParams.get('width');
+
+    if (!galleryId || !name) {
+      return NextResponse.json({ error: 'galleryId and name are required' }, { status: 400 });
+    }
+
+    let width = Number.parseInt(widthParam || '', 10);
+    if (!Number.isFinite(width)) width = 1600;
+    width = clampWidth(width);
+
+    const cacheKey = buildImageKey(galleryId, name, width, VERSION);
+
+    // 1) Memory cache
+    const mem = imageMemoryCache.get(cacheKey);
+    if (mem) {
+      return NextResponse.json(mem.payload, { headers: { 'Cache-Control': 'public, max-age=300, s-maxage=300' } });
+    }
+
+    // 2) Disk cache
+    const diskPath = getDiskPath(galleryId, name, width, VERSION);
+    if (fs.existsSync(diskPath)) {
+      try {
+        const file = fs.readFileSync(diskPath, 'utf-8');
+        const payload = JSON.parse(file);
+        imageMemoryCache.set(cacheKey, { updatedAt: Date.now(), payload });
+        return NextResponse.json(payload, { headers: { 'Cache-Control': 'public, max-age=300, s-maxage=300' } });
+      } catch {
+        try { fs.unlinkSync(diskPath); } catch {}
+      }
+    }
+
+    // 3) Generate and cache
+    const payload = await generateImage(galleryId, name, width, VERSION);
+
+    try {
+      const json = JSON.stringify(payload);
+      fs.writeFileSync(diskPath, json);
+    } catch {}
+
+    imageMemoryCache.set(cacheKey, { updatedAt: Date.now(), payload });
+
+    return NextResponse.json(payload, { headers: { 'Cache-Control': 'public, max-age=300, s-maxage=300' } });
+  } catch (error) {
+    const message = (error instanceof Error && error.message) ? error.message : String(error);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
+}
