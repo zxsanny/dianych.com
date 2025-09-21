@@ -27,8 +27,8 @@ function parseGalleryInfo(src: string): { galleryId: string | null; name: string
 
 const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }: ModalProps) => {
     const [resized, setResized] = useState<(string | null)[]>([]);
-    const [loading, setLoading] = useState<boolean[]>([]);
-    const [errors, setErrors] = useState<(string | null)[]>([]);
+    const [, setLoading] = useState<boolean[]>([]);
+    const [, setErrors] = useState<(string | null)[]>([]);
     const initDone = useRef(false);
 
     // Keyboard handlers
@@ -83,7 +83,15 @@ const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }: ModalP
 
             try {
                 const res = await fetch(`/api/image?galleryId=${encodeURIComponent(galleryId)}&name=${encodeURIComponent(name)}&width=${MODAL_IMAGE_WIDTH}&ts=${Date.now()}`, { cache: 'no-store' });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) {
+                    const msg = `HTTP ${res.status}`;
+                    setErrors(prev => {
+                        const arr = prev.slice();
+                        arr[index] = msg;
+                        return arr;
+                    });
+                    return null;
+                }
                 const payload = await res.json() as { dataUrl: string };
                 try {
                     window.localStorage.setItem(storageKey, JSON.stringify(payload));

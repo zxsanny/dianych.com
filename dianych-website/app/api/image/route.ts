@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 
@@ -20,7 +21,6 @@ function buildImageKey(galleryId: string, name: string, width: number, version: 
 
 function getDiskDir() {
   // Use OS temp dir to persist between requests (similar approach as gallery-pack)
-  const os = require('os') as typeof import('os');
   const dir = path.join(os.tmpdir(), 'gallery-single-images');
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   return dir;
