@@ -3,6 +3,7 @@ import path from 'path';
 import os from 'os';
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
+import { enforceCacheLimit } from '@/lib/diskCache';
 
 // Simple in-memory cache for individual images
 // key: `${galleryId}|${name}|w${width}|v${version}`
@@ -10,9 +11,10 @@ const imageMemoryCache = new Map<string, { updatedAt: number; payload: { gallery
 
 const VERSION = 1;
 
+const WIDTH_BREAKPOINTS = [256, 384, 512, 640, 828, 1080, 1200, 1600, 2000];
+
 function clampWidth(w: number) {
-  // Reasonable modal size bounds
-  return Math.max(256, Math.min(2000, w));
+  return WIDTH_BREAKPOINTS.find(bp => bp >= w) ?? WIDTH_BREAKPOINTS[WIDTH_BREAKPOINTS.length - 1];
 }
 
 function buildImageKey(galleryId: string, name: string, width: number, version: number) {
@@ -50,6 +52,9 @@ async function generateImage(galleryId: string, name: string, width: number, ver
 
 export const runtime = 'nodejs';
 
+const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
+const SAFE_FILENAME = /^[a-zA-Z0-9._-]+$/;
+
 export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
@@ -59,6 +64,10 @@ export async function GET(req: NextRequest) {
 
     if (!galleryId || !name) {
       return NextResponse.json({ error: 'galleryId and name are required' }, { status: 400 });
+    }
+
+    if (!ALLOWED_GALLERIES.includes(galleryId) || !SAFE_FILENAME.test(name)) {
+      return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 });
     }
 
     let width = Number.parseInt(widthParam || '', 10);
@@ -92,6 +101,7 @@ export async function GET(req: NextRequest) {
     try {
       const json = JSON.stringify(payload);
       fs.writeFileSync(diskPath, json);
+      enforceCacheLimit(getDiskDir());
     } catch {}
 
     imageMemoryCache.set(cacheKey, { updatedAt: Date.now(), payload });

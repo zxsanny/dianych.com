@@ -5,6 +5,7 @@ import { join, resolve } from 'path';
 import { revalidatePath } from 'next/cache';
 import { getImagePaths } from '@/lib/galleryUtils';
 import { invalidateCache } from '@/app/api/gallery-pack/cache';
+import { getSession } from '@/lib/session';
 
 export interface FormState {
     message: string;
@@ -13,7 +14,36 @@ export interface FormState {
 
 const allowedFolders = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
 
+const ALLOWED_EXTENSIONS = /\.(jpe?g|png|webp|gif|bmp|tiff?|svg)$/i;
+
+const IMAGE_MAGIC: [number[], string][] = [
+    [[0xFF, 0xD8, 0xFF], 'JPEG'],
+    [[0x89, 0x50, 0x4E, 0x47], 'PNG'],
+    [[0x47, 0x49, 0x46, 0x38], 'GIF'],
+    [[0x52, 0x49, 0x46, 0x46], 'WEBP'],
+    [[0x49, 0x49, 0x2A, 0x00], 'TIFF'],
+    [[0x4D, 0x4D, 0x00, 0x2A], 'TIFF'],
+    [[0x42, 0x4D], 'BMP'],
+];
+
+function isImageBuffer(buf: Buffer, filename: string): boolean {
+    if (/\.svg$/i.test(filename)) {
+        const head = buf.subarray(0, 256).toString('utf-8');
+        return head.includes('<svg') || head.includes('<?xml');
+    }
+    return IMAGE_MAGIC.some(([magic]) => magic.every((b, i) => buf[i] === b));
+}
+
+async function requireAuth(): Promise<FormState | null> {
+    const session = await getSession();
+    if (!session.isLoggedIn) return { message: 'Unauthorized.', status: 'error' };
+    return null;
+}
+
 export async function uploadImages(prevState: FormState, formData: FormData): Promise<FormState> {
+    const authErr = await requireAuth();
+    if (authErr) return authErr;
+
     const folder = formData.get('folder') as string;
     const files = formData.getAll('files') as File[];
 
@@ -24,17 +54,29 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
         return { message: 'Please select at least one file to upload.', status: 'error' };
     }
 
-    const uploadPath = join(process.cwd(), 'public', 'images', folder);
+    const basePath = resolve(process.cwd(), 'public', 'images', folder);
     let uploadedFileCount = 0;
-
 
     for (const file of files) {
         try {
+            const sanitizedFilename = file.name.replace(/[^a-zA-Z0-9._-]/g, '');
+            if (!ALLOWED_EXTENSIONS.test(sanitizedFilename)) {
+                return { message: `Rejected '${file.name}': not an allowed image type.`, status: 'error' };
+            }
+
             const bytes = await file.arrayBuffer();
             const buffer = Buffer.from(bytes);
-            const sanitizedFilename = file.name.replace(/[^a-zA-Z0-9._-]/g, '');
-            const path = join(uploadPath, sanitizedFilename);
-            await writeFile(path, buffer);
+
+            if (!isImageBuffer(buffer, sanitizedFilename)) {
+                return { message: `Rejected '${file.name}': file content is not a valid image.`, status: 'error' };
+            }
+
+            const fullPath = resolve(basePath, sanitizedFilename);
+            if (!fullPath.startsWith(basePath)) {
+                return { message: 'Unauthorized file path.', status: 'error' };
+            }
+
+            await writeFile(fullPath, buffer);
             uploadedFileCount++;
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -43,9 +85,8 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
     }
 
     revalidatePath('/');
-    revalidatePath('/manage'); // Revalidate the manage page
+    revalidatePath('/manage');
 
-    // Invalidate gallery-pack caches (memory + disk)
     try { invalidateCache(folder, 500, 1); } catch {}
 
     return { message: `Successfully uploaded ${uploadedFileCount} image(s) to the '${folder}' gallery.`, status: 'success' };
@@ -59,16 +100,24 @@ export async function getGalleryImages(folder: string): Promise<string[]> {
 }
 
 export async function deleteImage(prevState: FormState, formData: FormData): Promise<FormState> {
+    const authErr = await requireAuth();
+    if (authErr) return authErr;
+
     const imagePath = formData.get('imagePath') as string;
     if (!imagePath) {
         return { message: 'Invalid image path.', status: 'error' };
     }
 
-    const basePath = resolve(process.cwd(), 'public');
-    const fullPath = resolve(basePath, imagePath.substring(1));
+    const imagesBase = resolve(process.cwd(), 'public', 'images');
+    const fullPath = resolve(imagesBase, imagePath.replace(/^\/images\//, ''));
 
-    if (!fullPath.startsWith(basePath)) {
+    if (!fullPath.startsWith(imagesBase)) {
         return { message: 'Unauthorized file path.', status: 'error' };
+    }
+
+    const relParts = fullPath.substring(imagesBase.length + 1).split('/');
+    if (relParts.length !== 2 || !allowedFolders.includes(relParts[0])) {
+        return { message: 'Can only delete images from gallery folders.', status: 'error' };
     }
 
     try {

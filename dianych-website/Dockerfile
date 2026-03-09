@@ -29,18 +29,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Copy built application and required assets
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=builder --chown=node:node /app/node_modules/sharp ./node_modules/sharp
+COPY --from=builder --chown=node:node /app/node_modules/@img ./node_modules/@img
 
-# Re-install only production dependencies, including sharp, to ensure correct binaries.
-# This prevents potential mismatches if built on a different architecture.
-COPY package.json package-lock.json ./
-RUN npm ci --production
-
-
-# Create and switch to a non-root user
 RUN chown -R node:node /app/public/images
 USER node
 

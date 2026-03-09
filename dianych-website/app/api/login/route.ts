@@ -17,7 +17,26 @@ function buildAbsoluteUrl(request: NextRequest, pathname: string): string {
     return `${proto}://${host}${pathname}`;
 }
 
+const loginAttempts = new Map<string, { count: number; resetAt: number }>();
+const MAX_ATTEMPTS = 5;
+const WINDOW_MS = 15 * 60 * 1000;
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now();
+    const entry = loginAttempts.get(ip);
+    if (!entry || now > entry.resetAt) {
+        loginAttempts.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+        return false;
+    }
+    entry.count++;
+    return entry.count > MAX_ATTEMPTS;
+}
+
 export async function POST(request: NextRequest) {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
+    if (isRateLimited(ip)) {
+        return NextResponse.json({ message: 'Too many login attempts. Try again later.' }, { status: 429 });
+    }
     // Use the mutable cookies() store so iron-session can set Set-Cookie headers
     const cookieStore = await cookies();
     const session = await getIronSession<SessionData>(cookieStore, sessionOptions);

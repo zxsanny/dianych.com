@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import sharp from 'sharp';
+import { enforceCacheLimit } from '@/lib/diskCache';
 
 export interface GalleryPackPayload {
   galleryId: string;
@@ -25,9 +26,13 @@ export function buildCacheKey(galleryId: string, width = 500, version = 1) {
   return `${galleryId}|w${width}|v${version}`;
 }
 
+function sanitize(s: string) {
+  return s.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
 export function getDiskCachePath(galleryId: string, width = 500, version = 1) {
   ensureDir(CACHE_DIR);
-  return path.join(CACHE_DIR, `${galleryId}_w${width}_v${version}.json`);
+  return path.join(CACHE_DIR, `${sanitize(galleryId)}_w${width}_v${version}.json`);
 }
 
 export async function regenerateGalleryPack(galleryId: string, width = 500, version = 1): Promise<GalleryPackPayload> {
@@ -119,10 +124,10 @@ export async function regenerateGalleryPack(galleryId: string, width = 500, vers
 
   const payload: GalleryPackPayload = { galleryId, width, version, images: entries };
 
-  // Save to disk cache (best-effort)
   try {
     const diskPath = getDiskCachePath(galleryId, width, version);
     fs.writeFileSync(diskPath, JSON.stringify(payload));
+    enforceCacheLimit(CACHE_DIR);
   } catch {}
 
   // Save to memory cache

@@ -7,17 +7,18 @@ export const runtime = 'nodejs';
 export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
+    const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
     const galleryId = url.searchParams.get('galleryId');
-    if (!galleryId) {
-      return NextResponse.json({ error: 'galleryId is required' }, { status: 400 });
+    if (!galleryId || !ALLOWED_GALLERIES.includes(galleryId)) {
+      return NextResponse.json({ error: 'Invalid galleryId' }, { status: 400 });
     }
 
     // Optional size parameter coming from GalleryCarousel
     const sizeParam = url.searchParams.get('size');
+    const PACK_BREAKPOINTS = [128, 256, 384, 500, 640, 700];
     let width = Number.parseInt(sizeParam || '');
     if (!Number.isFinite(width)) width = 500;
-    // Clamp to reasonable bounds to prevent abuse
-    width = Math.max(64, Math.min(700, width));
+    width = PACK_BREAKPOINTS.find(bp => bp >= width) ?? PACK_BREAKPOINTS[PACK_BREAKPOINTS.length - 1];
 
     const version = 1;
 

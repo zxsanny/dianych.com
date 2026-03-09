@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { invalidateCache } from '../cache';
+import { getSessionFromRequest } from '@/lib/session';
 
 export const runtime = 'nodejs';
 
+const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
+
 export async function POST(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req);
+    if (!session.isLoggedIn) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const contentType = req.headers.get('content-type') || '';
     let galleryId = '';
 
@@ -18,8 +26,8 @@ export async function POST(req: NextRequest) {
       galleryId = url.searchParams.get('galleryId') || '';
     }
 
-    if (!galleryId) {
-      return NextResponse.json({ error: 'galleryId is required' }, { status: 400 });
+    if (!galleryId || !ALLOWED_GALLERIES.includes(galleryId)) {
+      return NextResponse.json({ error: 'Invalid galleryId' }, { status: 400 });
     }
 
     await invalidateCache(galleryId, 500, 1);
