@@ -42,3 +42,6 @@ next-env.d.ts
 
 .idea/
 pw.txt
+
+# autodev per-worktree runtime
+_docs/_autodev_state.md
