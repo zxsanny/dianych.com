@@ -485,6 +485,15 @@ nft_res_02() {
   ft_p_04
 }
 
+nft_sec_06() {
+  local code
+  code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/")"
+  [[ "$code" == "200" ]] || return 1
+  code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/login")"
+  [[ "$code" == "200" ]] || return 1
+  ft_n_04
+}
+
 nft_res_04() {
   local code loc
   rm -f "$WORK_DIR/old-cookies.txt"
@@ -562,7 +571,8 @@ skip_case "NFT-RES-LIM-02" "20MB upload body" "manage form / Next server action"
 skip_case "NFT-RES-LIM-03" "500MB thumb cache" "duration soak; run manually"
 skip_case "NFT-RES-LIM-01" "Login window" "same run as FT-N-03"
 skip_case "NFT-SEC-03" "Rate limit (alias)" "covered by FT-N-03"
-skip_case "NFT-SEC-06" "Public pages no session" "covered by FT-N-04 after public GET"
+
+run_case "NFT-SEC-06" "Public pages no session" nft_sec_06
 
 log "Passed=$PASS Failed=$FAIL Skipped=$SKIP"
 log "Report: $REPORT"
