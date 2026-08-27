@@ -603,6 +603,25 @@ raise SystemExit(0 if o.get("message") == "Invalid password" else 1)
 PY
 }
 
+nft_res_lim_03() {
+  local end code w s
+  end=$(( $(now_ms) + 300000 ))
+  while [[ $(now_ms) -lt $end ]]; do
+    for w in 256 384 512 640 828 1080 1200 1600 2000; do
+      code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/image?galleryId=brooches&name=seed.jpg&width=$w")"
+      [[ "$code" == "200" ]] || return 1
+    done
+    for s in 128 256 384 500 640 700; do
+      code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/gallery-pack?galleryId=brooches&size=$s")"
+      [[ "$code" == "200" ]] || return 1
+    done
+  done
+  code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/")"
+  [[ "$code" == "200" ]] || return 1
+  code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/api/gallery-pack?galleryId=brooches")"
+  [[ "$code" == "200" ]]
+}
+
 run_case "FT-P-01" "Five gallery ids" ft_p_01
 run_case "FT-P-02" "Empty gallery no 500" ft_p_02
 run_case "FT-P-03" "Default UA copy slots" ft_p_03
@@ -639,6 +658,7 @@ run_case "NFT-RES-02" "Missing prices defaults" nft_res_02
 run_case "NFT-RES-03" "Missing pw.txt" nft_res_03
 run_case "NFT-RES-04" "Session after recreate" nft_res_04
 run_case "NFT-RES-05" "Rate-limit map reset" nft_res_05
+run_case "NFT-RES-LIM-03" "Thumb cache soak" nft_res_lim_03
 
 skip_case "FT-P-11" "Upload visible to new visitor" "manage form / Next server action not HTTP-scriptable"
 skip_case "FT-N-08" "Bad folder upload" "manage form / Next server action"
@@ -647,7 +667,6 @@ skip_case "FT-N-10" "Non-image upload" "manage form / Next server action"
 skip_case "FT-N-11" "Bad magic bytes" "manage form / Next server action"
 skip_case "FT-N-12" "Traversal upload/delete" "manage form / Next server action"
 skip_case "NFT-RES-LIM-02" "20MB upload body" "manage form / Next server action"
-skip_case "NFT-RES-LIM-03" "500MB thumb cache" "duration soak; run manually"
 skip_case "NFT-RES-LIM-01" "Login window" "same run as FT-N-03"
 skip_case "NFT-SEC-03" "Rate limit (alias)" "covered by FT-N-03"
 
