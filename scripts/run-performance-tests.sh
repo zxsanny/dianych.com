@@ -6,7 +6,7 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 RESULTS_DIR="$PROJECT_ROOT/test-results"
 COMPOSE_PROJECT="dianych-bbtest"
 COMPOSE_FILE="$PROJECT_ROOT/docker-compose.test.yml"
-BASE_URL="${BASE_URL:-http://127.0.0.1:3001}"
+BASE_URL="${BASE_URL:-http://127.0.0.1:13001}"
 APP_DIR="$PROJECT_ROOT/dianych-website"
 WORK_DIR=""
 PASS=0
@@ -46,18 +46,15 @@ if [[ "$code" == "200" ]]; then
 fi
 
 if ! $already_up; then
-  WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/dianych-perf.XXXXXX")"
+  mkdir -p "$PROJECT_ROOT/test-results/work"
+  WORK_DIR="$(mktemp -d "$PROJECT_ROOT/test-results/work/perf.XXXXXX")"
   IMAGES_DIR="$WORK_DIR/images"
   PW_FILE="$WORK_DIR/pw.txt"
   PRICES_DIR="$WORK_DIR/prices"
   mkdir -p "$PRICES_DIR" "$IMAGES_DIR/brooches" "$IMAGES_DIR/clothes" "$IMAGES_DIR/panel" "$IMAGES_DIR/felting" "$IMAGES_DIR/kits"
-  python3 - "$IMAGES_DIR/brooches/seed.jpg" <<'PY'
-import sys, base64, pathlib
-b = base64.b64decode(
-    "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wAALCAABAAEBAREA/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AfwD/2Q=="
-)
-pathlib.Path(sys.argv[1]).write_bytes(b)
-PY
+  SEED_SRC="$PROJECT_ROOT/e2e/fixtures/seed.jpg"
+  [[ -f "$SEED_SRC" ]] || fail "missing $SEED_SRC"
+  cp "$SEED_SRC" "$IMAGES_DIR/brooches/seed.jpg"
   export SECRET_COOKIE_PASSWORD="e2e-cookie-secret-32chars-minimum!!"
   export TEST_PW_FILE="$PW_FILE"
   export TEST_IMAGES_DIR="$IMAGES_DIR"

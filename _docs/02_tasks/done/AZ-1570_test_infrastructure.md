@@ -15,7 +15,7 @@ The shop has no test runner or CI. Specs in `_docs/02_document/tests/` need a se
 
 ## Outcome
 
-- `docker compose -f docker-compose.test.yml up` starts an isolated SUT on host port 3001
+- `docker compose -f docker-compose.test.yml up` starts an isolated SUT on host port 13001
 - `scripts/run-tests.sh` installs app deps if needed, waits for `GET /` 200, writes `test-results/report.csv`
 - Fixture galleries + isolated `pw.txt` + writable prices dir are created per run and removed on exit
 - No Instagram/social mocks (outbound links only; consumer does not follow them)
@@ -69,7 +69,7 @@ No `POST /mock/config` services.
 | Service | Image / Build | Purpose | Depends On |
 |---------|--------------|---------|------------|
 | system-under-test | `dianych-website/Dockerfile` | Production-like Next standalone | — |
-| e2e-consumer | host `scripts/run-tests.sh` | Black-box HTTP | SUT on `:3001` |
+| e2e-consumer | host `scripts/run-tests.sh` | Black-box HTTP | SUT on `:13001` |
 
 ### Networks and Volumes
 
@@ -124,7 +124,7 @@ Fresh Compose project `dianych-bbtest` per run; `trap` downs compose and deletes
 **AC-1: Test environment starts**
 Given `docker-compose.test.yml` and generated fixtures
 When `scripts/run-tests.sh` starts the stack
-Then `GET http://127.0.0.1:3001/` returns 200 within 180s after build
+Then `GET http://127.0.0.1:13001/` returns 200 within 180s after build
 
 **AC-2: Mock services respond**
 Given no vendor mocks are defined

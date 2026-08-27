@@ -7,7 +7,7 @@ RESULTS_DIR="$PROJECT_ROOT/test-results"
 UNIT_ONLY=false
 COMPOSE_PROJECT="dianych-bbtest"
 COMPOSE_FILE="$PROJECT_ROOT/docker-compose.test.yml"
-BASE_URL="${BASE_URL:-http://127.0.0.1:3001}"
+BASE_URL="${BASE_URL:-http://127.0.0.1:13001}"
 APP_DIR="$PROJECT_ROOT/dianych-website"
 WORK_DIR=""
 PASS=0
@@ -111,7 +111,8 @@ fi
 command -v docker >/dev/null || fail "docker is required"
 docker compose version >/dev/null || fail "docker compose v2 is required"
 
-WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/dianych-bbtest.XXXXXX")"
+mkdir -p "$PROJECT_ROOT/test-results/work"
+WORK_DIR="$(mktemp -d "$PROJECT_ROOT/test-results/work/run.XXXXXX")"
 IMAGES_DIR="$WORK_DIR/images"
 PW_FILE="$WORK_DIR/pw.txt"
 PRICES_DIR="$WORK_DIR/prices"
@@ -119,14 +120,12 @@ COOKIE_JAR="$WORK_DIR/cookies.txt"
 mkdir -p "$PRICES_DIR" "$IMAGES_DIR/brooches" "$IMAGES_DIR/clothes" "$IMAGES_DIR/panel" "$IMAGES_DIR/felting" "$IMAGES_DIR/kits"
 
 SEED_JPEG="$IMAGES_DIR/brooches/seed.jpg"
-python3 - "$SEED_JPEG" <<'PY'
-import sys, base64, pathlib
-# 1x1 JPEG
-b = base64.b64decode(
-    "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wAALCAABAAEBAREA/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AfwD/2Q=="
-)
-pathlib.Path(sys.argv[1]).write_bytes(b)
-PY
+SEED_SRC="$PROJECT_ROOT/e2e/fixtures/seed.jpg"
+if [[ ! -f "$SEED_SRC" ]]; then
+  fail "missing $SEED_SRC"
+fi
+cp "$SEED_SRC" "$SEED_JPEG"
+chmod -R a+rX "$IMAGES_DIR" "$PRICES_DIR"
 
 TEST_PASSWORD="e2e-isolated-password"
 export SECRET_COOKIE_PASSWORD="e2e-cookie-secret-32chars-minimum!!"
@@ -141,6 +140,7 @@ const p = process.env.PASSWORD;
 const expanded = p.length >= 32 ? p : `${p}.${p}.${p}`;
 bcrypt.hash(expanded, 10).then((h) => { fs.writeFileSync(process.env.OUT, h + "\n"); });
 ')
+chmod a+r "$PW_FILE"
 
 log "Starting SUT via docker compose"
 docker compose -f "$COMPOSE_FILE" -p "$COMPOSE_PROJECT" up -d --build
@@ -477,8 +477,12 @@ sm_05() {
   [[ "$code" == "200" ]] || return 1
   code="$(curl_save GET "$BASE_URL/api/image?galleryId=brooches&name=seed.jpg&width=256" "$TMP/sm05b")"
   [[ "$code" == "200" ]] || return 1
-  # Static /images/ is the original; /api/image is resized WebP JSON — compare only that static exists.
   [[ -s "$TMP/sm05a.bin" ]]
+}
+
+nft_res_02() {
+  rm -f "$PRICES_DIR/framePrices.json"
+  ft_p_04
 }
 
 nft_res_04() {
@@ -543,7 +547,7 @@ run_case "NFT-SEC-02" "Image traversal" ft_n_15
 run_case "SM-05" "Static /images/ readable" sm_05
 run_case "FT-P-12" "Logout" ft_p_12
 run_case "NFT-RES-01" "Empty gallery resilience" ft_p_02
-run_case "NFT-RES-02" "Missing prices defaults" ft_p_04
+run_case "NFT-RES-02" "Missing prices defaults" nft_res_02
 run_case "NFT-RES-04" "Session after recreate" nft_res_04
 
 skip_case "FT-P-11" "Upload visible to new visitor" "manage form / Next server action not HTTP-scriptable"

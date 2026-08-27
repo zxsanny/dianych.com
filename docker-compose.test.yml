@@ -4,7 +4,7 @@ services:
       context: ./dianych-website
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "13001:3000"
     environment:
       NODE_ENV: production
       SECRET_COOKIE_PASSWORD: ${SECRET_COOKIE_PASSWORD}

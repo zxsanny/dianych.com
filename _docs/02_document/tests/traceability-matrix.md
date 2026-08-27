@@ -54,7 +54,7 @@ IDs assigned here (restrictions.md has no IDs).
 | RESTRICT-SW-05 | No database / ORM | FT-P-04, FT-P-01, environment.md (no test-db) | Covered |
 | RESTRICT-SW-06 | No test runner in app package | — | NOT COVERED — repo fact; this spec is the runner |
 | RESTRICT-SW-07 | `jimp` listed but unused | — | NOT COVERED — source inventory, not black-box |
-| RESTRICT-ENV-01 | Local `next dev` port 3000 | SM-01 (default `BASE_URL`); Docker suite uses published `3001` | Covered |
+| RESTRICT-ENV-01 | Local `next dev` port 3000 | SM-01 (default `BASE_URL`); Docker suite uses published `13001` | Covered |
 | RESTRICT-ENV-02 | Production hostname `dianych.com` | SM-01 (when BASE_URL is prod) | Covered for smoke target only |
 | RESTRICT-ENV-03 | Registry `docker.azaion.com/dianych` | — | NOT COVERED — publish path |
 | RESTRICT-ENV-04 | `SECRET_COOKIE_PASSWORD` required | — | NOT COVERED — startup config; environment.md precondition |

@@ -16,7 +16,7 @@ No suite compose exists in the repo (restriction: no CI, no staging). Tests run 
 | Service | Image / Build | Purpose | Ports |
 |---------|--------------|---------|-------|
 | system-under-test (local) | `dianych-website` via `npm run dev` | Fast functional suite | host `3000` |
-| system-under-test (container) | `dianych-website/Dockerfile` (Node 20 standalone) | Session-secret / volume / read-only tests | host `3001` → container `3000` |
+| system-under-test (container) | `dianych-website/Dockerfile` (Node 20 standalone) | Session-secret / volume / read-only tests | host `13001` → container `3000` |
 | e2e-consumer | host process (`scripts/run-tests.sh`) | Black-box HTTP + browser form posts | — |
 
 No database, queue, or vendor mock services. Instagram/social links are outbound `<a href>` only and are not called.
@@ -42,7 +42,7 @@ No database, queue, or vendor mock services. Instagram/social links are outbound
 services:
   system-under-test:
     # local: next dev on :3000
-    # container: Dockerfile, publish 3001:3000, SECRET_COOKIE_PASSWORD ≥32 chars,
+    # container: Dockerfile, publish 13001:3000, SECRET_COOKIE_PASSWORD ≥32 chars,
     #            mount fixture-images → /app/public/images,
     #            mount prices dir → /app/dianych-website/data, tmpfs /tmp 512m
   e2e-consumer:
@@ -117,7 +117,7 @@ SUT process still needs `SECRET_COOKIE_PASSWORD` (≥ 32 characters) and a `pw.t
 ### Docker mode (canonical)
 
 1. Prerequisites: Docker Engine, Compose v2, Node 20 (to `npm ci` in `dianych-website` for bcrypt hash generation).
-2. Command: `scripts/run-tests.sh` from the repo root. The script creates an isolated `pw.txt` + fixture galleries, builds `docker-compose.test.yml`, waits for `GET /` 200 on host port `3001`, runs HTTP blackbox cases, writes `test-results/report.csv`, then `compose down`.
+2. Command: `scripts/run-tests.sh` from the repo root. The script creates an isolated `pw.txt` + fixture galleries, builds `docker-compose.test.yml`, waits for `GET /` 200 on host port `13001`, runs HTTP blackbox cases, writes `test-results/report.csv`, then `compose down`.
 3. Environment the script sets (not committed): `SECRET_COOKIE_PASSWORD` (≥ 32 chars), isolated admin password for that run, `TEST_PW_FILE`, `TEST_IMAGES_DIR`.
 4. Optional: `TEST_ADMIN_PASSWORD` is unused when the isolated SUT is used. Do not point this suite at production.
 5. `--unit-only`: no app unit runner exists; the script records unit as SKIP and exits 0 for that section.
