@@ -25,6 +25,7 @@ warn() { printf 'WARN: %s\n' "$*" >&2; }
 fail() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
 cleanup() {
+  docker rm -f dianych-bbtest-nopw >/dev/null 2>&1 || true
   if [[ -n "${WORK_DIR:-}" && -d "${WORK_DIR:-}" ]]; then
     docker compose -f "$COMPOSE_FILE" -p "$COMPOSE_PROJECT" down --remove-orphans >/dev/null 2>&1 || true
     rm -rf "$WORK_DIR"
@@ -142,22 +143,32 @@ bcrypt.hash(expanded, 10).then((h) => { fs.writeFileSync(process.env.OUT, h + "\
 ')
 chmod a+r "$PW_FILE"
 
+wait_ready() {
+  local url="${1:-$BASE_URL}"
+  local budget="${2:-180000}"
+  local start_wait code
+  start_wait="$(now_ms)"
+  while [[ $(( $(now_ms) - start_wait )) -lt "$budget" ]]; do
+    code="$(curl -sS -o /dev/null -w '%{http_code}' "$url/" || true)"
+    if [[ "$code" == "200" ]]; then
+      return 0
+    fi
+    sleep 2
+  done
+  return 1
+}
+
+pack_names() {
+  python3 - "$1" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+print("\n".join(sorted(str(x.get("name", "")) for x in o.get("images", []))))
+PY
+}
+
 log "Starting SUT via docker compose"
 docker compose -f "$COMPOSE_FILE" -p "$COMPOSE_PROJECT" up -d --build
-
-ready=false
-start_wait="$(now_ms)"
-while [[ $(( $(now_ms) - start_wait )) -lt 180000 ]]; do
-  code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/" || true)"
-  if [[ "$code" == "200" ]]; then
-    ready=true
-    break
-  fi
-  sleep 2
-done
-if ! $ready; then
-  fail "SUT did not become ready at $BASE_URL"
-fi
+wait_ready "$BASE_URL" 180000 || fail "SUT did not become ready at $BASE_URL"
 
 TMP="$WORK_DIR/http"
 
@@ -361,6 +372,31 @@ raise SystemExit(0 if o.get("error") == "Unauthorized" else 1)
 PY
 }
 
+ft_n_07() {
+  local code names1 names2
+  code="$(curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/n07p1")"
+  [[ "$code" == "200" ]] || return 1
+  names1="$(pack_names "$TMP/n07p1.body")"
+  ft_n_05 || return 1
+  ft_n_07_inv || return 1
+  code="$(curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/n07p2")"
+  [[ "$code" == "200" ]] || return 1
+  names2="$(pack_names "$TMP/n07p2.body")"
+  [[ "$names1" == "$names2" ]]
+}
+
+nft_sec_01() {
+  local code before after
+  code="$(curl_save GET "$BASE_URL/api/prices" "$TMP/sec01a")"
+  [[ "$code" == "200" ]] || return 1
+  before="$(cat "$TMP/sec01a.body")"
+  ft_n_07 || return 1
+  code="$(curl_save GET "$BASE_URL/api/prices" "$TMP/sec01b")"
+  [[ "$code" == "200" ]] || return 1
+  after="$(cat "$TMP/sec01b.body")"
+  [[ "$before" == "$after" ]]
+}
+
 ft_p_08() {
   local code
   code="$(curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/p08")"
@@ -494,6 +530,34 @@ nft_sec_06() {
   ft_n_04
 }
 
+nft_res_03() {
+  local image code nopw="http://127.0.0.1:13002"
+  image="$(docker inspect -f '{{.Image}}' "${COMPOSE_PROJECT}-system-under-test-1")"
+  [[ -n "$image" ]] || return 1
+  docker rm -f dianych-bbtest-nopw >/dev/null 2>&1 || true
+  docker run -d --name dianych-bbtest-nopw \
+    -p 13002:3000 \
+    -e NODE_ENV=production \
+    -e SECRET_COOKIE_PASSWORD="$SECRET_COOKIE_PASSWORD" \
+    --tmpfs /tmp:size=512m \
+    --read-only \
+    -u 1000:1000 \
+    -v "$IMAGES_DIR:/app/public/images:ro" \
+    "$image"
+  wait_ready "$nopw" 120000 || return 1
+  code="$(curl -sS -D "$TMP/r03.hdr" -o "$TMP/r03.body" -w '%{http_code}' \
+    -X POST "$nopw/api/login" -F 'password=any-non-empty')"
+  [[ "$code" == "500" ]] || return 1
+  python3 - "$TMP/r03.body" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if o.get("message") == "An internal server error occurred." else 1)
+PY
+  code="$(curl -sS -o /dev/null -w '%{http_code}' "$nopw/")"
+  [[ "$code" == "200" ]] || return 1
+  docker rm -f dianych-bbtest-nopw >/dev/null 2>&1 || true
+}
+
 nft_res_04() {
   local code loc
   rm -f "$WORK_DIR/old-cookies.txt"
@@ -502,17 +566,7 @@ nft_res_04() {
   [[ "$code" == "307" || "$code" == "302" ]] || return 1
   export SECRET_COOKIE_PASSWORD="e2e-cookie-secret-rotated-32chars!!"
   docker compose -f "$COMPOSE_FILE" -p "$COMPOSE_PROJECT" up -d --force-recreate
-  ready=false
-  start_wait="$(now_ms)"
-  while [[ $(( $(now_ms) - start_wait )) -lt 120000 ]]; do
-    code="$(curl -sS -o /dev/null -w '%{http_code}' "$BASE_URL/" || true)"
-    if [[ "$code" == "200" ]]; then
-      ready=true
-      break
-    fi
-    sleep 2
-  done
-  $ready || return 1
+  wait_ready "$BASE_URL" 120000 || return 1
   code="$(curl -sS -b "$WORK_DIR/old-cookies.txt" -D "$TMP/r04b.hdr" -o "$TMP/r04b.body" -w '%{http_code}' --max-redirs 0 "$BASE_URL/manage" || true)"
   [[ "$code" == "307" || "$code" == "302" || "$code" == "308" ]] || return 1
   loc="$(header_val "$TMP/r04b.hdr" Location)"
@@ -521,6 +575,31 @@ import sys
 from urllib.parse import urlparse
 p = urlparse(sys.argv[1])
 raise SystemExit(0 if p.path.rstrip("/") == "/login" else 1)
+PY
+  rm -f "$COOKIE_JAR"
+  code="$(curl -sS -c "$COOKIE_JAR" -D "$TMP/r04c.hdr" -o "$TMP/r04c.body" -w '%{http_code}' --max-redirs 0 \
+    -X POST "$BASE_URL/api/login" -F "password=$TEST_PASSWORD" || true)"
+  [[ "$code" == "307" || "$code" == "302" ]] || return 1
+  loc="$(header_val "$TMP/r04c.hdr" Location)"
+  python3 - "$loc" <<'PY'
+import sys
+from urllib.parse import urlparse
+p = urlparse(sys.argv[1])
+raise SystemExit(0 if p.path.rstrip("/") == "/manage" else 1)
+PY
+  code="$(curl -sS -b "$COOKIE_JAR" -D "$TMP/r04d.hdr" -o "$TMP/r04d.body" -w '%{http_code}' --max-redirs 0 "$BASE_URL/manage" || true)"
+  [[ "$code" == "200" ]]
+}
+
+nft_res_05() {
+  local code
+  code="$(curl -sS -o "$TMP/r05.body" -w '%{http_code}' -X POST "$BASE_URL/api/login" \
+    -H 'X-Forwarded-For: 203.0.113.10' -F 'password=not-the-password')"
+  [[ "$code" == "401" ]] || return 1
+  python3 - "$TMP/r05.body" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if o.get("message") == "Invalid password" else 1)
 PY
 }
 
@@ -541,8 +620,8 @@ run_case "FT-P-05" "POST prices echo" ft_p_05
 run_case "FT-P-06" "GET prices after POST" ft_p_06
 run_case "FT-N-05" "Unauth POST prices" ft_n_05
 run_case "FT-N-06" "Negative price" ft_n_06
-run_case "FT-N-07" "Unauth invalidate" ft_n_07_inv
-run_case "NFT-SEC-01" "Mutations require session" ft_n_05
+run_case "FT-N-07" "Unauth mutations" ft_n_07
+run_case "NFT-SEC-01" "Mutations require session" nft_sec_01
 run_case "NFT-SEC-04" "Manage gated" ft_n_04
 run_case "NFT-SEC-05" "Invalidate 401" ft_n_07_inv
 run_case "FT-P-08" "Pack default width" ft_p_08
@@ -557,7 +636,9 @@ run_case "SM-05" "Static /images/ readable" sm_05
 run_case "FT-P-12" "Logout" ft_p_12
 run_case "NFT-RES-01" "Empty gallery resilience" ft_p_02
 run_case "NFT-RES-02" "Missing prices defaults" nft_res_02
+run_case "NFT-RES-03" "Missing pw.txt" nft_res_03
 run_case "NFT-RES-04" "Session after recreate" nft_res_04
+run_case "NFT-RES-05" "Rate-limit map reset" nft_res_05
 
 skip_case "FT-P-11" "Upload visible to new visitor" "manage form / Next server action not HTTP-scriptable"
 skip_case "FT-N-08" "Bad folder upload" "manage form / Next server action"
@@ -565,8 +646,6 @@ skip_case "FT-N-09" "Empty files upload" "manage form / Next server action"
 skip_case "FT-N-10" "Non-image upload" "manage form / Next server action"
 skip_case "FT-N-11" "Bad magic bytes" "manage form / Next server action"
 skip_case "FT-N-12" "Traversal upload/delete" "manage form / Next server action"
-skip_case "NFT-RES-03" "Missing pw.txt" "requires a second isolated SUT"
-skip_case "NFT-RES-05" "Rate-limit map reset" "requires process restart mid-suite"
 skip_case "NFT-RES-LIM-02" "20MB upload body" "manage form / Next server action"
 skip_case "NFT-RES-LIM-03" "500MB thumb cache" "duration soak; run manually"
 skip_case "NFT-RES-LIM-01" "Login window" "same run as FT-N-03"
