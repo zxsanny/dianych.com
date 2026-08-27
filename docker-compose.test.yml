@@ -1,0 +1,18 @@
+services:
+  system-under-test:
+    build:
+      context: ./dianych-website
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: production
+      SECRET_COOKIE_PASSWORD: ${SECRET_COOKIE_PASSWORD}
+    volumes:
+      - ${TEST_PW_FILE}:/app/pw.txt:ro
+      - ${TEST_IMAGES_DIR}:/app/public/images
+      - ${TEST_PRICES_DIR}:/app/dianych-website/data
+    tmpfs:
+      - /tmp:size=512m
+    read_only: true
+    user: "1000:1000"

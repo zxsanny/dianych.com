@@ -25,7 +25,7 @@ Maps inputs to quantifiable expected results. Non-`UNKNOWN` values cite a named 
 | 2 | `POST /api/login` with wrong password, `pw.txt` present | Failed bcrypt | status 401, message `Invalid password` | exact | N/A | N/A |
 | 3 | 6th `POST /api/login` in 15 min from same IP | Rate limit (`MAX_ATTEMPTS=5`, `WINDOW_MS=15*60*1000`) | status 429, message contains `Too many login attempts` | exact (status), substring (body) | N/A | N/A |
 | 4 | `GET /manage` without session | Middleware gate | redirect to `/login` | exact (pathname) | N/A | N/A |
-| 5 | `POST /api/login` with password matching `pw.txt` | Success path | `UNKNOWN — needs user input` (no committed `pw.txt` or recorded cookie) | — | — | N/A |
+| 5 | `POST /api/login` with password matching `pw.txt` | Success path | status 302 or 307; Location path `/manage`; `Set-Cookie` includes `dianych-manage-session` | exact | N/A | N/A (password from env / isolated SUT fixture, never committed) |
 
 Evidence: `dianych-website/app/api/login/route.ts` L21–22, L38, L46–47, L68; `dianych-website/middleware.ts` L10–14.
 
@@ -51,7 +51,7 @@ Evidence: `dianych-website/app/api/prices/route.ts` L23–34, L58–59, L79–81
 | 5 | `uploadImages` `.jpg` with non-JPEG bytes | Magic bytes | message contains `file content is not a valid image` | substring | N/A | N/A |
 | 6 | `deleteImage` path `../../etc/passwd` | Prefix check | `{ status: 'error', message: 'Unauthorized file path.' }` and no unlink outside `public/images` | exact | N/A | N/A |
 | 7 | `getGalleryImages('not-a-gallery')` | Allow-list | `[]` | exact | N/A | N/A |
-| 8 | Successful upload of a valid JPEG to `brooches` | Happy path | `UNKNOWN — needs user input` (no golden file set; live gallery contents change) | — | — | N/A |
+| 8 | Successful upload of a valid JPEG to `brooches` | Happy path | subsequent `GET /api/gallery-pack?galleryId=brooches` `images[].name` contains the uploaded filename | set_contains | N/A | N/A |
 
 Evidence: `dianych-website/app/actions.ts` L15, L39, L50–54, L63–71, L114–120, L95–97.
 
@@ -63,7 +63,7 @@ Evidence: `dianych-website/app/actions.ts` L15, L39, L50–54, L63–71, L114–
 | 2 | `GET /api/image` missing `galleryId` or `name` | Required params | status 400, `{ error: 'galleryId and name are required' }` | exact | N/A | N/A |
 | 3 | `GET /api/image?galleryId=brooches&name=../x` | `SAFE_FILENAME` | status 400, `{ error: 'Invalid parameters' }` | exact | N/A | N/A |
 | 4 | `GET /api/gallery-pack?galleryId=brooches` (no size) | Default width | generated/cached pack uses width 500 | exact | N/A | N/A |
-| 5 | Successful pack/image JSON `dataUrl` bytes | WebP payload | `UNKNOWN — needs user input` (no committed golden WebP) | — | — | N/A |
+| 5 | `GET /api/image` with valid gallery+name, omitted `width` | Default width + WebP prefix | JSON `width` is `1600`; `dataUrl` starts with `data:image/webp` (no golden bytes) | exact (width), substring (prefix) | N/A | N/A |
 | 6 | `POST /api/gallery-pack/invalidate` no session | Auth | status 401, `{ error: 'Unauthorized' }` | exact | N/A | N/A |
 | 7 | Response headers on pack/image cache hit | Cache-Control | `public, max-age=300, s-maxage=300` | exact | N/A | N/A |
 
@@ -82,9 +82,8 @@ Evidence: `_docs/02_document/modules/lib_galleryUtils.md`; `dianych-website/lib/
 
 | Input | Why UNKNOWN | Who fills |
 |-------|-------------|-----------|
-| Correct-password login cookie / redirect host | `pw.txt` is gitignored; no recorded session | Operator / test-spec Phase 1 |
-| Exact WebP `dataUrl` for a named file | No golden/snapshot in repo | test-spec or a committed fixture image |
-| Happy-path upload resulting file list | Gallery dirs are live content | test-spec with a fixture folder |
-| Production nginx `/images/` vs volume identity | Host paths, not in-app | ops smoke (AC-IR-08) |
+| Exact WebP `dataUrl` bytes for a named file | No golden/snapshot in repo; tests assert `width` + prefix only | optional later snapshot |
+| Live production gallery filename set | Assets change via admin uploads | discover at run time from pack JSON |
+| Production nginx `/images/` vs volume identity | Host paths, not in-app | ops smoke SM-05 (AC-IR-08) |
 
 An empty Gaps section would mean full coverage. This list is the honest handoff to test-spec Phase 1/3.
