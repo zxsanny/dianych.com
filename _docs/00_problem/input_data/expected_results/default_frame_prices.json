@@ -1,0 +1,10 @@
+{
+  "input": "GET /api/prices when file missing or fields omitted",
+  "source": "dianych-website/app/api/prices/route.ts:23-34",
+  "expected": {
+    "smallFrame8": 450,
+    "smallFrame10": 500,
+    "mediumFrame14": 600,
+    "largeFrame19": 700
+  }
+}

@@ -1,5 +1,35 @@
 # DIANYCH website — Architecture
 
+## Architecture Vision
+
+Public Next.js shop for Dianych pet portraits — visitors browse galleries and frame prices, order via Instagram; owner uses one password to upload photos and edit prices. One Docker container behind nginx on dianych.com; images on a host volume; no database.
+
+**Components and ownership**
+- shared-runtime — session cookie helpers, gallery directory listing, disk-cache cap, UA/EN copy
+- image-pipeline — WebP pack/single APIs and tmp caches
+- auth — `pw.txt` login, logout, `/manage` middleware
+- content-admin — upload/delete actions and frame prices
+- storefront — public landing, galleries, frames, contact
+- ops — Docker image, nginx, registry, host run/update
+
+**Principles**
+- Filesystem over a database (`inferred-from: architecture.md` §4, no ORM)
+- Data-URL thumbs instead of Next image optimizer (`inferred-from: next.config.ts` `unoptimized`, gallery-pack)
+- Single shared admin password (`inferred-from: api/login`, `pw.txt`)
+- Standalone Docker behind host nginx (`inferred-from: Dockerfile`, `install.sh`)
+
+**Major data flows**
+- Disk originals → sharp → cached data-URLs → carousel/modal
+- Admin multipart → `public/images` → revalidate + pack invalidate
+- Prices JSON → public GET → Frames; POST when logged in
+
+**Open questions / drift (acknowledged, not blocking)**
+- Runtime prices path is nested `dianych-website/dianych-website/data/`
+- `SECRET_COOKIE_PASSWORD` is regenerated on every container start
+- nginx `/images/` alias path ≠ docker volume path
+- Frame orders go to `povne.kolo`; other CTAs to `dianych.ua`
+- Language is not persisted; `<html lang>` stays `en`
+
 ## 1. System Context
 
 **Problem being solved**: Diana (Dianych) sells custom pet portraits (embroidery, felting, frames, kits). The site shows work, prices frames, and sends buyers to Instagram/social shops. Diana uploads new photos and edits frame prices without a developer.
