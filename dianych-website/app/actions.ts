@@ -13,22 +13,21 @@ export interface FormState {
     status: 'success' | 'error' | 'idle';
 }
 
-const ALLOWED_EXTENSIONS = /\.(jpe?g|png|webp|gif|bmp|tiff?|svg)$/i;
+const ALLOWED_EXTENSIONS = /\.(jpe?g|png|webp|gif|bmp|tiff?)$/i;
 
 const IMAGE_MAGIC: [number[], string][] = [
     [[0xFF, 0xD8, 0xFF], 'JPEG'],
     [[0x89, 0x50, 0x4E, 0x47], 'PNG'],
     [[0x47, 0x49, 0x46, 0x38], 'GIF'],
-    [[0x52, 0x49, 0x46, 0x46], 'WEBP'],
     [[0x49, 0x49, 0x2A, 0x00], 'TIFF'],
     [[0x4D, 0x4D, 0x00, 0x2A], 'TIFF'],
     [[0x42, 0x4D], 'BMP'],
 ];
 
 function isImageBuffer(buf: Buffer, filename: string): boolean {
-    if (/\.svg$/i.test(filename)) {
-        const head = buf.subarray(0, 256).toString('utf-8');
-        return head.includes('<svg') || head.includes('<?xml');
+    if (/\.webp$/i.test(filename)) {
+        return buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46
+            && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50;
     }
     return IMAGE_MAGIC.some(([magic]) => magic.every((b, i) => buf[i] === b));
 }
@@ -78,15 +77,19 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
             await writeFile(fullPath, buffer);
             uploadedFileCount++;
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-            return { message: `Failed to upload ${file.name}. Reason: ${errorMessage}`, status: 'error' };
+            console.error('uploadImages', error);
+            return { message: `Failed to upload ${file.name}.`, status: 'error' };
         }
     }
 
     revalidatePath('/');
     revalidatePath('/manage');
 
-    try { invalidateCache(folder, 500, 1); } catch {}
+    try {
+        invalidateCache(folder, 500, 1);
+    } catch (error) {
+        console.error('invalidateCache', error);
+    }
 
     return { message: `Successfully uploaded ${uploadedFileCount} image(s) to the '${folder}' gallery.`, status: 'success' };
 }
@@ -129,11 +132,16 @@ export async function deleteImage(prevState: FormState, formData: FormData): Pro
         const idx = parts.indexOf('images');
         const galleryId = idx >= 0 && parts.length > idx + 1 ? parts[idx + 1] : '';
         if (galleryId) {
-            try { invalidateCache(galleryId, 500, 1); } catch {}
+            try {
+                invalidateCache(galleryId, 500, 1);
+            } catch (error) {
+                console.error('invalidateCache', error);
+            }
         }
 
         return { message: `Successfully deleted ${imagePath}.`, status: 'success' };
     } catch (error) {
-        return { message: 'Failed to delete file. Error' + error, status: 'error' };
+        console.error('deleteImage', error);
+        return { message: 'Failed to delete file.', status: 'error' };
     }
 }

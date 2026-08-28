@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { expandIfShort } from "../lib/expandIfShort.js";
 
 const PW_FILE = path.join(process.cwd(), 'pw.txt');
-const SALT_ROUNDS = 10;
+const SALT_ROUNDS = 12;
 
 async function prompt(question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });

@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { enforceCacheLimit } from '@/lib/diskCache';
 import { isGalleryId } from '@/lib/galleryIds';
+import { clientIp, isRateLimited } from '@/lib/rateLimit';
 
 // Simple in-memory cache for individual images
 // key: `${galleryId}|${name}|w${width}|v${version}`
@@ -95,20 +96,25 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // 3) Generate and cache
+    if (isRateLimited(`image:${clientIp(req)}`, 180, 60_000)) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    }
+
     const payload = await generateImage(galleryId, name, width, VERSION);
 
     try {
       const json = JSON.stringify(payload);
       fs.writeFileSync(diskPath, json);
       enforceCacheLimit(getDiskDir());
-    } catch {}
+    } catch (error) {
+      console.error('image cache write', error);
+    }
 
     imageMemoryCache.set(cacheKey, { updatedAt: Date.now(), payload });
 
     return NextResponse.json(payload, { headers: { 'Cache-Control': 'public, max-age=300, s-maxage=300' } });
   } catch (error) {
-    const message = (error instanceof Error && error.message) ? error.message : String(error);
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error('image GET', error);
+    return NextResponse.json({ error: 'Failed to process image' }, { status: 500 });
   }
 }

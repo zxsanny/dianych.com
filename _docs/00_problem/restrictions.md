@@ -16,9 +16,9 @@ Derived from repo evidence (`package.json`, Dockerfile, ops scripts, Next config
 
 | Restriction | Evidence |
 |-------------|----------|
-| TypeScript 5, Next.js 15.5.2 App Router, React 19 | `package.json` |
+| TypeScript 5, Next.js 15.5.24 App Router, React 19 | `package.json` |
 | Tailwind 4 | `package.json` |
-| iron-session 8.0.4, bcryptjs 3.0.2, sharp 0.33.5 | `package.json` |
+| iron-session 8.0.4, bcryptjs 3.0.2, sharp 0.35.4 | `package.json` |
 | Node 20 bookworm-slim standalone | `Dockerfile` |
 | No database / ORM | no deps |
 | No test runner | no `*.test.*` / test script |

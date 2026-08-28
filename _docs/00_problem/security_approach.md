@@ -13,13 +13,14 @@ Security code exists (authz, secrets, uploads, rate limit). Requirements below a
 
 ## Abuse controls
 
-- Login: 5 attempts / 15 minutes / IP (`MAX_ATTEMPTS`, `WINDOW_MS`). IP from `x-forwarded-for` first hop or `x-real-ip`.
+- Login: 5 attempts / 15 minutes / IP (`MAX_ATTEMPTS`, `WINDOW_MS`). IP from `x-real-ip`, else last `x-forwarded-for` hop.
+- Public `GET /api/image` and `GET /api/gallery-pack`: 180 cache-miss generations / 60 seconds / IP.
 - Map is in-process only (lost on restart; not shared across replicas).
 
 ## Upload / path safety
 
 - Folder allow-list: `brooches`, `clothes`, `panel`, `felting`, `kits`.
-- Filename sanitized to `[a-zA-Z0-9._-]`; extension allow-list + magic bytes (SVG via `<svg`/`<?xml` in first 256 bytes).
+- Filename sanitized to `[a-zA-Z0-9._-]`; extension allow-list (no SVG) + magic bytes (WebP requires RIFF+WEBP).
 - `resolve` + prefix check blocks path traversal on upload/delete.
 - Image GET: same gallery allow-list + `SAFE_FILENAME`.
 
@@ -39,5 +40,4 @@ Security code exists (authz, secrets, uploads, rate limit). Requirements below a
 - No CSRF token beyond cookie SameSite defaults.
 - Session secret rotated every container start (invalidates all sessions).
 - Public `GET /api/prices`; `getGalleryImages` unauthenticated.
-- Login success redirect host taken from forwarded headers (safe pathname `/manage`; host spoofable if proxy does not overwrite).
-- No rate limit on upload/prices.
+- No rate limit on upload/prices. Login redirect uses `Host` + `X-Forwarded-Proto` only (not `X-Forwarded-Host`). nginx snippet overwrites `X-Forwarded-For` with `$remote_addr`.

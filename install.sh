@@ -10,14 +10,18 @@ server {
         proxy_pass http://localhost:3001;  # API service running on port 3001
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-For \$remote_addr;
         proxy_set_header X-Forwarded-Proto \$scheme;
         proxy_set_header X-Forwarded-Port 443;
+        add_header X-Content-Type-Options nosniff always;
+        add_header X-Frame-Options DENY always;
+        add_header Referrer-Policy strict-origin-when-cross-origin always;
     }
     location /images/ {
         alias /root/dianych/images/;
         expires 1d;
         add_header Cache-Control "public, max-age=86400";
+        add_header X-Content-Type-Options nosniff always;
     }
 }
 

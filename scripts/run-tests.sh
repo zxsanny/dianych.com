@@ -339,14 +339,14 @@ ft_p_07() {
   rm -f "$COOKIE_JAR"
   local code loc cookie
   code="$(curl -sS -c "$COOKIE_JAR" -D "$TMP/p07.hdr" -o "$TMP/p07.body" -w '%{http_code}' --max-redirs 0 \
-    -X POST "$BASE_URL/api/login" -F "password=$TEST_PASSWORD" || true)"
+    -H 'X-Forwarded-Host: evil.example' -X POST "$BASE_URL/api/login" -F "password=$TEST_PASSWORD" || true)"
   [[ "$code" == "307" || "$code" == "302" ]] || return 1
   loc="$(header_val "$TMP/p07.hdr" Location)"
   python3 - "$loc" <<'PY'
 import sys
 from urllib.parse import urlparse
 p = urlparse(sys.argv[1])
-raise SystemExit(0 if p.path.rstrip("/") == "/manage" else 1)
+raise SystemExit(0 if p.path.rstrip("/") == "/manage" and p.hostname != "evil.example" else 1)
 PY
   cookie="$(header_val "$TMP/p07.hdr" set-cookie)"
   [[ "$cookie" == *dianych-manage-session* ]] || return 1
@@ -500,6 +500,14 @@ ft_n_10() {
   invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
     --folder brooches --file "$WORK_DIR/note.txt" --filename note.txt --type text/plain > "$TMP/n10.json"
   python3 - "$TMP/n10.json" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if "not an allowed image type" in str((o.get("result") or {}).get("message", "")) else 1)
+PY
+  printf '<svg xmlns="http://www.w3.org/2000/svg"></svg>\n' > "$WORK_DIR/xss.svg"
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --file "$WORK_DIR/xss.svg" --filename xss.svg --type image/svg+xml > "$TMP/n10s.json"
+  python3 - "$TMP/n10s.json" <<'PY'
 import json, sys
 o = json.load(open(sys.argv[1], encoding="utf-8"))
 raise SystemExit(0 if "not an allowed image type" in str((o.get("result") or {}).get("message", "")) else 1)

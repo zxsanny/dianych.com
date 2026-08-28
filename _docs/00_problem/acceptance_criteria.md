@@ -19,6 +19,7 @@ Measurable criteria from code, configs, and `_docs/02_document/interaction-risks
 | AC-AUTH-03 | Rate limit | 6th attempt in 15 min from same IP → 429, message contains `Too many login attempts` |
 | AC-AUTH-04 | Unauthenticated `/manage` | Redirect to `/login` (`middleware.ts`) |
 | AC-AUTH-05 | Successful login | Sets session `isLoggedIn` and redirects to `/manage` |
+| AC-AUTH-06 | Login redirect host | `Location` host is `Host`, not `X-Forwarded-Host` |
 | AC-IR-05 | After container recreate, old session cookie does not open `/manage`; current `pw.txt` still logs in | ops + auth |
 
 ## Content admin / prices
@@ -39,6 +40,7 @@ Measurable criteria from code, configs, and `_docs/02_document/interaction-risks
 | AC-UP-01 | Bad folder | `uploadImages` → `{ status: 'error', message: 'Please select a valid folder.' }` |
 | AC-UP-02 | Empty files | `{ status: 'error', message: 'Please select at least one file to upload.' }` |
 | AC-UP-03 | Non-image type | message matches `not an allowed image type` |
+| AC-UP-05 | SVG upload | `.svg` rejected as `not an allowed image type` |
 | AC-UP-04 | Bad magic bytes | message matches `file content is not a valid image` |
 | AC-IR-02 | Upload/delete with `../`, extra path segments, or non-image bytes is rejected and no file appears outside `public/images/<allowedFolder>/` | content-admin |
 

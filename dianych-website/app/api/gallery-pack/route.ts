@@ -2,6 +2,7 @@ import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import { memoryCache, getDiskCachePath, buildCacheKey, regenerateGalleryPack } from './cache';
 import { isGalleryId } from '@/lib/galleryIds';
+import { clientIp, isRateLimited } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
 
@@ -52,7 +53,10 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // 3) Generate pack via shared generator
+    if (isRateLimited(`pack:${clientIp(req)}`, 180, 60_000)) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    }
+
     const payload = await regenerateGalleryPack(galleryId, width, version);
 
     return NextResponse.json(payload, {
@@ -61,7 +65,7 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
-    const message = (error instanceof Error && error.message) ? error.message : String(error);
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error('gallery-pack GET', error);
+    return NextResponse.json({ error: 'Failed to load gallery pack' }, { status: 500 });
   }
 }
