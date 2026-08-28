@@ -12,7 +12,9 @@ export function enforceCacheLimit(cacheDir: string) {
       try {
         const stat = fs.statSync(fp);
         return { path: fp, mtimeMs: stat.mtimeMs, size: stat.size };
-      } catch { return null; }
+      } catch {
+        return null;
+      }
     })
     .filter(Boolean) as { path: string; mtimeMs: number; size: number }[];
 
@@ -26,6 +28,8 @@ export function enforceCacheLimit(cacheDir: string) {
     try {
       fs.unlinkSync(file.path);
       totalSize -= file.size;
-    } catch {}
+    } catch {
+      continue;
+    }
   }
 }

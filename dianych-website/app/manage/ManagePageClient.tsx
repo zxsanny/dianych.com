@@ -3,13 +3,18 @@
 import { useState } from 'react';
 import GalleryManager from './GalleryManager';
 import PricesManager from './PricesManager';
+import { GALLERY_IDS } from '@/lib/galleryIds';
+
+const FOLDER_NAMES: Record<(typeof GALLERY_IDS)[number], string> = {
+    brooches: 'Вишивка: Брошки / Шеврони',
+    clothes: 'Вишивка на одязі',
+    panel: 'Панно',
+    felting: 'Фелтінг',
+    kits: 'Схеми/Набори',
+};
 
 const folders = [
-    { key: 'brooches', name: 'Вишивка: Брошки / Шеврони' },
-    { key: 'clothes', name: 'Вишивка на одязі' },
-    { key: 'panel', name: 'Панно' },
-    { key: 'felting', name: 'Фелтінг' },
-    { key: 'kits', name: 'Схеми/Набори' },
+    ...GALLERY_IDS.map((key) => ({ key, name: FOLDER_NAMES[key] })),
     { key: 'prices', name: 'Ціни рамок' },
 ];
 

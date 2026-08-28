@@ -6,13 +6,12 @@ import { revalidatePath } from 'next/cache';
 import { getImagePaths } from '@/lib/galleryUtils';
 import { invalidateCache } from '@/app/api/gallery-pack/cache';
 import { getSession } from '@/lib/session';
+import { isGalleryId } from '@/lib/galleryIds';
 
 export interface FormState {
     message: string;
     status: 'success' | 'error' | 'idle';
 }
-
-const allowedFolders = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
 
 const ALLOWED_EXTENSIONS = /\.(jpe?g|png|webp|gif|bmp|tiff?|svg)$/i;
 
@@ -47,7 +46,7 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
     const folder = formData.get('folder') as string;
     const files = formData.getAll('files') as File[];
 
-    if (!folder || !allowedFolders.includes(folder)) {
+    if (!folder || !isGalleryId(folder)) {
         return { message: 'Please select a valid folder.', status: 'error' };
     }
     if (!files || files.length === 0 || files[0].size === 0) {
@@ -93,7 +92,7 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
 }
 
 export async function getGalleryImages(folder: string): Promise<string[]> {
-    if (!folder || !allowedFolders.includes(folder)) {
+    if (!folder || !isGalleryId(folder)) {
         return [];
     }
     return getImagePaths(folder);
@@ -116,7 +115,7 @@ export async function deleteImage(prevState: FormState, formData: FormData): Pro
     }
 
     const relParts = fullPath.substring(imagesBase.length + 1).split('/');
-    if (relParts.length !== 2 || !allowedFolders.includes(relParts[0])) {
+    if (relParts.length !== 2 || !isGalleryId(relParts[0])) {
         return { message: 'Can only delete images from gallery folders.', status: 'error' };
     }
 

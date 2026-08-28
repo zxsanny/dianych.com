@@ -1,15 +1,15 @@
 import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import { memoryCache, getDiskCachePath, buildCacheKey, regenerateGalleryPack } from './cache';
+import { isGalleryId } from '@/lib/galleryIds';
 
 export const runtime = 'nodejs';
 
 export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
-    const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
     const galleryId = url.searchParams.get('galleryId');
-    if (!galleryId || !ALLOWED_GALLERIES.includes(galleryId)) {
+    if (!galleryId || !isGalleryId(galleryId)) {
       return NextResponse.json({ error: 'Invalid galleryId' }, { status: 400 });
     }
 

@@ -1,20 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { DEFAULT_FRAME_PRICES, type FramePrices } from '@/lib/defaultFramePrices';
 
-type Prices = {
-  smallFrame8: number;
-  smallFrame10: number;
-  mediumFrame14: number;
-  largeFrame19: number;
-};
+type Prices = FramePrices;
 
-const DEFAULTS: Prices = {
-  smallFrame8: 450,
-  smallFrame10: 500,
-  mediumFrame14: 600,
-  largeFrame19: 700,
-};
+const DEFAULTS: Prices = DEFAULT_FRAME_PRICES;
 
 export default function PricesManager() {
   const [prices, setPrices] = useState<Prices>(DEFAULTS);

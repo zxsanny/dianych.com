@@ -5,11 +5,7 @@ import { SessionData, sessionOptions } from '@/lib/session';
 import { promises as fs } from 'fs';
 import path from 'path';
 import bcrypt from 'bcryptjs';
-
-function expandIfShort(pass: string): string {
-    if (!pass) return pass;
-    return pass.length >= 32 ? pass : `${pass}.${pass}.${pass}`;
-}
+import { expandIfShort } from '@/lib/expandIfShort';
 
 function buildAbsoluteUrl(request: NextRequest, pathname: string): string {
     const proto = request.headers.get('x-forwarded-proto') || 'https';

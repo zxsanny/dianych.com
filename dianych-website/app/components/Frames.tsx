@@ -5,21 +5,12 @@ import Image from 'next/image';
 import { useTranslation } from '@/lib/translations';
 import SectionLayout from './SectionLayout';
 import Modal from './Modal';
-import OrderButton from "@/app/components/OrderButton"; // Import the Modal component
+import OrderButton from "@/app/components/OrderButton";
+import { DEFAULT_FRAME_PRICES, type FramePrices } from '@/lib/defaultFramePrices';
 
-type Prices = {
-    smallFrame8: number;
-    smallFrame10: number;
-    mediumFrame14: number;
-    largeFrame19: number;
-};
+type Prices = FramePrices;
 
-const DEFAULT_PRICES: Prices = {
-    smallFrame8: 450,
-    smallFrame10: 500,
-    mediumFrame14: 600,
-    largeFrame19: 700,
-};
+const DEFAULT_PRICES: Prices = DEFAULT_FRAME_PRICES;
 
 function formatPrice(num: number) {
     try {

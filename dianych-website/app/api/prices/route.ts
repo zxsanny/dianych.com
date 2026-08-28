@@ -4,15 +4,9 @@ import path from 'path';
 import { getIronSession } from 'iron-session';
 import { SessionData, sessionOptions } from '@/lib/session';
 import { cookies } from 'next/headers';
+import { DEFAULT_FRAME_PRICES, type FramePrices } from '@/lib/defaultFramePrices';
 
 const DATA_FILE = path.join(process.cwd(), 'dianych-website', 'data', 'framePrices.json');
-
-type FramePrices = {
-  smallFrame8: number;
-  smallFrame10: number;
-  mediumFrame14: number;
-  largeFrame19: number;
-};
 
 async function readPrices(): Promise<FramePrices> {
   try {
@@ -20,19 +14,14 @@ async function readPrices(): Promise<FramePrices> {
     const parsed = JSON.parse(raw) as Partial<FramePrices>;
     // Basic normalization to ensure numbers
     return {
-      smallFrame8: Number(parsed.smallFrame8 ?? 450),
-      smallFrame10: Number(parsed.smallFrame10 ?? 500),
-      mediumFrame14: Number(parsed.mediumFrame14 ?? 600),
-      largeFrame19: Number(parsed.largeFrame19 ?? 700),
+      smallFrame8: Number(parsed.smallFrame8 ?? DEFAULT_FRAME_PRICES.smallFrame8),
+      smallFrame10: Number(parsed.smallFrame10 ?? DEFAULT_FRAME_PRICES.smallFrame10),
+      mediumFrame14: Number(parsed.mediumFrame14 ?? DEFAULT_FRAME_PRICES.mediumFrame14),
+      largeFrame19: Number(parsed.largeFrame19 ?? DEFAULT_FRAME_PRICES.largeFrame19),
     };
   } catch (e: unknown) {
     console.error('Failed to read prices', e);
-    const defaults: FramePrices = {
-      smallFrame8: 450,
-      smallFrame10: 500,
-      mediumFrame14: 600,
-      largeFrame19: 700,
-    };
+    const defaults: FramePrices = DEFAULT_FRAME_PRICES;
     try {
       await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
       await fs.writeFile(DATA_FILE, JSON.stringify(defaults, null, 2), 'utf-8');

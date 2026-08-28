@@ -25,6 +25,9 @@
   - `lib/galleryUtils.ts` — `getImagePaths`
   - `lib/diskCache.ts` — `enforceCacheLimit`
   - `lib/translations.ts` — `useTranslation`
+  - `lib/galleryIds.ts` — `GALLERY_IDS`, `isGalleryId`
+  - `lib/expandIfShort.js` — `expandIfShort`
+  - `lib/defaultFramePrices.ts` — `DEFAULT_FRAME_PRICES`
   - `contexts/LanguageContext.tsx` — `LanguageProvider`, `useLanguage`
 - **Internal**: `app/fonts.ts` (unused)
 - **Owns**: `dianych-website/lib/**`, `dianych-website/contexts/**`, `dianych-website/app/fonts.ts`, `dianych-website/app/fonts/**`

@@ -4,6 +4,7 @@ import os from 'os';
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { enforceCacheLimit } from '@/lib/diskCache';
+import { isGalleryId } from '@/lib/galleryIds';
 
 // Simple in-memory cache for individual images
 // key: `${galleryId}|${name}|w${width}|v${version}`
@@ -52,7 +53,6 @@ async function generateImage(galleryId: string, name: string, width: number, ver
 
 export const runtime = 'nodejs';
 
-const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
 const SAFE_FILENAME = /^[a-zA-Z0-9._-]+$/;
 
 export async function GET(req: NextRequest) {
@@ -66,7 +66,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'galleryId and name are required' }, { status: 400 });
     }
 
-    if (!ALLOWED_GALLERIES.includes(galleryId) || !SAFE_FILENAME.test(name)) {
+    if (!isGalleryId(galleryId) || !SAFE_FILENAME.test(name)) {
       return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 });
     }
 

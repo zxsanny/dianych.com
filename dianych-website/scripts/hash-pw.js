@@ -2,14 +2,10 @@ import fs from "fs";
 import path from "path";
 import readline from "readline";
 import bcrypt from "bcryptjs";
+import { expandIfShort } from "../lib/expandIfShort.js";
 
 const PW_FILE = path.join(process.cwd(), 'pw.txt');
-const SALT_ROUNDS = 10; // Sufficient for small projects; increase for stronger hashing if needed.
-
-function expandIfShort(pass) {
-  if (!pass) return pass;
-  return pass.length >= 32 ? pass : `${pass}.${pass}.${pass}`;
-}
+const SALT_ROUNDS = 10;
 
 async function prompt(question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });

@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { invalidateCache } from '../cache';
 import { getSessionFromRequest } from '@/lib/session';
+import { isGalleryId } from '@/lib/galleryIds';
 
 export const runtime = 'nodejs';
-
-const ALLOWED_GALLERIES = ['brooches', 'clothes', 'panel', 'felting', 'kits'];
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,7 +25,7 @@ export async function POST(req: NextRequest) {
       galleryId = url.searchParams.get('galleryId') || '';
     }
 
-    if (!galleryId || !ALLOWED_GALLERIES.includes(galleryId)) {
+    if (!galleryId || !isGalleryId(galleryId)) {
       return NextResponse.json({ error: 'Invalid galleryId' }, { status: 400 });
     }
 
