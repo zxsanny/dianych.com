@@ -7,6 +7,7 @@ import { getImagePaths } from '@/lib/galleryUtils';
 import { invalidateCache } from '@/app/api/gallery-pack/cache';
 import { getSession } from '@/lib/session';
 import { isGalleryId } from '@/lib/galleryIds';
+import { optimizeImageBuffer } from '@/lib/optimizeImage';
 
 export interface FormState {
     message: string;
@@ -74,7 +75,8 @@ export async function uploadImages(prevState: FormState, formData: FormData): Pr
                 return { message: 'Unauthorized file path.', status: 'error' };
             }
 
-            await writeFile(fullPath, buffer);
+            const optimized = await optimizeImageBuffer(buffer, sanitizedFilename);
+            await writeFile(fullPath, optimized);
             uploadedFileCount++;
         } catch (error) {
             console.error('uploadImages', error);
