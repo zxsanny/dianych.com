@@ -67,7 +67,6 @@ None.
 
 **Known limitations**:
 - Locale not persisted; `html lang` stays `en`
-- Empty `FrameCard.tsx` file unused
 - Clothes section has no header nav tile (only `#brooches` `#frames` `#felting` `#kits`)
 - Frames order goes to `instagram.com/povne.kolo/`, galleries to `dianych.ua`
 

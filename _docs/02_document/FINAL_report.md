@@ -58,7 +58,7 @@ See `system-flows.md`.
 | Critical | 0 | — |
 | High | 3 | Nested prices path (IR-04); session secret every recreate (IR-05); nginx alias ≠ volume (IR-08) |
 | Medium | 2 | Stale thumbs after upload (IR-01); login errors not shown in UI |
-| Low | 3 | Unused `jimp`, empty `FrameCard.tsx`, unused `app/fonts.ts` |
+| Low | 0 closed in 02-coupling-refactoring | `jimp` is live sharp fallback; `FrameCard.tsx` / `app/fonts.ts` deleted |
 
 Entity verification: 0 unresolved hallucinations. Completeness 100% of scanned first-party source.
 

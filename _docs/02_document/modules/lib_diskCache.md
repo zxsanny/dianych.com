@@ -12,7 +12,7 @@ Cap a thumbnail/cache directory at 500 MB by deleting oldest files first.
 
 ## Internal logic
 
-Reads `readdirSync` + `statSync` for each entry; sums `size`; sorts by `mtimeMs` ascending; unlinks until under cap. Stat failures yield `null` and are dropped. Unlink failures are swallowed (`catch {}`).
+Reads `readdirSync` + `statSync` for each entry; sums `size`; sorts by `mtimeMs` ascending; unlinks until under cap. Stat failures yield `null` and are dropped. Unlink failures continue the loop (best-effort; trim must not crash requests).
 
 ## Dependencies
 

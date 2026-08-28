@@ -13,11 +13,11 @@ Public GET and authenticated POST for four frame prices stored as JSON.
 
 ## Internal logic
 
-`DATA_FILE = path.join(process.cwd(), 'dianych-website', 'data', 'framePrices.json')`. With app cwd `dianych-website/`, this is the nested file `dianych-website/dianych-website/data/framePrices.json`, not `dianych-website/data/framePrices.json`. Missing file → defaults 450/500/600/700 and best-effort write. POST rejects non-finite or negative numbers.
+`DATA_FILE = path.join(process.cwd(), 'dianych-website', 'data', 'framePrices.json')`. With app cwd `dianych-website/`, this is the nested file `dianych-website/dianych-website/data/framePrices.json`, not `dianych-website/data/framePrices.json`. Missing file → `DEFAULT_FRAME_PRICES` and best-effort write. POST rejects non-finite or negative numbers.
 
 ## Dependencies
 
-`lib/session`, `iron-session`, Next cookies, Node `fs`/`path`.
+`lib/session`, `lib/defaultFramePrices`, `iron-session`, Next cookies, Node `fs`/`path`.
 
 ## Consumers
 
@@ -29,7 +29,7 @@ Public GET and authenticated POST for four frame prices stored as JSON.
 
 ## Configuration
 
-Hardcoded path and defaults.
+Hardcoded path; defaults from `DEFAULT_FRAME_PRICES`.
 
 ## External integrations
 

@@ -6,6 +6,8 @@
 
 Existing-code scan of `dianych-website/` against `_docs/02_document/architecture.md`, `module-layout.md`, `_docs/00_problem/acceptance_criteria.md`, `_docs/00_problem/restrictions.md`, `_docs/01_solution/solution.md`. No task-batch spec. No `adr/` directory.
 
+F2/F3/F4 (empty `FrameCard.tsx`, unused `app/fonts.ts`, duplicated `expandIfShort`) closed in `_docs/04_refactoring/02-coupling-refactoring/` (2026-08-28). Findings below are the original baseline snapshot.
+
 ## Phase 1 — Context
 
 Documented system: filesystem galleries + JSON prices + iron-session admin; six components; layers 0–4 in `module-layout.md`. ACs IR-01–08 and auth/prices/upload already recorded. No inbound vendor contracts.

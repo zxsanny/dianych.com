@@ -1,6 +1,6 @@
 # Module: app/layout + page
 
-**Paths:** `app/layout.tsx`, `app/page.tsx`, `app/globals.css`, `app/fonts.ts` (unused; see that module)
+**Paths:** `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
 
 ## Purpose
 

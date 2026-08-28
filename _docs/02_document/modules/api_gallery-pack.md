@@ -13,11 +13,11 @@ Public GET of a gallery thumbnail pack; authenticated POST to invalidate+rebuild
 
 ## Internal logic
 
-GET: memory → disk → `regenerateGalleryPack`. POST: `getSessionFromRequest` then `invalidateCache(galleryId, 500, 1)`.
+GET: `isGalleryId` then memory → disk → `regenerateGalleryPack`. POST: `getSessionFromRequest` then `isGalleryId` then `invalidateCache(galleryId, 500, 1)`.
 
 ## Dependencies
 
-`./cache`, `lib/session` (invalidate only).
+`./cache`, `lib/galleryIds`, `lib/session` (invalidate only).
 
 ## Consumers
 

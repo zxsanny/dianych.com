@@ -22,12 +22,12 @@ dianych.com/
     ├── Dockerfile            # multi-stage standalone Node 20 + sharp/libvips
     ├── middleware.ts         # /manage session gate
     ├── app/
-    │   ├── layout.tsx, page.tsx, fonts.ts, globals.css, actions.ts
+    │   ├── layout.tsx, page.tsx, globals.css, actions.ts
     │   ├── api/              # login, logout, prices, image, gallery-pack
     │   ├── components/       # public storefront sections + gallery
     │   ├── login/, logout/, manage/
     ├── contexts/LanguageContext.tsx
-    ├── lib/                  # session, galleryUtils, diskCache, translations
+    ├── lib/                  # session, galleryUtils, diskCache, translations, galleryIds, expandIfShort, defaultFramePrices
     ├── data/framePrices.json
     ├── dianych-website/data/framePrices.json   # nested copy (cwd-relative path)
     ├── public/images/{brooches,clothes,panel,felting,kits,flags}
@@ -45,7 +45,7 @@ Binary / non-code: `design/*.pdf`, `public/**` images, `app/fonts/vinnytsia_seri
 | UI | Next.js 15.5.2 App Router, React 19, Tailwind 4 | `package.json`, `app/` |
 | Session | iron-session cookie `dianych-manage-session` | `lib/session.ts` |
 | Password | bcryptjs vs `pw.txt` hash | `app/api/login/route.ts`, `scripts/hash-pw.js` |
-| Images | sharp + jimp (jimp unused in scanned imports), disk cache 500MB | `app/api/image`, `lib/diskCache.ts` |
+| Images | sharp + jimp (jimp is sharp fallback in pack cache), disk cache 500MB | `app/api/image`, `gallery-pack/cache.ts`, `lib/diskCache.ts` |
 | Carousel | embla-carousel-react | `GalleryCarousel.tsx` |
 | Runtime | Node 20 bookworm-slim, `output: 'standalone'` | `Dockerfile`, `next.config.ts` |
 | Reverse proxy | nginx 443 → localhost:3001 | `install.sh` |
@@ -86,7 +86,9 @@ flowchart BT
   galleryUtils[lib/galleryUtils]
   session[lib/session]
   langCtx[contexts/LanguageContext]
-  fonts[app/fonts]
+  galleryIds[lib/galleryIds]
+  expandIfShort[lib/expandIfShort]
+  defaultPrices[lib/defaultFramePrices]
   hashPw[scripts/hash-pw]
   translations[lib/translations]
   packCache[api/gallery-pack/cache]
@@ -155,8 +157,16 @@ flowchart BT
   home --> frames
   home --> contact
   home --> pageLayout
+  actions --> galleryIds
+  apiImage --> galleryIds
+  apiPack --> galleryIds
+  apiInv --> galleryIds
+  manage --> galleryIds
+  apiLogin --> expandIfShort
+  hashPw --> expandIfShort
+  frames --> defaultPrices
+  apiPrices --> defaultPrices
   root --> langCtx
-  root --> fonts
 ```
 
 Cycles: none among first-party modules.
@@ -167,44 +177,46 @@ Cycles: none among first-party modules.
 2. `lib/galleryUtils`
 3. `lib/session`
 4. `contexts/LanguageContext`
-5. `app/fonts`
-6. `scripts/hash-pw`
-7. `lib/translations`
-8. `app/api/gallery-pack/cache`
-9. `app/api/image`
-10. `app/api/login`
-11. `app/api/logout`
-12. `app/api/prices`
-13. `app/api/gallery-pack` (route + invalidate)
-14. `middleware`
-15. `app/actions`
-16. `components/OrderButton`
-17. `components/Modal`
-18. `components/LanguageSwitcher`
-19. `components/SectionLayout`
-20. `components/Contact`
-21. `components/GalleryCarousel`
-22. `components/Gallery`
-23. `components/Frames` (+ empty `FrameCard.tsx`)
-24. `components/gallery-sections` (Brooches, Clothes, Panel, Felting, Kits)
-25. `components/chrome` (Header, TopBar, PageClientLayout)
-26. `app/login` + `app/logout`
-27. `app/manage`
-28. `app/layout` + `app/page`
-29. `ops-scripts` (install/restart/update/build + Dockerfile)
+5. `lib/galleryIds`
+6. `lib/expandIfShort`
+7. `lib/defaultFramePrices`
+8. `scripts/hash-pw`
+9. `lib/translations`
+10. `app/api/gallery-pack/cache`
+11. `app/api/image`
+12. `app/api/login`
+13. `app/api/logout`
+14. `app/api/prices`
+15. `app/api/gallery-pack` (route + invalidate)
+16. `middleware`
+17. `app/actions`
+18. `components/OrderButton`
+19. `components/Modal`
+20. `components/LanguageSwitcher`
+21. `components/SectionLayout`
+22. `components/Contact`
+23. `components/GalleryCarousel`
+24. `components/Gallery`
+25. `components/Frames`
+26. `components/gallery-sections` (Brooches, Clothes, Panel, Felting, Kits)
+27. `components/chrome` (Header, TopBar, PageClientLayout)
+28. `app/login` + `app/logout`
+29. `app/manage`
+30. `app/layout` + `app/page`
+31. `ops-scripts` (install/restart/update/build + Dockerfile)
 
 ## Leaf vs entry
 
 | Kind | Modules |
 |------|---------|
-| Leaves | diskCache, galleryUtils, session, LanguageContext, fonts, hash-pw, OrderButton, Modal |
+| Leaves | diskCache, galleryUtils, session, LanguageContext, galleryIds, expandIfShort, defaultFramePrices, hash-pw, OrderButton, Modal |
 | Entries | layout/page, middleware, API routes, actions, ops-scripts |
 
 ## Notable findings (discovery only)
 
 - Prices path is `process.cwd()/dianych-website/data/framePrices.json`. App cwd is `dianych-website/`, so runtime file is the nested copy.
-- `FrameCard.tsx` is empty and unreferenced.
-- `jimp` is in `package.json` with no scanned import.
+- `FrameCard.tsx` and `app/fonts.ts` removed in `02-coupling-refactoring`.
+- `jimp` is a live sharp fallback in `gallery-pack/cache.ts`.
 - `restart.sh` / `update.sh` set a new `SECRET_COOKIE_PASSWORD` on every recreate (sessions drop).
 - nginx image alias in `install.sh` (`/root/dianych/images/`) does not match the docker volume in `restart.sh` (`/var/www/dianych/images`).
 - `pw.txt` is dockerignored; root `.gitignore` has `pw.txt` (not `dianych-website/pw.txt` unless matched by name — root pattern `pw.txt` matches any path named `pw.txt`).

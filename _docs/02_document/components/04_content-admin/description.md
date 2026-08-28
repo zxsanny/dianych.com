@@ -74,7 +74,7 @@ Prices file path: `cwd/dianych-website/data/framePrices.json` (nested when cwd i
 
 ## 6. Extensions and Helpers
 
-None extracted.
+`GALLERY_IDS` / `isGalleryId` and `DEFAULT_FRAME_PRICES` from Shared Runtime.
 
 ## 7. Caveats & Edge Cases
 

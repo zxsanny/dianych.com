@@ -9,14 +9,14 @@ Authenticated CMS: pick a gallery folder or frame prices; upload/delete images; 
 ## Public interface
 
 - `page.tsx` — title «Менеджмент секцій» + LogoutButton + client shell
-- Folders: brooches, clothes, panel, felting, kits, plus virtual `prices`
+- Folders: `GALLERY_IDS` plus virtual `prices`
 - `GalleryManager` — `useActionState(uploadImages/deleteImage)`, `getGalleryImages`
 - `PricesManager` — GET/POST `/api/prices`, digit-only inputs
 - `RemoveButton` — hidden `imagePath`, pending spinner
 
 ## Dependencies
 
-`app/actions`, `LogoutButton`, `next/image`, `react-dom` form status.
+`app/actions`, `lib/galleryIds`, `lib/defaultFramePrices` (PricesManager), `LogoutButton`, `next/image`, `react-dom` form status.
 
 ## Consumers
 

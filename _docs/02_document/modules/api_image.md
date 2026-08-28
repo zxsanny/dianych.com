@@ -14,11 +14,11 @@ GET a single resized WebP (as JSON `dataUrl`) for a named gallery file, with mem
 
 ## Internal logic
 
-`ALLOWED_GALLERIES` = brooches, clothes, panel, felting, kits. Filename must match `^[a-zA-Z0-9._-]+$`. Width clamped to `[256, 384, 512, 640, 828, 1080, 1200, 1600, 2000]` (default 1600). Cache key includes gallery, name, width, version=1. Disk dir `os.tmpdir()/gallery-single-images`. Generate: `sharp` rotate + resize + webp q82.
+Gallery allow-list is `isGalleryId` (`GALLERY_IDS`). Filename must match `^[a-zA-Z0-9._-]+$`. Width clamped to `[256, 384, 512, 640, 828, 1080, 1200, 1600, 2000]` (default 1600). Cache key includes gallery, name, width, version=1. Disk dir `os.tmpdir()/gallery-single-images`. Generate: `sharp` rotate + resize + webp q82.
 
 ## Dependencies
 
-`lib/diskCache`, `sharp`, Node `fs`/`path`/`os`.
+`lib/diskCache`, `lib/galleryIds`, `sharp`, Node `fs`/`path`/`os`.
 
 ## Consumers
 

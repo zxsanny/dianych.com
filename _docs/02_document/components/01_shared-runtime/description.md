@@ -2,7 +2,7 @@
 
 ## 1. High-Level Overview
 
-**Purpose**: First-party primitives used by auth, image pipeline, admin, and storefront: session cookie, gallery directory listing, disk cache cap, locale context + copy, unused font export.
+**Purpose**: First-party primitives used by auth, image pipeline, admin, and storefront: session cookie, gallery directory listing, gallery-id catalog, password expand, default prices, disk cache cap, locale context + copy. Font files live under `app/fonts/*.woff2` (loaded in `layout.tsx`).
 
 **Architectural Pattern**: Library / shared kernel (no HTTP of its own).
 
@@ -88,13 +88,14 @@ N/A (no owned DB).
 
 | Helper | Purpose | Used By |
 |--------|---------|---------|
-| `expandIfShort` (today duplicated) | Pad short passwords before bcrypt | Auth + hash-pw |
+| `expandIfShort` | Pad short passwords before bcrypt | Auth + hash-pw |
+| `GALLERY_IDS` / `isGalleryId` | Five uploadable folder ids | actions, image, pack, invalidate, manage |
+| `DEFAULT_FRAME_PRICES` | AC-PRICE-01 defaults | Frames, PricesManager, prices route |
 | parse `/images/<id>/<file>` (duplicated) | Gallery path split | Image Pipeline consumers + Admin |
 
 ## 7. Caveats & Edge Cases
 
 **Known limitations**:
-- `app/fonts.ts` unused; layout loads woff2 separately
 - `getImagePaths` does not sanitize `galleryId`
 - Empty `SECRET_COOKIE_PASSWORD` is stored as `''`
 

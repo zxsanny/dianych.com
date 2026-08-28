@@ -17,11 +17,11 @@ Authenticate the single admin password and set the iron-session cookie.
 
 IP from `x-forwarded-for` first hop or `x-real-ip`. In-memory `Map` rate limit (per process). Reads `pw.txt` from `process.cwd()`. Compares bcrypt against expanded short password and raw password (legacy).
 
-`expandIfShort`: same as `scripts/hash-pw.js` (`len < 32` → `{pass}.{pass}.{pass}`).
+Password expansion via `lib/expandIfShort` (`len < 32` → `{pass}.{pass}.{pass}`).
 
 ## Dependencies
 
-`lib/session` (`sessionOptions`, `SessionData`), `iron-session`, `bcryptjs`, Next cookies, Node `fs`/`path`.
+`lib/session` (`sessionOptions`, `SessionData`), `lib/expandIfShort`, `iron-session`, `bcryptjs`, Next cookies, Node `fs`/`path`.
 
 ## Consumers
 

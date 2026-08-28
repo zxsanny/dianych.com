@@ -3,7 +3,7 @@
 **Language**: typescript
 **Layout Convention**: custom (Next.js App Router under `dianych-website/`)
 **Root**: `dianych-website/`
-**Last Updated**: 2026-08-26
+**Last Updated**: 2026-08-28
 **Status**: derived-from-code
 
 ## Layout Rules
@@ -29,8 +29,8 @@
   - `lib/expandIfShort.js` — `expandIfShort`
   - `lib/defaultFramePrices.ts` — `DEFAULT_FRAME_PRICES`
   - `contexts/LanguageContext.tsx` — `LanguageProvider`, `useLanguage`
-- **Internal**: `app/fonts.ts` (unused)
-- **Owns**: `dianych-website/lib/**`, `dianych-website/contexts/**`, `dianych-website/app/fonts.ts`, `dianych-website/app/fonts/**`
+- **Internal**: (none unused)
+- **Owns**: `dianych-website/lib/**`, `dianych-website/contexts/**`, `dianych-website/app/fonts/**`
 - **Imports from**: (none first-party)
 - **Consumed by**: image-pipeline, auth, content-admin, storefront
 
@@ -51,7 +51,7 @@
 - **Epic**: pending
 - **Directory**: `app/api/login`, `app/api/logout`, `app/login`, `app/logout`, `middleware.ts`, `scripts/hash-pw.js`
 - **Public API**: HTTP `/api/login`, `/api/logout`, `/login`; `middleware` matcher `/manage/:path*`
-- **Internal**: rate-limit Map, `expandIfShort`, `hash-pw.js`
+- **Internal**: rate-limit Map, `hash-pw.js` (imports `expandIfShort`)
 - **Owns**: `dianych-website/app/api/login/**`, `dianych-website/app/api/logout/**`, `dianych-website/app/login/**`, `dianych-website/app/logout/**`, `dianych-website/middleware.ts`, `dianych-website/scripts/hash-pw.js`
 - **Imports from**: shared-runtime
 - **Consumed by**: content-admin
@@ -88,7 +88,7 @@
 
 ## Shared / Cross-Cutting
 
-No `shared/` package. Session, locale, disk cache, and gallery listing are Shared Runtime above.
+No `shared/` package. Session, locale, disk cache, gallery listing, gallery ids, password expand, and default prices are Shared Runtime above.
 
 ## Allowed Dependencies (layering)
 

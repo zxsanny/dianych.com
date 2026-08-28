@@ -22,7 +22,7 @@ Derived from repo evidence (`package.json`, Dockerfile, ops scripts, Next config
 | Node 20 bookworm-slim standalone | `Dockerfile` |
 | No database / ORM | no deps |
 | No test runner | no `*.test.*` / test script |
-| `jimp` listed but unused | `package.json` vs imports |
+| `jimp` is sharp fallback in pack cache | `app/api/gallery-pack/cache.ts` dynamic import |
 
 ## Environment
 

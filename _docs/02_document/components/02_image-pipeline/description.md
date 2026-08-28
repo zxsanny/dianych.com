@@ -6,7 +6,7 @@
 
 **Architectural Pattern**: Pipeline + cache-aside.
 
-**Upstream dependencies**: Shared Runtime (`diskCache`).
+**Upstream dependencies**: Shared Runtime (`diskCache`, `galleryIds`).
 
 **Downstream consumers**: Storefront (carousel/modal), Content Admin (invalidate after write).
 
@@ -78,13 +78,13 @@ GalleryPackPayload:
 | Library | Version | Purpose |
 |---------|---------|---------|
 | sharp | ^0.33.5 | resize/webp |
-| jimp | ^0.22.12 | unused fallback (sharp always present) |
+| jimp | ^0.22.12 | live sharp fallback in `cache.ts` |
 
 **Error Handling Strategy**: skip bad files; 400 invalid ids; 500 generate failure; empty catches on disk write.
 
 ## 6. Extensions and Helpers
 
-None extracted. `ALLOWED_GALLERIES` copied in three route files.
+Gallery allow-list is Shared Runtime `isGalleryId`.
 
 ## 7. Caveats & Edge Cases
 

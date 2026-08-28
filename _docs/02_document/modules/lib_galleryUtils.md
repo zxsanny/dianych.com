@@ -37,7 +37,7 @@ None.
 
 ## Security
 
-`galleryId` is not sanitized. Callers that accept user input (`app/actions.ts`) must restrict to `allowedFolders`. SSR `Gallery` uses hardcoded section ids.
+`galleryId` is not sanitized. Callers that accept user input (`app/actions.ts`) must restrict with `isGalleryId`. SSR `Gallery` uses hardcoded section ids.
 
 ## Tests
 

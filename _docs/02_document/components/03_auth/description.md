@@ -6,7 +6,7 @@
 
 **Architectural Pattern**: Cookie session gate (iron-session).
 
-**Upstream dependencies**: Shared Runtime (`sessionOptions`).
+**Upstream dependencies**: Shared Runtime (`sessionOptions`, `expandIfShort`).
 
 **Downstream consumers**: Content Admin (page + APIs), Image Pipeline invalidate.
 
@@ -62,7 +62,7 @@ Uses Shared Runtime session helpers. Login compares bcrypt against `pw.txt`.
 
 ## 6. Extensions and Helpers
 
-`expandIfShort` duplicated with `scripts/hash-pw.js`.
+`expandIfShort` imported from Shared Runtime (`lib/expandIfShort.js`).
 
 ## 7. Caveats & Edge Cases
 

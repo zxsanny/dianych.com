@@ -35,7 +35,7 @@ Not researched. This is a custom single-brand shop, not a catalog CMS. Stock Nex
 
 | Solution | Tools | Advantages | Limitations | Requirements | Security | Cost | Fit |
 |----------|-------|------------|-------------|--------------|----------|------|-----|
-| First-party helpers | iron-session 8.0.4, React context | One session + listing + locale kernel | Unused `app/fonts.ts`; locale not persisted | Node + Next cookies | Cookie `secure` in production; empty secret fails at runtime | Included | Selected |
+| First-party helpers | iron-session 8.0.4, React context | One session + listing + locale kernel | Locale not persisted | Node + Next cookies | Cookie `secure` in production; empty secret fails at runtime | Included | Selected |
 
 ### Component: Image Pipeline
 

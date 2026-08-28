@@ -17,7 +17,7 @@ Build and cache a JSON pack of WebP data-URL thumbnails for one gallery folder.
 
 ## Internal logic
 
-Reads `public/images/<galleryId>`, filters raster extensions (no SVG), sorts numeric-aware. Prefers `sharp` resize+webp q76; unused jimp fallback if `sharp` were falsy; last resort embeds original bytes as `data:image/webp`. Writes disk JSON and calls `enforceCacheLimit`. Missing folder → empty pack.
+Reads `public/images/<galleryId>`, filters raster extensions (no SVG), sorts numeric-aware. Prefers `sharp` resize+webp q76; live `jimp` fallback if sharp fails to load; last resort embeds original bytes as `data:image/webp`. Writes disk JSON and calls `enforceCacheLimit`. Missing folder → empty pack.
 
 ## Dependencies
 

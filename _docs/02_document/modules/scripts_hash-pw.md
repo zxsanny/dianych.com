@@ -13,11 +13,11 @@ CLI to bcrypt-hash an admin password and write it to `pw.txt` (same expansion ru
 
 ## Internal logic
 
-`expandIfShort`: passwords shorter than 32 chars become `{pass}.{pass}.{pass}` before hash. Salt rounds = 10.
+Imports `expandIfShort` from `lib/expandIfShort.js`. Salt rounds = 10.
 
 ## Dependencies
 
-Node `fs`, `path`, `readline`; `bcryptjs`.
+`lib/expandIfShort.js`; Node `fs`, `path`, `readline`; `bcryptjs`.
 
 ## Consumers
 

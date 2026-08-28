@@ -1,6 +1,6 @@
 # Module: components/Frames
 
-**Paths:** `dianych-website/app/components/Frames.tsx`; empty unused `FrameCard.tsx`
+**Path:** `dianych-website/app/components/Frames.tsx`
 
 ## Purpose
 
@@ -8,15 +8,15 @@ Storefront frames catalog: four size cards with static photos, live prices from 
 
 ## Public interface
 
-Default export. Inline `FrameCard` (not the empty file) opens `Modal` on static `/static-images/frames/*` paths.
+Default export. Inline `FrameCard` opens `Modal` on static `/static-images/frames/*` paths.
 
 ## Internal logic
 
-Defaults 450/500/600/700 UAH. Prices formatted `uk-UA` + ` UAH`. Fetch errors keep defaults.
+Defaults from `DEFAULT_FRAME_PRICES` (450/500/600/700 UAH). Prices formatted `uk-UA` + ` UAH`. Fetch errors keep defaults.
 
 ## Dependencies
 
-`SectionLayout`, `Modal`, `OrderButton`, `lib/translations`, `next/image`.
+`SectionLayout`, `Modal`, `OrderButton`, `lib/translations`, `lib/defaultFramePrices`, `next/image`.
 
 ## Consumers
 
