@@ -3,8 +3,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 IMAGE="${DIANYCH_IMAGE:-docker.azaion.com/dianych:latest}"
 
-if ! docker pull "$IMAGE"; then
+cd "$ROOT/dianych-website"
+docker build --platform linux/amd64 -t "$IMAGE" .
+if ! docker push "$IMAGE"; then
   docker login docker.azaion.com
-  docker pull "$IMAGE"
+  docker push "$IMAGE"
 fi
-exec "$ROOT/restart.sh"
+echo "Pushed $IMAGE"

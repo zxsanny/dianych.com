@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useTranslation } from '@/lib/translations';
@@ -30,9 +30,21 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
     // Local thumbnail state loaded from localStorage or API
     const [thumbs, setThumbs] = useState<(string | null)[] | null>(null);
     const [thumbsError, setThumbsError] = useState<string | null>(null);
+    const [packVisible, setPackVisible] = useState(false);
+    const packRootRef = useRef<HTMLDivElement>(null);
 
-    // Derive galleryId from image paths like /images/<galleryId>/<filename>
     useEffect(() => {
+        const el = packRootRef.current;
+        if (!el) return;
+        const io = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) setPackVisible(true);
+        }, { rootMargin: '240px' });
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!packVisible) return;
         if (!images || images.length === 0) return;
         const first = images[0];
         const parts = first.split('/').filter(Boolean);
@@ -72,9 +84,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
             // Fetch pack from API (background refresh)
             (async () => {
                 try {
-                    const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&size=${GALLERY_PACK_THUMB_WIDTH}&ts=${Date.now()}`,
-                        { cache: 'no-store' }
-                    );
+                    const res = await fetch(`/api/gallery-pack?galleryId=${encodeURIComponent(galleryId)}&size=${GALLERY_PACK_THUMB_WIDTH}`);
                     if (!res.ok) {
                         setThumbsError(`HTTP ${res.status}`);
                         return;
@@ -96,7 +106,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
                 }
             })();
         }
-    }, [images]);
+    }, [images, packVisible]);
 
     useEffect(() => {
         const mql = window.matchMedia('(max-width: 767px)');
@@ -148,7 +158,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
         : (thumbsError ? images : new Array(images.length).fill(null));
 
     return (
-        <>
+        <div ref={packRootRef}>
             <h2 className="text-4xl color-red text-center mb-8 cursor-default">{title}</h2>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8 text-center cursor-default">
                 {description}
@@ -203,7 +213,7 @@ const GalleryCarousel = ({ images, titleKey, descriptionKey, buttonTextKey, orde
                 onNext={handleModalNext}
                 onPrev={handleModalPrev}
             />
-        </>
+        </div>
     );
 };
 

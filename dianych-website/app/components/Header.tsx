@@ -9,7 +9,7 @@ const NavLink = ({ href, imgSrc, label, className = '' }: { href: string; imgSrc
     <div className={`flex flex-col items-center text-center group cursor-pointer ${className}`}>
         <Link href={href} scroll={true}>
             <div className="relative w-[clamp(8rem,18vh,11rem)] h-[clamp(8rem,18vh,11rem)] rounded-lg overflow-hidden border-2 border-white/50 shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
-                <Image src={imgSrc} alt={`${label} category link`} fill className="object-cover" />
+                <Image src={imgSrc} alt={`${label} category link`} fill className="object-cover" priority />
             </div>
             <div className="mt-2 font-semibold text-gray-800 text-lg sm:text-xl">{label}</div>
         </Link>

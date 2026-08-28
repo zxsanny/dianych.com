@@ -7,6 +7,7 @@ export const WEBP_QUALITY = 82;
 
 function maxEdgeFor(filename: string): number {
     if (/^main_logo\./i.test(filename)) return 512;
+    if (/_link\./i.test(filename)) return 256;
     if (/_icon\./i.test(filename)) return 256;
     if (/^phone_img\./i.test(filename)) return 768;
     return GALLERY_MAX_EDGE;
