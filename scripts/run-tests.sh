@@ -166,6 +166,51 @@ print("\n".join(sorted(str(x.get("name", "")) for x in o.get("images", []))))
 PY
 }
 
+cookie_header() {
+  python3 - "$COOKIE_JAR" <<'PY'
+import sys
+out = []
+for line in open(sys.argv[1], encoding="utf-8", errors="replace"):
+    if line.startswith("#HttpOnly_"):
+        line = line[len("#HttpOnly_"):]
+    elif line.startswith("#") or not line.strip():
+        continue
+    parts = line.rstrip("\n").split("\t")
+    if len(parts) >= 7:
+        out.append(f"{parts[5]}={parts[6]}")
+print("; ".join(out))
+PY
+}
+
+action_id() {
+  docker exec "${COMPOSE_PROJECT}-system-under-test-1" \
+    cat /app/.next/server/server-reference-manifest.json \
+    | node -e '
+let s = "";
+process.stdin.on("data", (d) => { s += d; });
+process.stdin.on("end", () => {
+  const o = JSON.parse(s);
+  const want = process.argv[1];
+  for (const [k, v] of Object.entries(o.node || {})) {
+    if (v.exportedName === want) {
+      process.stdout.write(k + "\n");
+      process.exit(0);
+    }
+  }
+  process.exit(1);
+});
+' "$1"
+}
+
+invoke_manage() {
+  node "$PROJECT_ROOT/scripts/invoke-manage-action.js" --base-url "$BASE_URL" "$@"
+}
+
+invalidate_pack() {
+  curl -sS -b "$COOKIE_JAR" -o /dev/null -X POST "$BASE_URL/api/gallery-pack/invalidate" \
+    -H 'Content-Type: application/json' -d '{"galleryId":"brooches"}' || true
+}
+
 log "Starting SUT via docker compose"
 docker compose -f "$COMPOSE_FILE" -p "$COMPOSE_PROJECT" up -d --build
 wait_ready "$BASE_URL" 180000 || fail "SUT did not become ready at $BASE_URL"
@@ -373,12 +418,20 @@ PY
 }
 
 ft_n_07() {
-  local code names1 names2
+  local code names1 names2 http
   code="$(curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/n07p1")"
   [[ "$code" == "200" ]] || return 1
   names1="$(pack_names "$TMP/n07p1.body")"
   ft_n_05 || return 1
   ft_n_07_inv || return 1
+  invoke_manage --action-id "$(action_id uploadImages)" \
+    --folder brooches --file "$SEED_JPEG" --filename bbtest-unauth.jpg > "$TMP/n07u.json"
+  http="$(manage_http "$TMP/n07u.json")"
+  [[ "$http" == "307" || "$http" == "302" || "$(manage_msg "$TMP/n07u.json")" == "Unauthorized." ]] || return 1
+  invoke_manage --action-id "$(action_id deleteImage)" \
+    --image-path '/images/brooches/seed.jpg' > "$TMP/n07d.json"
+  http="$(manage_http "$TMP/n07d.json")"
+  [[ "$http" == "307" || "$http" == "302" || "$(manage_msg "$TMP/n07d.json")" == "Unauthorized." ]] || return 1
   code="$(curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/n07p2")"
   [[ "$code" == "200" ]] || return 1
   names2="$(pack_names "$TMP/n07p2.body")"
@@ -395,6 +448,121 @@ nft_sec_01() {
   [[ "$code" == "200" ]] || return 1
   after="$(cat "$TMP/sec01b.body")"
   [[ "$before" == "$after" ]]
+}
+
+nft_alias_n03() {
+  local code
+  code="$(curl -sS -o "$TMP/alias.body" -w '%{http_code}' -X POST "$BASE_URL/api/login" \
+    -H 'X-Forwarded-For: 203.0.113.10' -F 'password=not-the-password')"
+  [[ "$code" == "429" ]]
+}
+
+manage_msg() {
+  python3 - "$1" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+r = o.get("result") or {}
+print(r.get("message") or "")
+PY
+}
+
+manage_status() {
+  python3 - "$1" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+r = o.get("result") or {}
+print(r.get("status") or "")
+PY
+}
+
+manage_http() {
+  python3 - "$1" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+print(o.get("httpStatus") or "")
+PY
+}
+
+ft_n_08() {
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder frames --file "$SEED_JPEG" --filename bbtest-upload.jpg > "$TMP/n08.json"
+  [[ "$(manage_msg "$TMP/n08.json")" == "Please select a valid folder." ]]
+}
+
+ft_n_09() {
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --empty-file --filename empty.jpg > "$TMP/n09.json"
+  [[ "$(manage_msg "$TMP/n09.json")" == "Please select at least one file to upload." ]]
+}
+
+ft_n_10() {
+  printf 'note\n' > "$WORK_DIR/note.txt"
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --file "$WORK_DIR/note.txt" --filename note.txt --type text/plain > "$TMP/n10.json"
+  python3 - "$TMP/n10.json" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if "not an allowed image type" in str((o.get("result") or {}).get("message", "")) else 1)
+PY
+}
+
+ft_n_11() {
+  printf 'not-a-jpeg' > "$WORK_DIR/bbtest-fake.jpg"
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --file "$WORK_DIR/bbtest-fake.jpg" --filename bbtest-fake.jpg > "$TMP/n11.json"
+  python3 - "$TMP/n11.json" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+raise SystemExit(0 if "file content is not a valid image" in str((o.get("result") or {}).get("message", "")) else 1)
+PY
+}
+
+ft_n_12() {
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder '../etc' --file "$SEED_JPEG" --filename bbtest-upload.jpg > "$TMP/n12u.json"
+  python3 - "$TMP/n12u.json" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1], encoding="utf-8"))
+msg = str((o.get("result") or {}).get("message", ""))
+ok = "valid folder" in msg or "Unauthorized" in msg
+raise SystemExit(0 if ok else 1)
+PY
+  invoke_manage --action-id "$(action_id deleteImage)" --cookie "$(cookie_header)" \
+    --image-path '../../etc/passwd' > "$TMP/n12d.json"
+  [[ "$(manage_msg "$TMP/n12d.json")" == "Unauthorized file path." ]]
+}
+
+ft_p_11() {
+  local names
+  mkdir -p "$TMP"
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --file "$SEED_JPEG" --filename bbtest-upload.jpg > "$TMP/p11.json"
+  [[ "$(manage_status "$TMP/p11.json")" == "success" ]] || return 1
+  invalidate_pack
+  curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/p11p" >/dev/null
+  names="$(pack_names "$TMP/p11p.body")"
+  [[ "$names" == *bbtest-upload.jpg* ]] || return 1
+  invoke_manage --action-id "$(action_id deleteImage)" --cookie "$(cookie_header)" \
+    --image-path '/images/brooches/bbtest-upload.jpg' > "$TMP/p11d.json"
+  [[ "$(manage_status "$TMP/p11d.json")" == "success" ]] || return 1
+  invalidate_pack
+  curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/p11p2" >/dev/null
+  names="$(pack_names "$TMP/p11p2.body")"
+  [[ "$names" != *bbtest-upload.jpg* ]]
+}
+
+nft_res_lim_02() {
+  local names http
+  curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/lim02a" >/dev/null
+  names="$(pack_names "$TMP/lim02a.body")"
+  invoke_manage --action-id "$(action_id uploadImages)" --cookie "$(cookie_header)" \
+    --folder brooches --filename bbtest-huge.jpg --oversize-mb 21 > "$TMP/lim02.json" || true
+  http="$(manage_http "$TMP/lim02.json")"
+  [[ "$http" != "200" ]] || [[ "$(manage_status "$TMP/lim02.json")" == "error" ]] || return 1
+  invalidate_pack
+  curl_save GET "$BASE_URL/api/gallery-pack?galleryId=brooches" "$TMP/lim02b" >/dev/null
+  [[ "$(pack_names "$TMP/lim02b.body")" != *bbtest-huge.jpg* ]]
+  [[ "$(pack_names "$TMP/lim02b.body")" == "$names" ]]
 }
 
 ft_p_08() {
@@ -629,6 +797,8 @@ run_case "FT-P-04" "Default prices" ft_p_04
 run_case "FT-N-01" "Login missing password" ft_n_01
 run_case "FT-N-02" "Login wrong password" ft_n_02
 run_case "FT-N-03" "Login rate limit" ft_n_03
+run_case "NFT-SEC-03" "Rate limit (alias)" nft_alias_n03
+run_case "NFT-RES-LIM-01" "Login window" nft_alias_n03
 run_case "FT-N-04" "Manage redirect" ft_n_04
 run_case "SM-01" "Storefront up" sm_01
 run_case "SM-02" "Prices keys" sm_02
@@ -639,6 +809,13 @@ run_case "FT-P-05" "POST prices echo" ft_p_05
 run_case "FT-P-06" "GET prices after POST" ft_p_06
 run_case "FT-N-05" "Unauth POST prices" ft_n_05
 run_case "FT-N-06" "Negative price" ft_n_06
+run_case "FT-N-08" "Bad folder upload" ft_n_08
+run_case "FT-N-09" "Empty files upload" ft_n_09
+run_case "FT-N-10" "Non-image upload" ft_n_10
+run_case "FT-N-11" "Bad magic bytes" ft_n_11
+run_case "FT-N-12" "Traversal upload/delete" ft_n_12
+run_case "FT-P-11" "Upload visible to new visitor" ft_p_11
+run_case "NFT-RES-LIM-02" "20MB upload body" nft_res_lim_02
 run_case "FT-N-07" "Unauth mutations" ft_n_07
 run_case "NFT-SEC-01" "Mutations require session" nft_sec_01
 run_case "NFT-SEC-04" "Manage gated" ft_n_04
@@ -659,16 +836,6 @@ run_case "NFT-RES-03" "Missing pw.txt" nft_res_03
 run_case "NFT-RES-04" "Session after recreate" nft_res_04
 run_case "NFT-RES-05" "Rate-limit map reset" nft_res_05
 run_case "NFT-RES-LIM-03" "Thumb cache soak" nft_res_lim_03
-
-skip_case "FT-P-11" "Upload visible to new visitor" "manage form / Next server action not HTTP-scriptable"
-skip_case "FT-N-08" "Bad folder upload" "manage form / Next server action"
-skip_case "FT-N-09" "Empty files upload" "manage form / Next server action"
-skip_case "FT-N-10" "Non-image upload" "manage form / Next server action"
-skip_case "FT-N-11" "Bad magic bytes" "manage form / Next server action"
-skip_case "FT-N-12" "Traversal upload/delete" "manage form / Next server action"
-skip_case "NFT-RES-LIM-02" "20MB upload body" "manage form / Next server action"
-skip_case "NFT-RES-LIM-01" "Login window" "same run as FT-N-03"
-skip_case "NFT-SEC-03" "Rate limit (alias)" "covered by FT-N-03"
 
 run_case "NFT-SEC-06" "Public pages no session" nft_sec_06
 
